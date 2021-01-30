@@ -15,7 +15,7 @@ local shapes = require("util.shapes")
 client.connect_signal("manage", function (c)
     -- Set the windows at the slave,
     -- i.e. put it at the end of others instead of setting it master.
-    c.shape = shapes.roundedrect
+    -- c.shape = shapes.roundedrect
     if not awesome.startup then awful.client.setslave(c) end
 
     if awesome.startup

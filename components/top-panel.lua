@@ -46,7 +46,7 @@ local function worker(args)
                     {
                         widget = wibox.container.background,
                         bg = beautiful.bg_normal,
-                        shape = shapes.roundedrect,
+                        -- shape = shapes.roundedrect,
                         forced_width = 24,
                         {
                             widget = wibox.container.margin,
@@ -57,7 +57,7 @@ local function worker(args)
                     {
                         widget = wibox.container.background,
                         bg = "#00000000",
-                        shape = shapes.roundedrect,
+                        -- shape = shapes.roundedrect,
                         {
                             layout = wibox.layout.fixed.horizontal,
                             widgets.taglist { screen = args.screen },
@@ -80,7 +80,7 @@ local function worker(args)
                     {
                         widget = wibox.container.background,
                         bg = beautiful.bg_normal,
-                        shape = shapes.roundedrect,
+                        -- shape = shapes.roundedrect,
                         wibox.widget {}
                     },
                 },
@@ -90,7 +90,7 @@ local function worker(args)
                     {
                         widget = wibox.container.background,
                         bg = beautiful.bg_normal,
-                        shape = shapes.roundedrect,
+                        -- shape = shapes.roundedrect,
                         {
                             widget = wibox.container.margin,
                             left = 8,
@@ -101,7 +101,7 @@ local function worker(args)
                     {
                         widget = wibox.container.background,
                         bg = beautiful.bg_normal,
-                        shape = shapes.roundedrect,
+                        -- shape = shapes.roundedrect,
                         {
                             widget = wibox.container.margin,
                             top = 4,
@@ -114,7 +114,7 @@ local function worker(args)
                     {
                         widget = wibox.container.background,
                         bg = beautiful.bg_normal,
-                        shape = shapes.roundedrect,
+                        -- shape = shapes.roundedrect,
                         {
                             widget = wibox.container.margin,
                             margins = 4,
@@ -130,7 +130,7 @@ local function worker(args)
                     {
                         widget = wibox.container.background,
                         bg = beautiful.bg_normal,
-                        shape = shapes.roundedrect,
+                        -- shape = shapes.roundedrect,
                         {
                             widget = wibox.container.margin,
                             left = 8,

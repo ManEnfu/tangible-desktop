@@ -189,8 +189,20 @@ globalkeys = gears.table.join(
         end,
         {description = "take screenshot", group = "awesome" }
     ),
+    
+    awful.key({ "Shift" }, "Print", nil, 
+        function ()
+            awful.spawn.with_shell(
+                "scrot -s '%Y-%m-%d_%H-%M-%S_$wx$h.png'" ..
+                " -e 'mv $f ~/Pictures/Screenshots/ 2>/dev/null &&" ..
+                "notify-send \"Screenshot taken\" \"$f\" -t 2000" .. 
+                " -i ~/Pictures/Screenshots/$f'"
+            )
+        end,
+        {description = "take screenshot", group = "awesome" }
+    ),
 
-    awful.key({ modkey }, "z", 
+    awful.key({ modkey }, "b", 
         function() 
             local screen = awful.screen.focused()
             screen.mywibox.visible = not screen.mywibox.visible

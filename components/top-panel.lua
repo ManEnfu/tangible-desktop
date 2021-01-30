@@ -29,6 +29,7 @@ local function worker(args)
     for _,w in ipairs(args.widgets) do
         status_panel:add(w)
     end
+    status_panel:add(wibox.widget.textbox("|  awesome4.3"))
 
     panel:setup {
         widget = wibox.container.margin,

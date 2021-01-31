@@ -105,11 +105,15 @@ awful.layout.layouts = {
 -- WIDGETS
 -------------------------------------------------------------------------------
 myawesomemenu = {
-   { "Hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
-   { "Manual", terminal .. " -e man awesome" },
-   { "Edit Config", editor_cmd .. " " .. awesome.conffile },
-   { "Restart", awesome.restart },
-   { "Quit", function() awesome.quit() end },
+    { "Hotkeys", 
+        function() 
+            hotkeys_popup.show_help(nil, awful.screen.focused()) 
+        end 
+    },
+    { "Manual", terminal .. " -e man awesome" },
+    { "Edit Config", editor_cmd .. " " .. awesome.conffile },
+    { "Restart", awesome.restart },
+    { "Quit", function() awesome.quit() end },
 }
 
 
@@ -120,7 +124,7 @@ if has_fdo then
         },
         after =  { 
             { "Open Terminal", terminal },
-            { "Suspend", "i3lock -c 242424 && sleep 0.5 && loginctl suspend" },
+            { "Suspend","i3lock -c 242424 && sleep 0.5 && loginctl suspend" },
             { "Reboot", "loginctl reboot" },
             { "Power Off", "loginctl poweroff" }
         }
@@ -131,18 +135,21 @@ else
             { "Awesome", myawesomemenu, beautiful.awesome_icon },
             { "Applications", xdgmenu },
             { "Open Terminal", terminal },
-            { "Suspend", "i3lock -c 242424 && sleep 0.5 && loginctl suspend" },
+            { "Suspend","i3lock -c 242424 && sleep 0.5 && loginctl suspend" },
             { "Reboot", "loginctl reboot" },
             { "Power Off", "loginctl poweroff" }
         },
     })
 end
 
-mylauncher = awful.widget.launcher({ image = config_dir .. "/icons/artix-logo.png",
-                                     menu = mymainmenu })
+mylauncher = awful.widget.launcher({ 
+    image = config_dir .. "/icons/artix-logo.png",                                 
+    menu = mymainmenu 
+})
 
 -- Menubar configuration
-menubar.utils.terminal = terminal -- Set the terminal for applications that require it
+-- Set the terminal for applications that require it
+menubar.utils.terminal = terminal 
 
 -- Keyboard map indicator and switcher
 mykeyboardlayout = awful.widget.keyboardlayout()
@@ -169,7 +176,10 @@ awful.screen.connect_for_each_screen(function(s)
 
     -- Each screen has its own tag table.
     -- local tagnames = { "1", "2", "3", "4", "5", "6", "7", "8", "9" }
-    local tagnames = { "term1", "term2", "web", "file", "doc", "media", "design", "game", "chat" }
+    local tagnames = { 
+        "term1", "term2", "web", "file", "doc", 
+        "media", "design", "game", "chat" 
+    }
     -- awful.tag(
     --     { "1", "2", "3", "4", "5", "6", "7", "8", "9" }, 
     --     s, 

@@ -157,7 +157,7 @@ myvolume = widgets.volume {
     play = config_dir .. "/sound_click_tick.wav"
 }
 mybattery = widgets.battery { timeout = 3 }
-
+myschedule = widgets.schedule { timeout = 60 }
 
 
 -------------------------------------------------------------------------------

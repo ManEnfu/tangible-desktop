@@ -29,7 +29,7 @@ local function worker(args)
     for _,w in ipairs(args.widgets) do
         status_panel:add(w)
     end
-    status_panel:add(wibox.widget.textbox("|  awesome4.3"))
+    -- status_panel:add(wibox.widget.textbox("|  awesome4.3"))
 
     panel:setup {
         widget = wibox.container.margin,
@@ -81,7 +81,11 @@ local function worker(args)
                         widget = wibox.container.background,
                         bg = beautiful.bg_normal,
                         -- shape = shapes.roundedrect,
-                        wibox.widget {}
+                        {
+                            widget = wibox.container.margin,
+                            left = beautiful.xresources.apply_dpi(4),
+                            myschedule,
+                        }
                     },
                 },
                 {

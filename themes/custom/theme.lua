@@ -65,7 +65,7 @@ theme.notification_shape = function(cr, w, h)
 end
 theme.notification_max_width = 640
 theme.notification_max_height = 160
-theme.notification_icon_size = 144
+theme.notification_icon_size = 64
 
 
 -- Variables set for theming the menu:

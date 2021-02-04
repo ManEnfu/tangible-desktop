@@ -36,6 +36,14 @@ local tasklist_buttons = gears.table.join(
 )
 
 -------------------------------------------------------------------------------
+-- TASKLIST UPDATE CALLBACK
+-------------------------------------------------------------------------------
+local function tasklist_callback(self, c, index, ctable)
+    self:get_children_by_id('selected_background')[1].bg =
+        (c == client.focus) and beautiful.bg_focus or nil
+end
+
+-------------------------------------------------------------------------------
 -- TASKLIST
 -------------------------------------------------------------------------------
 local function worker(args)
@@ -53,7 +61,7 @@ local function worker(args)
                 valign = "bottom",
                 {
                     widget = wibox.container.background,
-                    id = 'background_role',
+                    id = 'selected_background',
                     forced_height = 2,
                     forced_width = 20,
                     wibox.widget {},
@@ -68,10 +76,12 @@ local function worker(args)
                 }
             },
             -- Set icon for each newly created clients
-            create_callback = function(self, c, index, objects)
+            create_callback = function(self, c, index, ctable)
                 self:get_children_by_id('clienticon')[1].client = c
+                tasklist_callback(self, c, index, ctable)
             end,
-        }
+            update_callback = tasklist_callback,
+        },
     }
     return new_tasklist
 end

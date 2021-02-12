@@ -9,6 +9,8 @@ local widgets = require("widgets")
 local shapes = require("util.shapes")
 local module_path = (...):match ("(.+/)[^/]+$") or ""
 
+local dpi = beautiful.xresources.apply_dpi
+
 local top_panel = {}
 
 -------------------------------------------------------------------------------
@@ -24,7 +26,7 @@ local function worker(args)
 
     status_panel = wibox.widget {
         layout = wibox.layout.fixed.horizontal,
-        spacing = beautiful.xresources.apply_dpi(4)
+        spacing = dpi(4)
     }
     for _,w in ipairs(args.widgets) do
         status_panel:add(w)
@@ -33,24 +35,24 @@ local function worker(args)
 
     panel:setup {
         widget = wibox.container.margin,
-        top = beautiful.xresources.apply_dpi(4),
-        left = beautiful.xresources.apply_dpi(4),
-        right = beautiful.xresources.apply_dpi(4),
+        top = dpi(4),
+        left = dpi(4),
+        right = dpi(4),
         {
             layout = wibox.layout.stack,
             {
                 layout = wibox.layout.align.horizontal,
                 {
                     layout = wibox.layout.fixed.horizontal,
-                    spacing = beautiful.xresources.apply_dpi(4),
+                    spacing = dpi(4),
                     {
                         widget = wibox.container.background,
                         bg = beautiful.bg_normal,
                         -- shape = shapes.roundedrect,
-                        forced_width = 24,
+                        forced_width = dpi(24),
                         {
                             widget = wibox.container.margin,
-                            margins = 4,
+                            margins = dpi(4),
                             mylauncher
                         }
                     },
@@ -75,43 +77,42 @@ local function worker(args)
                 },
                 {
                     widget = wibox.container.margin,
-                    left = beautiful.xresources.apply_dpi(4),
-                    right = beautiful.xresources.apply_dpi(4),
+                    left = dpi(4),
+                    right = dpi(4),
                     {
                         widget = wibox.container.background,
                         bg = beautiful.bg_normal,
                         -- shape = shapes.roundedrect,
                         {
-                            widget = wibox.container.margin,
-                            left = beautiful.xresources.apply_dpi(4),
-                            myschedule,
+                            layout = wibox.layout.align.horizontal,
+                            {
+                                widget = wibox.container.margin,
+                                left = dpi(8),
+                                myschedule,
+                            },
+                            nil,
+                            {
+                                widget = wibox.container.margin,
+                                left = dpi(8),
+                                right = dpi(8),
+                                status_panel
+                            }
                         }
                     },
                 },
                 {
                     layout = wibox.layout.fixed.horizontal,
-                    spacing = beautiful.xresources.apply_dpi(4),
+                    spacing = dpi(4),
                     {
                         widget = wibox.container.background,
                         bg = beautiful.bg_normal,
                         -- shape = shapes.roundedrect,
                         {
                             widget = wibox.container.margin,
-                            left = 8,
-                            right = 8,
-                            status_panel
-                        }
-                    },
-                    {
-                        widget = wibox.container.background,
-                        bg = beautiful.bg_normal,
-                        -- shape = shapes.roundedrect,
-                        {
-                            widget = wibox.container.margin,
-                            top = 4,
-                            bottom = 4,
-                            left = 8,
-                            right = 8,
+                            top = dpi(4),
+                            bottom = dpi(4),
+                            left = dpi(8),
+                            right = dpi(8),
                             wibox.widget.systray(),
                         },
                     },
@@ -121,7 +122,7 @@ local function worker(args)
                         -- shape = shapes.roundedrect,
                         {
                             widget = wibox.container.margin,
-                            margins = 4,
+                            margins = dpi(4),
                             awful.widget.layoutbox(args.screen),
                         },
                     },
@@ -137,8 +138,8 @@ local function worker(args)
                         -- shape = shapes.roundedrect,
                         {
                             widget = wibox.container.margin,
-                            left = 8,
-                            right = 8,
+                            left = dpi(8),
+                            right = dpi(8),
                             wibox.widget.textclock("%A, %d %B %Y | %H:%M"),
                         }
                     },

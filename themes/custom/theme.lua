@@ -60,9 +60,6 @@ theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
 -- notification_[width|height|margin]
 -- notification_[border_color|border_width|shape|opacity]
 theme.notification_border_color = theme.bg_normal
-theme.notification_shape = function(cr, w, h)
-    return gears.shape.rounded_rect(cr, w, h, 4)
-end
 theme.notification_max_width = 640
 theme.notification_max_height = 160
 theme.notification_icon_size = 64

@@ -72,6 +72,24 @@ local function worker(args)
         end
     end, wifi_widget)
 
+    ---------------------------------------------------------------------------
+    -- CLICK FUNCTION
+    ---------------------------------------------------------------------------
+    wifi_widget:buttons(gears.table.join(
+        awful.button({}, 1, function()
+            local f = io.popen("iwconfig " .. interface)
+            local str = "iwconfig " .. interface
+            for line in f:lines() do
+                str = str .. "\n" .. line
+            end
+            naughty.notify {
+                preset = naughty.config.presets.normal,
+                title = "Wireless Info",
+                text = str
+            }
+        end)
+    ))
+
     return wifi_widget
 end
 

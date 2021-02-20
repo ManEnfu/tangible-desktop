@@ -10,6 +10,7 @@ local shapes = require("util.shapes")
 local module_path = (...):match ("(.+/)[^/]+$") or ""
 
 local dpi = beautiful.xresources.apply_dpi
+local bargap = dpi(4)
 
 local top_panel = {}
 
@@ -21,7 +22,7 @@ local function worker(args)
         position = "top", 
         screen = args.screen,
         bg = "#00000000", 
-        height = 28
+        height = dpi(24) + bargap
     })
 
     status_panel = wibox.widget {
@@ -35,25 +36,34 @@ local function worker(args)
 
     panel:setup {
         widget = wibox.container.margin,
-        top = dpi(4),
-        left = dpi(4),
-        right = dpi(4),
+        top = bargap,
+        left = bargap,
+        right = bargap,
         {
             layout = wibox.layout.stack,
             {
                 layout = wibox.layout.align.horizontal,
                 {
                     layout = wibox.layout.fixed.horizontal,
-                    spacing = dpi(4),
+                    spacing = bargap,
                     {
-                        widget = wibox.container.background,
-                        bg = beautiful.bg_normal,
-                        -- shape = shapes.roundedrect,
-                        forced_width = dpi(24),
+                        layout = wibox.layout.fixed.horizontal,
                         {
-                            widget = wibox.container.margin,
-                            margins = dpi(4),
-                            mylauncher
+                            widget = wibox.container.background,
+                            bg = beautiful.bg_focus,
+                            forced_width = dpi(4),
+                            wibox.widget {}
+                        },
+                        {
+                            widget = wibox.container.background,
+                            bg = beautiful.bg_normal,
+                            -- shape = shapes.roundedrect,
+                            forced_width = dpi(24),
+                            {
+                                widget = wibox.container.margin,
+                                margins = dpi(4),
+                                mylauncher
+                            }
                         }
                     },
                     {
@@ -77,8 +87,8 @@ local function worker(args)
                 },
                 {
                     widget = wibox.container.margin,
-                    left = dpi(4),
-                    right = dpi(4),
+                    left = bargap,
+                    right = bargap,
                     {
                         widget = wibox.container.background,
                         bg = beautiful.bg_normal,
@@ -102,7 +112,7 @@ local function worker(args)
                 },
                 {
                     layout = wibox.layout.fixed.horizontal,
-                    spacing = dpi(4),
+                    spacing = bargap,
                     {
                         widget = wibox.container.background,
                         bg = beautiful.bg_normal,
@@ -117,15 +127,24 @@ local function worker(args)
                         },
                     },
                     {
-                        widget = wibox.container.background,
-                        bg = beautiful.bg_normal,
-                        -- shape = shapes.roundedrect,
+                        layout = wibox.layout.fixed.horizontal,
                         {
-                            widget = wibox.container.margin,
-                            margins = dpi(4),
-                            awful.widget.layoutbox(args.screen),
+                            widget = wibox.container.background,
+                            bg = beautiful.bg_normal,
+                            -- shape = shapes.roundedrect,
+                            {
+                                widget = wibox.container.margin,
+                                margins = dpi(4),
+                                awful.widget.layoutbox(args.screen),
+                            },
                         },
-                    },
+                        {
+                            widget = wibox.container.background,
+                            bg = beautiful.bg_focus,
+                            forced_width = dpi(4),
+                            wibox.widget {}
+                        },
+                    }
                 }
             },
             {

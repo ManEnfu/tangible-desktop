@@ -11,9 +11,9 @@ require("awful.hotkeys_popup.keys")
 -- GLOBAL KEYBINDINGS
 -------------------------------------------------------------------------------
 root.buttons(gears.table.join(
-    awful.button({ }, 3, function () mymainmenu:toggle() end),
-    awful.button({ }, 4, awful.tag.viewnext),
-    awful.button({ }, 5, awful.tag.viewprev)
+    awful.button({ }, 3, function () mymainmenu:toggle() end)
+    -- awful.button({ }, 4, awful.tag.viewnext),
+    -- awful.button({ }, 5, awful.tag.viewprev)
 ))
 
 globalkeys = gears.table.join(
@@ -82,6 +82,7 @@ globalkeys = gears.table.join(
         function() 
             local screen = awful.screen.focused()
             screen.mywibox.visible = not screen.mywibox.visible
+            screen.mybotpanel.visible = not screen.mybotpanel.visible
         end,
         {description = "toggle wibar", group = "awesome"}
     ),

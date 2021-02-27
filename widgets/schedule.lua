@@ -48,11 +48,7 @@ local function worker(args)
     function(widget, stdout)
         local children = widget:get_children()
         stdout = string.gsub(stdout, "\n", "")
-        if stdout == "" then
-            children[1]:set_text("")
-        else
-            children[1]:set_text("Schedule: " .. stdout)
-        end
+        children[1]:set_text("Schedule: " .. stdout)
     end, schedule_widget)
 
     return schedule_widget

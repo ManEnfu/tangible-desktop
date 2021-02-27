@@ -21,8 +21,8 @@ local taglist_buttons = gears.table.join(
             client.focus:move_to_tag(t)
         end
     end),
-    awful.button({ }, 3, awful.tag.viewtoggle),
-    awful.button({ modkey }, 3, function(t)
+    awful.button({ "Control" }, 1, awful.tag.viewtoggle),
+    awful.button({ modkey, "Control" }, 1, function(t)
         if client.focus then
             client.focus:toggle_tag(t)
         end
@@ -35,31 +35,38 @@ local taglist_buttons = gears.table.join(
 -- TAGLIST UPDATE CALLBACK
 -------------------------------------------------------------------------------
 local function taglist_callback(self, tag, index, ttable)
-    self:get_children_by_id('occ_indicator')[1].visible =
-        #tag:clients() > 0
     local selected = tag.selected
-    self:get_children_by_id('tasklist')[1].visible = 
-        selected and #tag:clients() > 0
     local sel_bg = 
         self:get_children_by_id('selected_background')[1]
     local tag_bg = 
         self:get_children_by_id('tag_background')[1]
+
+    self:get_children_by_id('tasklist_container')[1].visible = 
+        #tag:clients() > 0
     if selected then
-        tag_bg.bg = '#323232'
         sel_bg.bg = beautiful.bg_focus
+        sel_bg.bg = beautiful.bg_focus
+        tag_bg.bg = beautiful.bg_focus
     else
+        sel_bg.bg = beautiful.bg_normal
         tag_bg.bg = beautiful.bg_normal
-        sel_bg.bg = nil
     end
+end
+
+local function taglist_oncreate(self, tag, index, ttable)
+    self:get_children_by_id('tasklist')[1]:set_children {
+        tasklist {
+            screen = tag.screen,
+            tag = tag
+        }
+    }
+    taglist_callback(self, tag, index, ttable)
 end
 
 -------------------------------------------------------------------------------
 -- TAGLIST
 -------------------------------------------------------------------------------
 function worker(args)
-    local new_tasklist = tasklist { 
-        screen = args.screen 
-    }
     local new_taglist = awful.widget.taglist {
         screen  = args.screen,
         filter  = awful.widget.taglist.filter.all,
@@ -76,51 +83,46 @@ function worker(args)
             {
                 layout = wibox.layout.fixed.horizontal,
                 {
-                    layout = wibox.layout.stack,
+                    id = "selected_background",
+                    widget = wibox.container.background,
+                    -- shape = shapes.roundedleft,
+                    bg = nil,
                     {
-                        id = "selected_background",
-                        widget = wibox.container.background,
-                        -- shape = shapes.roundedleft,
-                        bg = nil,
+                        widget = wibox.container.margin,
+                        left  = 4,
+                        right = 4,
+                        top = 4,
+                        bottom = 4,
                         {
-                            widget = wibox.container.margin,
-                            left  = 4,
-                            right = 4,
-                            top = 4,
-                            bottom = 4,
+                            layout = wibox.layout.fixed.horizontal,
                             {
-                                layout = wibox.layout.fixed.horizontal,
-                                {
-                                    id     = 'icon_role',
-                                    widget = wibox.widget.imagebox,
-                                },
+                                id     = 'icon_role',
+                                widget = wibox.widget.imagebox,
                             },
                         },
                     },
+                },
+                {
+                    id = 'tasklist_container',
+                    widget = wibox.container.margin,
+                    right = 2,
+                    top = 2,
+                    bottom = 2,
+                    visible = true,
                     {
-                        widget = wibox.container.place,
-                        valign = "bottom",
+                        widget = wibox.container.background,
+                        bg = "#323232",
                         {
-                            id = "occ_indicator",
-                            widget = wibox.container.background,
-                            bg = beautiful.fg_normal,
-                            forced_height = 2,
-                            forced_width = 20,
-                            -- shape = shapes.roundedrect,
+                            id = 'tasklist',
+                            widget = wibox.container.margin,
+                            right = 2,
+                            left = 2,
                             wibox.widget {}
                         }
                     }
-                },
-                {
-                    id = 'tasklist',
-                    widget = wibox.container.margin,
-                    left = 4,
-                    right = 4,
-                    visible = true,
-                    new_tasklist,
-                },
+                }
             },
-            create_callback = taglist_callback,
+            create_callback = taglist_oncreate,
             update_callback = taglist_callback
         },
         buttons = taglist_buttons

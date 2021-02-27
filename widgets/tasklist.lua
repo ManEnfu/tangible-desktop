@@ -36,6 +36,18 @@ local tasklist_buttons = gears.table.join(
 )
 
 -------------------------------------------------------------------------------
+-- TASKLIST CUSTOM FILTER
+-------------------------------------------------------------------------------
+local function get_filter_per_tag(tag)
+    return function(c, screen)
+        if c.screen ~= screen then return false end
+        if tag.screen ~= screen then return false end
+        if tag ~= c.first_tag then return false end
+        return true
+    end
+end
+
+-------------------------------------------------------------------------------
 -- TASKLIST UPDATE CALLBACK
 -------------------------------------------------------------------------------
 local function tasklist_callback(self, c, index, ctable)
@@ -49,7 +61,7 @@ end
 local function worker(args)
     local new_tasklist = awful.widget.tasklist {
         screen  = args.screen,
-        filter  = awful.widget.tasklist.filter.currenttags,
+        filter  = get_filter_per_tag(args.tag),
         buttons = tasklist_buttons,
         layout  = {
             layout = wibox.layout.fixed.horizontal,
@@ -63,13 +75,13 @@ local function worker(args)
                     widget = wibox.container.background,
                     id = 'selected_background',
                     forced_height = 2,
-                    forced_width = 20,
+                    forced_width = 16,
                     wibox.widget {},
                 },
             },
             {
                 widget = wibox.container.margin,
-                margins = 4,
+                margins = 2,
                 {
                     id = 'clienticon',
                     widget = awful.widget.clienticon,

@@ -95,11 +95,7 @@ local function worker(args)
                         -- shape = shapes.roundedrect,
                         {
                             layout = wibox.layout.align.horizontal,
-                            {
-                                widget = wibox.container.margin,
-                                left = dpi(8),
-                                myschedule,
-                            },
+                            nil,
                             nil,
                             {
                                 widget = wibox.container.margin,

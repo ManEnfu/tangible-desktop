@@ -165,7 +165,7 @@ myvolume = widgets.volume {
 }
 mybattery = widgets.battery { timeout = 3 }
 myschedule = widgets.schedule { timeout = 60 }
-
+myapptitle = widgets.apptitle {}
 
 -------------------------------------------------------------------------------
 -- SCREEN
@@ -216,6 +216,7 @@ awful.screen.connect_for_each_screen(function(s)
     -- PANEL / WIBAR
     ---------------------------------------------------------------------------
     local top_panel = require ("components.top-panel")
+    local bottom_panel = require ("components.bottom-panel")
     s.mywibox = top_panel {
         screen = s,
         widgets = {
@@ -227,6 +228,7 @@ awful.screen.connect_for_each_screen(function(s)
             mybattery,
         }
     }
+    s.mybotpanel = bottom_panel {screen = s}
 
 end)
 

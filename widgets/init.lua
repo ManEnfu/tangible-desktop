@@ -2,6 +2,7 @@ local module_path = (...):match ("(.+/)[^/]+$") or ""
 
 
 local mod = {
+    apptitle = require(module_path .. "widgets.apptitle"),
     battery  = require(module_path .. "widgets.battery"),
     sensors  = require(module_path .. "widgets.sensors"),
     volume   = require(module_path .. "widgets.volume"),

@@ -98,65 +98,14 @@ local function worker(args)
         end)
     ))
 
-    ---------------------------------------------------------------------------
-    -- KEYBINDINGS
-    ---------------------------------------------------------------------------
-    volume_widget.keylist = gears.table.join(
-        awful.key({ }, "XF86AudioRaiseVolume", function()
-            awful.spawn.with_shell(
-                "amixer -q -D pulse sset Master playback 5%+", 
-                false
-            )
-            awful.spawn.easy_async_with_shell(
-                "sleep 0.05 && amixer -D pulse sget Master", 
-                function(stdout, stderr, exr, exc)
-                    update_widget(volume_widget, stdout)
-                end
-            )
-            if play ~= "" then 
-                awful.spawn.with_shell(
-                    "aplay -q " .. play, 
-                    false
-                )
+    volume_widget.force_update = function(self)
+        awful.spawn.easy_async_with_shell(
+            "amixer -D pulse sget Master", 
+            function(stdout, stderr, exr, exc)
+                update_widget(volume_widget, stdout)
             end
-        end, {description = "volume up", group = "awesome"}),
-        awful.key({ }, "XF86AudioLowerVolume", function()
-            awful.spawn.with_shell(
-                "amixer -q -D pulse sset Master playback  5%-", 
-                false
-            )
-            awful.spawn.easy_async_with_shell(
-                "sleep 0.05 && amixer -D pulse sget Master", 
-                function(stdout, stderr, exr, exc)
-                    update_widget(volume_widget, stdout)
-                end
-            )
-            if play ~= "" then 
-                awful.spawn.with_shell(
-                    "aplay -q " .. play, 
-                    false
-                )
-            end
-        end, {description = "volume down", group = "awesome"}),
-        awful.key({ }, "XF86AudioMute", function()
-            awful.spawn.with_shell(
-                "amixer -q -D pulse sset Master toggle",
-                false
-            )
-            awful.spawn.easy_async_with_shell(
-                "sleep 0.05 && amixer -D pulse sget Master", 
-                function(stdout, stderr, exr, exc)
-                    update_widget(volume_widget, stdout)
-                end
-            )
-            if play ~= "" then 
-                awful.spawn.with_shell(
-                    "aplay -q " .. play, 
-                    false
-                )
-            end
-        end, {description = "volume (un)mute", group = "awesome"})
-    )
+        )
+    end
 
     return volume_widget
 end

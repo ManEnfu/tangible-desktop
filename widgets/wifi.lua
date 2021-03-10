@@ -64,8 +64,9 @@ local function worker(args)
             else
                 local strength = string.match(stdout, 'Link Quality=(%d+)')
                 children[1]:set_widget(icons[1])
-                children[2]:set_text(ssid .. " " .. 
-                    math.ceil(tonumber(strength)*10/7) .. "%")
+                children[2]:set_text( 
+                    math.ceil(tonumber(strength)*10/7) .. "%"
+                )
             end
         else
             children[2]:set_text("Err")

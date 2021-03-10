@@ -56,24 +56,14 @@ globalkeys = gears.table.join(
     
     awful.key({ }, "Print", 
         function ()
-            awful.spawn.with_shell(
-                "scrot '%Y-%m-%d_%H-%M-%S_$wx$h.png'" ..
-                " -e 'mv $f ~/Pictures/Screenshots/ 2>/dev/null &&" ..
-                "notify-send \"Screenshot taken\" \"$f\" -t 2000" .. 
-                " -i ~/Pictures/Screenshots/$f'"
-            )
+            awful.spawn.with_shell("~/.config/scripts/screenshot.sh")
         end,
         {description = "take screenshot", group = "awesome" }
     ),
     
     awful.key({ "Shift" }, "Print", nil, 
         function ()
-            awful.spawn.with_shell(
-                "scrot -s '%Y-%m-%d_%H-%M-%S_$wx$h.png'" ..
-                " -e 'mv $f ~/Pictures/Screenshots/ 2>/dev/null &&" ..
-                "notify-send \"Screenshot taken\" \"$f\" -t 2000" .. 
-                " -i ~/Pictures/Screenshots/$f'"
-            )
+            awful.spawn.with_shell("~/.config/scripts/screenshot-select.sh")
         end,
         {description = "take screenshot", group = "awesome" }
     ),
@@ -82,12 +72,36 @@ globalkeys = gears.table.join(
         function() 
             local screen = awful.screen.focused()
             screen.mywibox.visible = not screen.mywibox.visible
-            screen.mybotpanel.visible = not screen.mybotpanel.visible
+            -- screen.mybotpanel.visible = not screen.mybotpanel.visible
         end,
         {description = "toggle wibar", group = "awesome"}
     ),
 
-    myvolume.keylist,
+    awful.key({ }, "XF86AudioRaiseVolume", 
+        function()
+            awful.spawn.with_shell(
+                "~/.config/scripts/vol-raise.sh"
+            )
+        end, 
+        {description = "volume up", group = "awesome"}
+    ),
+    
+    awful.key({ }, "XF86AudioLowerVolume", 
+        function()
+            awful.spawn.with_shell(
+                "~/.config/scripts/vol-lower.sh"
+            )
+        end, 
+        {description = "volume down", group = "awesome"}
+    ),
+    
+    awful.key({ }, "XF86AudioMute", function()
+            awful.spawn.with_shell(
+                "~/.config/scripts/vol-toggle.sh"
+            )
+        end, 
+        {description = "volume (un)mute", group = "awesome"}
+    ),
 
     ---------------------------------------------------------------------------
     -- CLIENT
@@ -301,27 +315,7 @@ globalkeys = gears.table.join(
     
     awful.key({ modkey, "Shift" }, "p", 
         function() 
-            awful.spawn.easy_async_with_shell(
-                "echo -e 'Suspend\nReboot\nPower Off' | " ..
-                "rofi -dmenu -p 'power' -i -lines 3 -width 20",
-                function(stdout, stderr, exr, exc)
-                    -- naughty.notify {
-                    --     preset = naughty.config.presets.normal,
-                    --     title = "Power Info",
-                    --     text = stdout .. "hi"
-                    -- }
-                    if stdout == "Suspend\n" then
-                        awful.spawn.with_shell(
-                            "i3lock -c 242424 &&" ..
-                            "sleep 0.5 && loginctl suspend"
-                        )
-                    elseif stdout  == "Reboot\n" then
-                        awful.spawn.with_shell("loginctl reboot")
-                    elseif stdout == "Power Off\n" then
-                        awful.spawn.with_shell("loginctl poweroff")
-                    end
-                end
-            ) 
+            awful.spawn.with_shell("~/.config/scripts/rofi-power.sh")
         end,
         {description = "show power options", group = "launcher"}
     )

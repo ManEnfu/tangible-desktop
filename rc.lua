@@ -83,11 +83,11 @@ modkey = "Mod4"
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
     awful.layout.suit.tile,
+    awful.layout.suit.tile.bottom,
     awful.layout.suit.floating,
     awful.layout.suit.max,
     --awful.layout.suit.fair,
     -- awful.layout.suit.tile.left,
-    -- awful.layout.suit.tile.bottom,
     -- awful.layout.suit.tile.top,
     -- awful.layout.suit.fair.horizontal,
     -- awful.layout.suit.spiral,
@@ -165,7 +165,7 @@ myvolume = widgets.volume {
 }
 mybattery = widgets.battery { timeout = 3 }
 myschedule = widgets.schedule { timeout = 60 }
-myapptitle = widgets.apptitle {}
+-- myapptitle = widgets.apptitle {}
 
 -------------------------------------------------------------------------------
 -- SCREEN
@@ -228,7 +228,7 @@ awful.screen.connect_for_each_screen(function(s)
             mybattery,
         }
     }
-    s.mybotpanel = bottom_panel {screen = s}
+    -- s.mybotpanel = bottom_panel {screen = s}
 
 end)
 

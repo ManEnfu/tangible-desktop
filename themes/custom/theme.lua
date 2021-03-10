@@ -15,7 +15,9 @@ local theme = {}
 theme.font          = "Ubuntu 8"
 
 theme.bg_normal     = "#242424"
+theme.bg_normal_bright     = "#323232"
 theme.bg_focus      = "#cd823d"
+theme.bg_focus_bright      = "#e29654"
 theme.bg_urgent     = "#ff0000"
 theme.bg_minimize   = "#444444"
 theme.bg_systray    = theme.bg_normal
@@ -129,7 +131,7 @@ theme.awesome_icon = theme_assets.awesome_icon(
 
 -- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
-theme.icon_theme = "Papirus"
+theme.icon_theme = "Tela"
 
 return theme
 

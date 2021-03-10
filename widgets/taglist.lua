@@ -41,15 +41,14 @@ local function taglist_callback(self, tag, index, ttable)
     local tag_bg = 
         self:get_children_by_id('tag_background')[1]
 
-    self:get_children_by_id('tasklist_container')[1].visible = 
+    self:get_children_by_id('tasklist')[1].visible = 
         #tag:clients() > 0
     if selected then
         sel_bg.bg = beautiful.bg_focus
-        sel_bg.bg = beautiful.bg_focus
-        tag_bg.bg = beautiful.bg_focus
+        tag_bg.bg = beautiful.bg_focus_bright
     else
         sel_bg.bg = beautiful.bg_normal
-        tag_bg.bg = beautiful.bg_normal
+        tag_bg.bg = beautiful.bg_normal_bright
     end
 end
 
@@ -103,23 +102,11 @@ function worker(args)
                     },
                 },
                 {
-                    id = 'tasklist_container',
+                    id = 'tasklist',
                     widget = wibox.container.margin,
                     right = 2,
-                    top = 2,
-                    bottom = 2,
-                    visible = true,
-                    {
-                        widget = wibox.container.background,
-                        bg = "#323232",
-                        {
-                            id = 'tasklist',
-                            widget = wibox.container.margin,
-                            right = 2,
-                            left = 2,
-                            wibox.widget {}
-                        }
-                    }
+                    left = 2,
+                    wibox.widget {}
                 }
             },
             create_callback = taglist_oncreate,

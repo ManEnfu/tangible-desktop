@@ -52,7 +52,7 @@ end
 -------------------------------------------------------------------------------
 local function tasklist_callback(self, c, index, ctable)
     self:get_children_by_id('selected_background')[1].bg =
-        (c == client.focus) and beautiful.bg_focus or nil
+        (c == client.focus) and beautiful.fg_focus or nil
 end
 
 -------------------------------------------------------------------------------
@@ -81,7 +81,7 @@ local function worker(args)
             },
             {
                 widget = wibox.container.margin,
-                margins = 2,
+                margins = 4,
                 {
                     id = 'clienticon',
                     widget = awful.widget.clienticon,

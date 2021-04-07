@@ -43,7 +43,7 @@ local function worker(args)
         layout = wibox.layout.fixed.horizontal,
         {
             widget = wibox.container.margin,
-            margins = 4,
+            margins = 6,
         },
         {
             widget = wibox.widget.textbox

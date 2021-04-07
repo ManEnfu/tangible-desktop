@@ -37,7 +37,7 @@ local function worker(args)
         layout = wibox.layout.fixed.horizontal,
         {
             widget = wibox.container.margin,
-            margins = 4,
+            margins = 6,
             wibox.widget.imagebox(icon_dir .. "memory.png")
         },
         {

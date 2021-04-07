@@ -38,7 +38,7 @@ local function worker(args)
         cached_active = 0,
         {
             widget = wibox.container.margin,
-            margins = 4,
+            margins = 6,
             wibox.widget.imagebox(icon_dir .. "cpu.png")
         },
         {

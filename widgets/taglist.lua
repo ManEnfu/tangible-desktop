@@ -88,10 +88,10 @@ function worker(args)
                     bg = nil,
                     {
                         widget = wibox.container.margin,
-                        left  = 4,
-                        right = 4,
-                        top = 4,
-                        bottom = 4,
+                        left  = 6,
+                        right = 6,
+                        top = 6,
+                        bottom = 6,
                         {
                             layout = wibox.layout.fixed.horizontal,
                             {

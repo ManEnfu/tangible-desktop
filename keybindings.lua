@@ -86,7 +86,25 @@ globalkeys = gears.table.join(
         {description = "volume up", group = "awesome"}
     ),
     
+    awful.key({ modkey }, "]", 
+        function()
+            awful.spawn.with_shell(
+                "~/.config/scripts/vol-raise.sh"
+            )
+        end, 
+        {description = "volume up", group = "awesome"}
+    ),
+    
     awful.key({ }, "XF86AudioLowerVolume", 
+        function()
+            awful.spawn.with_shell(
+                "~/.config/scripts/vol-lower.sh"
+            )
+        end, 
+        {description = "volume down", group = "awesome"}
+    ),
+    
+    awful.key({ modkey }, "[", 
         function()
             awful.spawn.with_shell(
                 "~/.config/scripts/vol-lower.sh"
@@ -101,6 +119,38 @@ globalkeys = gears.table.join(
             )
         end, 
         {description = "volume (un)mute", group = "awesome"}
+    ),
+
+    awful.key({ modkey }, "\\", function()
+            awful.spawn.with_shell(
+                "~/.config/scripts/vol-toggle.sh"
+            )
+        end, 
+        {description = "volume (un)mute", group = "awesome"}
+    ),
+    
+    awful.key({ modkey, "Shift" }, "]", function()
+            awful.spawn.with_shell(
+                "~/.config/scripts/player-next.sh"
+            )
+        end, 
+        {description = "play next", group = "awesome"}
+    ),
+    
+    awful.key({ modkey, "Shift" }, "[", function()
+            awful.spawn.with_shell(
+                "~/.config/scripts/player-prev.sh"
+            )
+        end, 
+        {description = "play previous", group = "awesome"}
+    ),
+    
+    awful.key({ modkey, "Shift" }, "\\", function()
+            awful.spawn.with_shell(
+                "~/.config/scripts/player-toggle.sh"
+            )
+        end, 
+        {description = "play/pause", group = "awesome"}
     ),
 
     ---------------------------------------------------------------------------
@@ -311,6 +361,15 @@ globalkeys = gears.table.join(
             ) 
         end,
         {description = "show open windows", group = "launcher"}
+    ),
+    
+    awful.key({ modkey, "Shift" }, "o", 
+        function() 
+            awful.spawn.with_shell(
+                "rofi -modi drun,run,window,ssh,file-browser -show file-browser"
+            ) 
+        end,
+        {description = "file quick open", group = "launcher"}
     ),
     
     awful.key({ modkey, "Shift" }, "p", 

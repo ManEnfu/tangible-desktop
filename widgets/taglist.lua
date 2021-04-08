@@ -50,6 +50,14 @@ local function taglist_callback(self, tag, index, ttable)
         sel_bg.bg = beautiful.bg_normal
         tag_bg.bg = beautiful.bg_normal_bright
     end
+    if index == 1 then
+        sel_bg.shape = shapes.roundedleft
+        tag_bg.shape = shapes.roundedleft
+    elseif index == #ttable then
+        sel_bg.shape = #tag:clients() > 0 
+            and gears.shape.rectangle or shapes.roundedright
+        tag_bg.shape = shapes.roundedright
+    end
 end
 
 local function taglist_oncreate(self, tag, index, ttable)

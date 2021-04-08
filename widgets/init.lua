@@ -9,6 +9,7 @@ local mod = {
     memory   = require(module_path .. "widgets.memory"),
     cpu      = require(module_path .. "widgets.cpu"),
     wifi     = require(module_path .. "widgets.wifi"),
+    disk     = require(module_path .. "widgets.disk"),
     taglist  = require(module_path .. "widgets.taglist"),
     tasklist = require(module_path .. "widgets.tasklist"),
     schedule = require(module_path .. "widgets.schedule"),

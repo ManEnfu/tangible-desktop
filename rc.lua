@@ -165,6 +165,7 @@ myvolume = widgets.volume {
 }
 mybattery = widgets.battery { timeout = 3 }
 myschedule = widgets.schedule { timeout = 60 }
+mydisk = widgets.disk { timeout = 120 }
 -- myapptitle = widgets.apptitle {}
 
 -------------------------------------------------------------------------------
@@ -222,6 +223,7 @@ awful.screen.connect_for_each_screen(function(s)
         widgets = {
             mycpu,
             mymemory,
+            mydisk,
             mysensors,
             mywifi,
             myvolume,

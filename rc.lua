@@ -180,7 +180,7 @@ awful.screen.connect_for_each_screen(function(s)
     -- local tagnames = { "1", "2", "3", "4", "5", "6", "7", "8", "9" }
     local tagnames = { 
         "term1", "term2", "web", "file", "doc", 
-        "media", "design", "game", "chat" 
+        "media", "design", "game", "virt" 
     }
     -- awful.tag(
     --     { "1", "2", "3", "4", "5", "6", "7", "8", "9" }, 

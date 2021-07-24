@@ -37,7 +37,9 @@ local function worker(args)
     -- WIDGET DEFINITION
     ---------------------------------------------------------------------------
     apptitle_widget = wibox.widget {
-        widget = wibox.widget.textbox
+        widget = wibox.widget.textbox,
+        forced_width = 400,
+        forced_height = 24
     }
 
     ---------------------------------------------------------------------------

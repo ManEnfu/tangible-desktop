@@ -11,7 +11,7 @@ require("awful.hotkeys_popup.keys")
 -- GLOBAL KEYBINDINGS
 -------------------------------------------------------------------------------
 root.buttons(gears.table.join(
-    awful.button({ }, 3, function () mymainmenu:toggle() end)
+    -- awful.button({ }, 3, function () mymainmenu:toggle() end)
     -- awful.button({ }, 4, awful.tag.viewnext),
     -- awful.button({ }, 5, awful.tag.viewprev)
 ))
@@ -151,6 +151,12 @@ globalkeys = gears.table.join(
             )
         end, 
         {description = "play/pause", group = "awesome"}
+    ),
+    
+    awful.key({ modkey }, "'", function()
+            mynightmode:toggle()
+        end, 
+        {description = "toggle nightmode", group = "awesome"}
     ),
 
     ---------------------------------------------------------------------------
@@ -330,7 +336,7 @@ globalkeys = gears.table.join(
 
     awful.key({ modkey }, "r",     
         function () 
-            awful.screen.focused().mypromptbox:run() 
+            awful.spawn.with_shell("rofi -modi drun,run,window,ssh -show run")
         end,
         {description = "run prompt", group = "launcher"}
     ),
@@ -347,11 +353,16 @@ globalkeys = gears.table.join(
     -- Menubar
     awful.key({ modkey }, "p", 
         function() 
-            awful.spawn.with_shell(
-                "rofi -modi drun,run,window,ssh -show drun"
-            ) 
+            awful.spawn.with_shell("~/.config/rofi/rofi-drun.sh")
         end,
         {description = "show applications", group = "launcher"}
+    ),
+    
+    awful.key({ modkey, "Control" }, "p", 
+        function() 
+            awful.spawn.with_shell("~/.config/rofi/rofi-pass.sh")
+        end,
+        {description = "show password manager", group = "launcher"}
     ),
     
     awful.key({ modkey }, "o", 
@@ -374,9 +385,16 @@ globalkeys = gears.table.join(
     
     awful.key({ modkey, "Shift" }, "p", 
         function() 
-            awful.spawn.with_shell("~/.config/scripts/rofi-power.sh")
+            awful.spawn.with_shell("~/.config/rofi/rofi-power.sh")
         end,
         {description = "show power options", group = "launcher"}
+    ),
+    
+    awful.key({ modkey, "Shift" }, "i", 
+        function() 
+            awful.spawn.with_shell("~/.config/rofi/rofi-ambient.sh")
+        end,
+        {description = "play ambient sounds", group = "launcher"}
     )
 
 )

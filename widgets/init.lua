@@ -13,6 +13,7 @@ local mod = {
     taglist  = require(module_path .. "widgets.taglist"),
     tasklist = require(module_path .. "widgets.tasklist"),
     schedule = require(module_path .. "widgets.schedule"),
+    nightmode= require(module_path .. "widgets.nightmode"),
 }
 
 return mod

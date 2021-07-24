@@ -42,7 +42,10 @@ client.connect_signal("request::titlebars", function(c)
 
     awful.titlebar(c, { size = 4, position = "left" }) : setup {
         buttons = buttons,
-        layout = wibox.layout.align.horizontal
+        layout = wibox.layout.align.vertical,
+        nil,
+        nil,
+        nil,
     }
 end)
 

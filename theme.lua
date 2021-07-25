@@ -16,8 +16,8 @@ theme.font          = "Ubuntu 8"
 
 theme.bg_normal     = "#161616"
 theme.bg_normal_bright     = "#242424"
-theme.bg_focus      = "#416879"--"#cd823d"
-theme.bg_focus_bright      = "#263238" --"#e29654"
+theme.bg_focus      = "#0d8cb2" --"#416879" --"#cd823d"
+theme.bg_focus_bright      = "#04323f" --"#263238" --"#e29654"
 theme.bg_urgent     = "#ff0000"
 theme.bg_minimize   = "#444444"
 theme.bg_systray    = theme.bg_normal

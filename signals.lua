@@ -10,7 +10,6 @@ local shapes = require("util.shapes")
 -------------------------------------------------------------------------------
 -- SIGNALS
 -------------------------------------------------------------------------------
--- {{{ Signals
 -- Signal function to execute when a new client appears.
 client.connect_signal("manage", function (c)
     -- Set the windows at the slave,
@@ -67,4 +66,17 @@ client.connect_signal(
     end
 )
 
--- }}}
+screen.connect_signal("arrange", function(s)
+    local one_tiled_client = #s.tiled_clients == 1
+    for _, c in pairs(s.clients) do
+        if (one_tiled_client and not c.floating and 
+            c.first_tag.layout ~= awful.layout.suit.floating) 
+            or c.maximized then
+            c.shape = gears.shape.rectangle
+            awful.titlebar.hide(c, 'left')
+        else
+            c.shape = shapes.roundedrect
+            awful.titlebar.show(c, 'left')
+        end
+    end
+end)

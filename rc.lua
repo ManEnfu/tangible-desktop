@@ -196,7 +196,8 @@ awful.screen.connect_for_each_screen(function(s)
                 and awful.layout.suit.max
                 or awful.layout.suit.tile,
             screen = s,
-            selected = i == 1
+            selected = i == 1,
+            gap_single_client = 0
         })
     end
 

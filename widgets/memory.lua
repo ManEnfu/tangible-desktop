@@ -64,7 +64,7 @@ local function worker(args)
             local used = memtotal - memfree - membuffer - memcache - memsrec
             if used ~= nil then
                 memory_widget:get_children()[2]:set_text(
-                    math.ceil(used / 1024) .. "MiB"
+                    math.ceil(used / 1024) .. "M"
                 )
             else
                 memory_widget:get_children()[2]:set_text("Err")
@@ -78,8 +78,8 @@ local function worker(args)
     ---------------------------------------------------------------------------
     memory_widget:buttons(gears.table.join(
         awful.button({}, 1, function()
-            local f = io.popen("free --mebi")
-            local str = "free"
+            local f = io.popen("free -h")
+            local str = "free -h"
             for line in f:lines() do
                 str = str .. "\n" .. line
             end

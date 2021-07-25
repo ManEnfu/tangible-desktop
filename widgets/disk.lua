@@ -56,7 +56,11 @@ local function worker(args)
     function(widget, stdout)
         local children = widget:get_children()
         local sda, size, used = string.match(stdout, '(sda%d+) +(%d+%w) +(%d+%w)')
-        children[2]:set_text(used .. '/' .. size)
+        if args.long then
+            children[2]:set_text(used .. '/' .. size)
+        else
+            children[2]:set_text(used)
+        end
     end, disk_widget)
 
     ---------------------------------------------------------------------------

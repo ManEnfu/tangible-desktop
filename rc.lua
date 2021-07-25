@@ -66,7 +66,7 @@ end
 -- Themes define colours, icons, font and wallpapers.
 config_dir = gears.filesystem.get_configuration_dir()
 
-beautiful.init(config_dir .. "/themes/custom/theme.lua")
+beautiful.init(config_dir .. "theme.lua")
 beautiful.notification_shape = shapes.roundedrect
 
 -- This is used later as the default terminal and editor to run.

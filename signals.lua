@@ -70,13 +70,16 @@ screen.connect_signal("arrange", function(s)
     local one_tiled_client = #s.tiled_clients == 1
     for _, c in pairs(s.clients) do
         if (one_tiled_client and not c.floating and 
-            c.first_tag.layout ~= awful.layout.suit.floating) 
-            or c.maximized then
+            c.first_tag.layout ~= awful.layout.suit.floating) or 
+            c.maximized or (
+            -- client.focus == c and
+            not c.floating and
+            c.first_tag.layout == awful.layout.suit.max) then
             c.shape = gears.shape.rectangle
-            awful.titlebar.hide(c, 'left')
+            -- awful.titlebar.hide(c, 'left')
         else
             c.shape = shapes.roundedrect
-            awful.titlebar.show(c, 'left')
+            -- awful.titlebar.show(c, 'left')
         end
     end
 end)

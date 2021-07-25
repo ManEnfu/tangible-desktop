@@ -48,8 +48,8 @@ local function apptitle_oncreate(self, c, index, ctable)
     button_container:set_widget(wibox.widget {
         layout = wibox.layout.fixed.horizontal,
         spacing = 8,
-        awful.titlebar.widget.closebutton(c),
-        awful.titlebar.widget.maximizedbutton(c)
+        awful.titlebar.widget.maximizedbutton(c),
+        awful.titlebar.widget.closebutton(c)
     })
     -- button_container:set_widget(wibox.widget.textbox("a"))
     -- button_container.bg = beautiful.bg_focus
@@ -75,7 +75,7 @@ local function worker(args)
         buttons = apptitle_buttons,
         filter = awful.widget.tasklist.filter.focused,
         layout = {
-            layout = wibox.layout.fixed.horizontal,
+            layout = wibox.layout.flex.horizontal,
         },
         widget_template = {
             widget = wibox.container.background,
@@ -85,17 +85,18 @@ local function worker(args)
                 widget = wibox.container.margin,
                 margins = 6,
                 {
-                    layout = wibox.layout.fixed.horizontal,
+                    layout = wibox.layout.align.horizontal,
                     spacing = 6,
+                    {
+                        id = 'text_role',
+                        widget = wibox.widget.textbox,
+                        forced_width = 200
+                    },
+                    nil,
                     {
                         id = 'button_container',
                         widget = wibox.container.place,
                     },
-                    -- {
-                    --     id = 'text_role',
-                    --     widget = wibox.widget.textbox,
-                    --     forced_width = 200
-                    -- },
                 },
             },
             create_callback = apptitle_oncreate

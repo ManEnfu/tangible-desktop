@@ -97,8 +97,8 @@ local function worker(args)
                         shape = shapes.roundedrect,
                         {
                             layout = wibox.layout.align.horizontal,
-                            widgets.apptitle { screen = args.screen },
                             nil,
+                            widgets.apptitle { screen = args.screen },
                             {
                                 widget = wibox.container.margin,
                                 left = dpi(8),
@@ -152,8 +152,8 @@ local function worker(args)
                 content_fill_vertical = true,
                     {
                         widget = wibox.container.background,
-                        bg = beautiful.bg_normal,
-                        -- shape = shapes.roundedrect,
+                        bg = beautiful.bg_normal_bright,
+                        shape = shapes.roundedrect,
                         {
                             widget = wibox.container.margin,
                             left = dpi(8),

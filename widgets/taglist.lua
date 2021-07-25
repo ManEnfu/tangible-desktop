@@ -36,28 +36,61 @@ local taglist_buttons = gears.table.join(
 -------------------------------------------------------------------------------
 local function taglist_callback(self, tag, index, ttable)
     local selected = tag.selected
-    local sel_bg = 
-        self:get_children_by_id('selected_background')[1]
     local tag_bg = 
         self:get_children_by_id('tag_background')[1]
+    local task_bg = 
+        self:get_children_by_id('task_background')[1]
 
     self:get_children_by_id('tasklist')[1].visible = 
         #tag:clients() > 0
     if selected then
-        sel_bg.bg = beautiful.bg_focus
-        tag_bg.bg = beautiful.bg_focus_bright
+        tag_bg.bg = beautiful.bg_focus
+        task_bg.bg = beautiful.bg_focus_bright
     else
-        sel_bg.bg = beautiful.bg_normal
-        tag_bg.bg = beautiful.bg_normal_bright
+        tag_bg.bg = beautiful.bg_normal
+        task_bg.bg = beautiful.bg_normal_bright
     end
-    if index == 1 then
-        sel_bg.shape = shapes.roundedleft
-        tag_bg.shape = shapes.roundedleft
-    elseif index == #ttable then
-        sel_bg.shape = #tag:clients() > 0 
-            and gears.shape.rectangle or shapes.roundedright
-        tag_bg.shape = shapes.roundedright
+    touch_left = false
+    touch_right = false
+    touch_middle = false
+    if index ~= 1 then
+        if selected and 
+            (#(ttable[index-1]:clients()) > 0 or ttable[index-1].selected) then
+            touch_left = true
+        end
     end
+    if index ~= #ttable then
+        if ttable[index+1].selected then
+            touch_right = true
+        end
+    end
+    touch_middle = selected
+
+    if touch_right then
+        if touch_left then
+            tag_bg.shape = gears.shape.rectangle
+        else
+            tag_bg.shape = shapes.roundedleft
+        end
+        if touch_middle then
+            task_bg.shape = gears.shape.rectangle
+        else
+            task_bg.shape = shapes.roundedleft
+        end
+    else
+        if touch_left then
+            tag_bg.shape = shapes.roundedright
+        else
+            tag_bg.shape = shapes.roundedrect
+        end
+        if touch_middle then
+            task_bg.shape = shapes.roundedright
+        else
+            task_bg.shape = shapes.roundedrect
+        end
+    end
+
+
 end
 
 local function taglist_oncreate(self, tag, index, ttable)
@@ -86,36 +119,34 @@ function worker(args)
             id = "tag_background",
             widget = wibox.container.background,
             bg = beautiful.bg_normal,
-            -- shape = shapes.roundedrect,
             {
                 layout = wibox.layout.fixed.horizontal,
                 {
-                    id = "selected_background",
-                    widget = wibox.container.background,
-                    -- shape = shapes.roundedleft,
-                    bg = nil,
+                    widget = wibox.container.margin,
+                    left  = 6,
+                    right = 6,
+                    top = 6,
+                    bottom = 6,
                     {
-                        widget = wibox.container.margin,
-                        left  = 6,
-                        right = 6,
-                        top = 6,
-                        bottom = 6,
+                        layout = wibox.layout.fixed.horizontal,
                         {
-                            layout = wibox.layout.fixed.horizontal,
-                            {
-                                id     = 'icon_role',
-                                widget = wibox.widget.imagebox,
-                            },
+                            id     = 'icon_role',
+                            widget = wibox.widget.imagebox,
                         },
                     },
                 },
                 {
-                    id = 'tasklist',
-                    widget = wibox.container.margin,
-                    right = 2,
-                    left = 2,
-                    wibox.widget {}
-                }
+                    id = "task_background",
+                    widget = wibox.container.background,
+                    bg = nil,
+                    {
+                        id = 'tasklist',
+                        widget = wibox.container.margin,
+                        right = 2,
+                        left = 2,
+                        wibox.widget {}
+                    }
+                },
             },
             create_callback = taglist_oncreate,
             update_callback = taglist_callback

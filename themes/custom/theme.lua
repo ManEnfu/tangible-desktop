@@ -9,15 +9,16 @@ local dpi = xresources.apply_dpi
 local gears = require("gears")
 local gfs = require("gears.filesystem")
 local themes_path = gfs.get_configuration_dir() .. "/themes/custom/"
+local icon_dir = gears.filesystem.get_configuration_dir() .. "/icons/"
 
 local theme = {}
 
 theme.font          = "Ubuntu 8"
 
-theme.bg_normal     = "#242424"
-theme.bg_normal_bright     = "#323232"
-theme.bg_focus      = "#cd823d"
-theme.bg_focus_bright      = "#e29654"
+theme.bg_normal     = "#161616"
+theme.bg_normal_bright     = "#242424"
+theme.bg_focus      = "#416879"--"#cd823d"
+theme.bg_focus_bright      = "#263238" --"#e29654"
 theme.bg_urgent     = "#ff0000"
 theme.bg_minimize   = "#444444"
 theme.bg_systray    = theme.bg_normal
@@ -71,8 +72,10 @@ theme.notification_icon_size = 64
 -- menu_[bg|fg]_[normal|focus]
 -- menu_[border_color|border_width]
 theme.menu_submenu_icon = themes_path.."submenu.png"
-theme.menu_height = dpi(24)
+theme.menu_height = dpi(20)
 theme.menu_width  = dpi(160)
+theme.menu_bg_normal = "#161616"
+theme.menu_bg_focus = "#323232"
 
 -- You can add as many variables as
 -- you wish and access them by using
@@ -80,8 +83,8 @@ theme.menu_width  = dpi(160)
 --theme.bg_widget = "#cc0000"
 
 -- Define the image to load
-theme.titlebar_close_button_normal = themes_path.."titlebar/close_normal.png"
-theme.titlebar_close_button_focus  = themes_path.."titlebar/close_focus.png"
+theme.titlebar_close_button_normal = icon_dir .. "close-button.png"
+theme.titlebar_close_button_focus  = icon_dir .. "close-button.png"
 
 theme.titlebar_minimize_button_normal = themes_path.."titlebar/minimize_normal.png"
 theme.titlebar_minimize_button_focus  = themes_path.."titlebar/minimize_focus.png"
@@ -101,10 +104,10 @@ theme.titlebar_floating_button_focus_inactive  = themes_path.."titlebar/floating
 theme.titlebar_floating_button_normal_active = themes_path.."titlebar/floating_normal_active.png"
 theme.titlebar_floating_button_focus_active  = themes_path.."titlebar/floating_focus_active.png"
 
-theme.titlebar_maximized_button_normal_inactive = themes_path.."titlebar/maximized_normal_inactive.png"
-theme.titlebar_maximized_button_focus_inactive  = themes_path.."titlebar/maximized_focus_inactive.png"
-theme.titlebar_maximized_button_normal_active = themes_path.."titlebar/maximized_normal_active.png"
-theme.titlebar_maximized_button_focus_active  = themes_path.."titlebar/maximized_focus_active.png"
+theme.titlebar_maximized_button_normal_inactive = icon_dir .. "max-button.png"
+theme.titlebar_maximized_button_focus_inactive  = icon_dir .. "max-button.png" 
+theme.titlebar_maximized_button_normal_active = icon_dir .. "restore-button.png"
+theme.titlebar_maximized_button_focus_active  = icon_dir .. "restore-button.png"
 
 -- You can use your own layout icons like this:
 theme.layout_fairh = themes_path.."layouts/fairhw.png"

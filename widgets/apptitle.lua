@@ -7,11 +7,53 @@ local beautiful     = require("beautiful")
 local naughty       = require("naughty")
 local gears         = require("gears")
 local cairo         = require("lgi").cairo
+local shapes = require("util.shapes")
 local module_path = (...):match ("(.+/)[^/]+$") or ""
 
 local theme = beautiful.get()
 
 local apptitle = {}
+
+-------------------------------------------------------------------------------
+-- TASKLIST MOUSE CLICK BEHAVIOR
+-------------------------------------------------------------------------------
+local apptitle_buttons = gears.table.join(
+    -- awful.button({ }, 1, function (c)
+    --     if c == client.focus then
+    --         c.minimized = true
+    --     else
+    --         c:emit_signal(
+    --             "request::activate",
+    --             "tasklist",
+    --             {raise = true}
+    --         )
+    --     end
+    -- end),
+    -- awful.button({ }, 3, function()
+    --     awful.menu.client_list({ theme = { width = 250 } })
+    -- end),
+    -- awful.button({ }, 4, function ()
+    --     awful.client.focus.byidx(1)
+    -- end),
+    -- awful.button({ }, 5, function ()
+    --     awful.client.focus.byidx(-1)
+    -- end)
+)
+
+-------------------------------------------------------------------------------
+-- APPTITLE UPDATE CALLBACK
+-------------------------------------------------------------------------------
+local function apptitle_oncreate(self, c, index, ctable)
+    local button_container = self:get_children_by_id('button_container')[1]
+    button_container:set_widget(wibox.widget {
+        layout = wibox.layout.fixed.horizontal,
+        spacing = 8,
+        awful.titlebar.widget.closebutton(c),
+        awful.titlebar.widget.maximizedbutton(c)
+    })
+    -- button_container:set_widget(wibox.widget.textbox("a"))
+    -- button_container.bg = beautiful.bg_focus
+end
 
 -------------------------------------------------------------------------------
 -- WORKER FUNCTION
@@ -22,59 +64,45 @@ local function worker(args)
     ---------------------------------------------------------------------------
     local args = args or {}
 
-    local timeout = args.timeout or 2
-    local battery_arg = args.battery or "BAT0"
-    local battery_path = "/sys/class/power_supply/" .. battery_arg .. "/"
-
     ---------------------------------------------------------------------------
     -- ICONS
     ---------------------------------------------------------------------------
     local icon_dir = gears.filesystem.get_configuration_dir() .. "/"
         .. module_path .. "/icons/"
     
-
-    ---------------------------------------------------------------------------
-    -- WIDGET DEFINITION
-    ---------------------------------------------------------------------------
-    apptitle_widget = wibox.widget {
-        widget = wibox.widget.textbox,
-        forced_width = 400,
-        forced_height = 24
+    local new_apptitle = awful.widget.tasklist {
+        screen = args.screen,
+        buttons = apptitle_buttons,
+        filter = awful.widget.tasklist.filter.focused,
+        layout = {
+            layout = wibox.layout.fixed.horizontal,
+        },
+        widget_template = {
+            widget = wibox.container.background,
+            bg = beautiful.bg_normal_bright,
+            shape = shapes.roundedrect,
+            {
+                widget = wibox.container.margin,
+                margins = 6,
+                {
+                    layout = wibox.layout.fixed.horizontal,
+                    spacing = 6,
+                    {
+                        id = 'button_container',
+                        widget = wibox.container.place,
+                    },
+                    -- {
+                    --     id = 'text_role',
+                    --     widget = wibox.widget.textbox,
+                    --     forced_width = 200
+                    -- },
+                },
+            },
+            create_callback = apptitle_oncreate
+        },
     }
 
-    ---------------------------------------------------------------------------
-    -- UPDATE WIDGET PERIODICALLY
-    ---------------------------------------------------------------------------
-    client.connect_signal("focus",
-        function(c)
-             apptitle_widget:set_text(c.name)   
-        end
-    )
-    client.connect_signal("unfocus",
-        function(c)
-             apptitle_widget:set_text("")   
-        end
-    )
-    client.connect_signal("manage",
-        function(c)
-             apptitle_widget:set_text(c.name)   
-        end
-    )
-    client.connect_signal("unmanage",
-        function()
-             apptitle_widget:set_text("")   
-        end
-    )
-    client.connect_signal("property::name",
-        function(c)
-            if c == client.focus then
-                apptitle_widget:set_text(c.name)   
-            end
-        end
-    )
-
-
-    return apptitle_widget
+    return new_apptitle
 end
 
 return setmetatable(

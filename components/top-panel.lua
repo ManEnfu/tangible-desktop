@@ -21,7 +21,7 @@ local function worker(args)
     local panel = awful.wibar({
         position = "top", 
         screen = args.screen,
-        bg = "#00000000", 
+        bg = beautiful.bg_normal, 
         height = dpi(24) + bargap
     })
 
@@ -36,9 +36,10 @@ local function worker(args)
 
     panel:setup {
         widget = wibox.container.margin,
-        top = bargap,
+        top = bargap / 2,
         left = bargap,
         right = bargap,
+        bottom = bargap / 2,
         {
             layout = wibox.layout.stack,
             {
@@ -48,18 +49,18 @@ local function worker(args)
                     spacing = bargap,
                     {
                         layout = wibox.layout.fixed.horizontal,
+                        -- {
+                        --     widget = wibox.container.background,
+                        --     bg = beautiful.bg_focus,
+                        --     forced_width = dpi(4),
+                        --     shape = shapes.roundedleft,
+                        --     wibox.widget {}
+                        -- },
                         {
                             widget = wibox.container.background,
-                            bg = beautiful.bg_focus,
-                            forced_width = dpi(4),
-                            shape = shapes.roundedleft,
-                            wibox.widget {}
-                        },
-                        {
-                            widget = wibox.container.background,
-                            bg = beautiful.bg_normal,
+                            bg = beautiful.bg_normal_bright,
                             forced_width = dpi(24),
-                            shape = shapes.roundedright,
+                            shape = shapes.roundedrect,
                             {
                                 widget = wibox.container.margin,
                                 margins = dpi(4),
@@ -88,7 +89,7 @@ local function worker(args)
                 },
                 {
                     widget = wibox.container.margin,
-                    left = bargap,
+                    left = bargap + dpi(6),
                     right = bargap,
                     {
                         widget = wibox.container.background,
@@ -96,7 +97,7 @@ local function worker(args)
                         shape = shapes.roundedrect,
                         {
                             layout = wibox.layout.align.horizontal,
-                            nil,
+                            widgets.apptitle { screen = args.screen },
                             nil,
                             {
                                 widget = wibox.container.margin,
@@ -127,21 +128,21 @@ local function worker(args)
                         layout = wibox.layout.fixed.horizontal,
                         {
                             widget = wibox.container.background,
-                            bg = beautiful.bg_normal,
-                            shape = shapes.roundedleft,
+                            bg = beautiful.bg_normal_bright,
+                            shape = shapes.roundedrect,
                             {
                                 widget = wibox.container.margin,
                                 margins = dpi(4),
                                 awful.widget.layoutbox(args.screen),
                             },
                         },
-                        {
-                            widget = wibox.container.background,
-                            bg = beautiful.bg_focus,
-                            forced_width = dpi(4),
-                            shape = shapes.roundedright,
-                            wibox.widget {}
-                        },
+                        -- {
+                        --     widget = wibox.container.background,
+                        --     bg = beautiful.bg_focus,
+                        --     forced_width = dpi(4),
+                        --     shape = shapes.roundedright,
+                        --     wibox.widget {}
+                        -- },
                     }
                 }
             },
@@ -157,7 +158,8 @@ local function worker(args)
                             widget = wibox.container.margin,
                             left = dpi(8),
                             right = dpi(8),
-                            myschedule,
+                            -- myschedule,
+                            wibox.widget.textclock("<b>%a, %d %b %y | %H:%M</b>"),
                         }
                     },
             },

@@ -18,6 +18,7 @@ pcall(require, "luarocks.loader")
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
+local hotkeys_popup = require("awful.hotkeys_popup")
 require("awful.autofocus")
 -- Widget and layout library
 local wibox = require("wibox")
@@ -167,7 +168,7 @@ myvolume = widgets.volume {
 mybattery = widgets.battery { timeout = 3 }
 myschedule = widgets.schedule { timeout = 60 }
 mydisk = widgets.disk { timeout = 120 }
--- myapptitle = widgets.apptitle {}
+mynightmode = widgets.nightmode {}
 
 -------------------------------------------------------------------------------
 -- SCREEN
@@ -191,7 +192,7 @@ awful.screen.connect_for_each_screen(function(s)
         awful.tag.add(tagname, {
             icon = config_dir .. "/icons/" ..
                 tagname .. ".png",
-            layout = tagname == "game" 
+            layout = (tagname == "game" or tagname == "virt")
                 and awful.layout.suit.max
                 or awful.layout.suit.tile,
             screen = s,
@@ -211,9 +212,6 @@ awful.screen.connect_for_each_screen(function(s)
         awful.button({ }, 4, function () awful.layout.inc( 1) end),
         awful.button({ }, 5, function () awful.layout.inc(-1) end)))
 
-
-    s.mytaglist = widgets.taglist {screen = s}
-
     ---------------------------------------------------------------------------
     -- PANEL / WIBAR
     ---------------------------------------------------------------------------
@@ -222,6 +220,7 @@ awful.screen.connect_for_each_screen(function(s)
     s.mywibox = top_panel {
         screen = s,
         widgets = {
+            mynightmode,
             mycpu,
             mymemory,
             mydisk,
@@ -242,7 +241,7 @@ require("rules")
 require("signals")
 
 -- Autostart
-awful.spawn.with_shell("~/.config/autostart.sh")
+awful.spawn.with_shell("~/.config/scripts/autostart.sh")
 
 gears.timer {
     timeout = 20,

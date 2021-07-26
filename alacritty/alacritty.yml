@@ -1,0 +1,46 @@
+background_opacity: 1.0
+
+font:
+  size: 8
+  normal:
+    family: JetBrainsMono Nerd Font
+    style: Regular
+  bold:
+    family: JetBrainsMono Nerd Font 
+  italic:
+    family: JetBrainsMono Nerd Font
+
+window:
+  padding:
+    x: 4
+    y: 4 
+
+key_bindings:
+  - { key: Return, mods: Control|Shift, action: SpawnNewInstance }
+
+
+colors:
+  primary:
+    background: '#161616'
+    foreground: '#dfdfdf'
+
+  normal:
+    black:    '#282828'
+    red:      '#cf1d00'
+    green:    '#60c419'
+    yellow:   '#cd823d'
+    blue:     '#2f7caf'
+    magenta:  '#bd47c2'
+    cyan:     '#58a69c'
+    white:    '#808080'
+  
+  bright:
+    black:    '#404040'
+    red:      '#df533d'
+    green:    '#66d05e'
+    yellow:   '#edee58'
+    blue:     '#5fa7cd'
+    magenta:  '#ce71d2'
+    cyan:     '#a0c9c4'
+    white:    '#dfdfdf'
+

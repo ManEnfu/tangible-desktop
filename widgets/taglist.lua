@@ -64,29 +64,33 @@ local function taglist_callback(self, tag, index, ttable)
             touch_right = true
         end
     end
-    touch_middle = selected
+    touch_middle = selected and #tag:clients() > 0
 
     if touch_right then
-        if touch_left then
-            tag_bg.shape = gears.shape.rectangle
-        else
-            tag_bg.shape = shapes.roundedleft
-        end
         if touch_middle then
             task_bg.shape = gears.shape.rectangle
         else
             task_bg.shape = shapes.roundedleft
         end
     else
-        if touch_left then
-            tag_bg.shape = shapes.roundedright
-        else
-            tag_bg.shape = shapes.roundedrect
-        end
         if touch_middle then
             task_bg.shape = shapes.roundedright
         else
             task_bg.shape = shapes.roundedrect
+        end
+    end
+
+    if touch_left then
+        if touch_middle then
+            tag_bg.shape = gears.shape.rectangle
+        else
+            tag_bg.shape = shapes.roundedright
+        end
+    else
+        if touch_middle then
+            tag_bg.shape = shapes.roundedleft
+        else
+            tag_bg.shape = shapes.roundedrect
         end
     end
 
@@ -116,11 +120,11 @@ function worker(args)
             layout  = wibox.layout.fixed.horizontal
         },
         widget_template = {
-            id = "tag_background",
-            widget = wibox.container.background,
-            bg = beautiful.bg_normal,
+            layout = wibox.layout.fixed.horizontal,
             {
-                layout = wibox.layout.fixed.horizontal,
+                id = "tag_background",
+                widget = wibox.container.background,
+                bg = beautiful.bg_normal,
                 {
                     widget = wibox.container.margin,
                     left  = 6,
@@ -132,21 +136,21 @@ function worker(args)
                         {
                             id     = 'icon_role',
                             widget = wibox.widget.imagebox,
-                        },
-                    },
-                },
-                {
-                    id = "task_background",
-                    widget = wibox.container.background,
-                    bg = nil,
-                    {
-                        id = 'tasklist',
-                        widget = wibox.container.margin,
-                        right = 2,
-                        left = 2,
-                        wibox.widget {}
+                        }
                     }
-                },
+                }
+            },
+            {
+                id = "task_background",
+                widget = wibox.container.background,
+                bg = nil,
+                {
+                    id = 'tasklist',
+                    widget = wibox.container.margin,
+                    right = 2,
+                    left = 2,
+                    wibox.widget {}
+                }
             },
             create_callback = taglist_oncreate,
             update_callback = taglist_callback

@@ -55,6 +55,7 @@ theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
 theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
     taglist_square_size, theme.fg_normal
 )
+theme.tasklist_plain_task_name = true
 
 -- Variables set for theming notifications:
 -- notification_font

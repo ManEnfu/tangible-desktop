@@ -1,0 +1,44 @@
+-- General
+Super + Shift + R       Reload
+Super + Shift + Q       Quit
+Super + B               Toggle panel
+
+-- Launcher
+Super + P               Show app launcher
+Super + Shift + P       Show logout menu
+Super + Ctrl + P        Show password manager
+Super + R               Show run prompt 
+Super + O               Show window selector
+Super + Shift + O       Show file explorer
+Super + Shift + I       Show ambient sound selector
+
+-- Window
+Super + Enter           Open terminal
+Super + Shift + C       Close window
+Super + Shift + Enter   Swap master window
+Super + J               Cycle windows
+Super + K               Cycle windows
+Super + Shift + J       Swap with next window
+Super + Shift + K       Swap with prev window
+Super + Tab             Cycle windows
+Super + H
+Super + L
+
+-- Workspace / Tag
+Super + [Num]           Switch to workspace/tag
+Super + Shift + [Num]   Move window to workspace/tag
+Super + Ctrl + [Num]    Toggle tag
+Super + Left            Switch to previous workspace/tag
+Super + Right           Switch to next workspace/tag
+
+-- Misc
+Print                   Take screenshot
+Shift + Print           Take screenshot (select area)
+Super + [               Lower volume
+Super + ]               Raise volume
+Super + \               Toggle volume
+Super + Shift + [       Play previous
+Super + Shift + ]       Play next
+Super + Shift + \       Play/pause current
+Super + '               Toggle blue light filter
+

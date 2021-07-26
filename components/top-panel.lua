@@ -152,7 +152,7 @@ local function worker(args)
                 content_fill_vertical = true,
                     {
                         widget = wibox.container.background,
-                        bg = beautiful.bg_normal_bright,
+                        -- bg = beautiful.bg_normal_bright,
                         shape = shapes.roundedrect,
                         {
                             widget = wibox.container.margin,

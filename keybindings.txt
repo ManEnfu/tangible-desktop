@@ -4,6 +4,7 @@ Super + Shift + Q       Quit
 Super + B               Toggle panel
 
 -- Launcher
+Super + Enter           Open terminal
 Super + P               Show app launcher
 Super + Shift + P       Show logout menu
 Super + Ctrl + P        Show password manager
@@ -13,7 +14,6 @@ Super + Shift + O       Show file explorer
 Super + Shift + I       Show ambient sound selector
 
 -- Window
-Super + Enter           Open terminal
 Super + Shift + C       Close window
 Super + Shift + Enter   Swap master window
 Super + J               Cycle windows

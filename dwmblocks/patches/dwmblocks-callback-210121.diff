@@ -40,7 +40,7 @@ index 9c22d68..fb52c98 100644
 +}
 +
 +static const Block blocks[] = {
-+	CALLBACK("", mem_callbcak, 7, 0),
++	CALLBACK("", mem_callback, 7, 0),
 +	COMMAND (";", "date '+%A, %d %B %Y | %H:%M'", 2, 0),
  };
  

@@ -21,8 +21,8 @@ local function worker(args)
     local panel = awful.wibar({
         position = "top", 
         screen = args.screen,
-        bg = beautiful.bg_normal, 
-        height = dpi(24) + bargap
+        -- bg = beautiful.bg_normal, 
+        height = dpi(28)
     })
 
     status_panel = wibox.widget {
@@ -36,10 +36,10 @@ local function worker(args)
 
     panel:setup {
         widget = wibox.container.margin,
-        top = bargap / 2,
+        top = dpi(2),
         left = bargap,
         right = bargap,
-        bottom = bargap / 2,
+        bottom = dpi(2),
         {
             layout = wibox.layout.stack,
             {
@@ -93,7 +93,7 @@ local function worker(args)
                     right = bargap,
                     {
                         widget = wibox.container.background,
-                        bg = beautiful.bg_normal,
+                        -- bg = beautiful.bg_normal,
                         shape = shapes.roundedrect,
                         {
                             layout = wibox.layout.align.horizontal,
@@ -113,7 +113,7 @@ local function worker(args)
                     spacing = bargap,
                     {
                         widget = wibox.container.background,
-                        bg = beautiful.bg_normal,
+                        -- bg = beautiful.bg_normal,
                         shape = shapes.roundedrect,
                         {
                             widget = wibox.container.margin,

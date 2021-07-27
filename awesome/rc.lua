@@ -222,7 +222,7 @@ awful.screen.connect_for_each_screen(function(s)
     ---------------------------------------------------------------------------
     local top_panel = require ("components.top-panel")
     local bottom_panel = require ("components.bottom-panel")
-    s.mywibox = top_panel {
+    s.mytoppanel = top_panel {
         screen = s,
         widgets = {
             mynightmode,

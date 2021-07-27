@@ -47,7 +47,7 @@ local function taglist_callback(self, tag, index, ttable)
         tag_bg.bg = beautiful.bg_focus
         task_bg.bg = beautiful.bg_focus_bright
     else
-        tag_bg.bg = beautiful.bg_normal
+        tag_bg.bg = nil
         task_bg.bg = beautiful.bg_normal_bright
     end
     touch_left = false

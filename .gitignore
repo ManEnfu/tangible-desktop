@@ -1,0 +1,8 @@
+*.o
+*.d
+*.rej
+*.orig
+dwm/dwm
+dmenu/dmenu
+dmenu/stest
+st/st

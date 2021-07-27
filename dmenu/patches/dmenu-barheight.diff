@@ -1,0 +1,29 @@
+diff --git a/config.def.h b/config.def.h
+index 1edb647..f86fd67 100644
+--- a/dmenu/config.def.h
++++ b/dmenu/config.def.h
+@@ -15,6 +15,8 @@ static const char *colors[SchemeLast][2] = {
+ };
+ /* -l option; if nonzero, dmenu uses vertical list with given number of lines */
+ static unsigned int lines      = 0;
++/* bar height; if nonzero, set bar height to this value */
++static unsigned int barheight  = 0;
+ 
+ /*
+  * Characters not considered part of a word while deleting words
+diff --git a/dmenu.c b/dmenu.c
+index 65f25ce..51e8b90 100644
+--- a/dmenu/dmenu.c
++++ b/dmenu/dmenu.c
+@@ -608,7 +608,10 @@ setup(void)
+ 	utf8 = XInternAtom(dpy, "UTF8_STRING", False);
+ 
+ 	/* calculate menu geometry */
+-	bh = drw->fonts->h + 2;
++	if (barheight == 0)
++		bh = drw->fonts->h + 2;
++	else
++		bh = barheight;
+ 	lines = MAX(lines, 0);
+ 	mh = (lines + 1) * bh;
+ #ifdef XINERAMA

@@ -1,0 +1,117 @@
+diff --git a/blocks.def.h b/blocks.def.h
+index 9c22d68..fb52c98 100644
+--- a/blocks.def.h
++++ b/blocks.def.h
+@@ -1,9 +1,38 @@
+ //Modify this file to change what commands output to your statusbar, and recompile using the make command.
+-static const Block blocks[] = {
+-	/*Icon*/	/*Command*/		/*Update Interval*/	/*Update Signal*/
+-	{"Mem:", "free -h | awk '/^Mem/ { print $3\"/\"$2 }' | sed s/i//g",	30,		0},
+ 
+-	{"", "date '+%b %d (%a) %I:%M%p'",					5,		0},
++// Accepts sstring as command
++#define COMMAND(icon, command, interval, signal) {icon, command, NULL, interval, signal}
++// Accepts function as callback
++#define CALLBACK(icon, callback, interval, signal) {icon, NULL, callback, interval, signal}
++
++// Example callback for memory
++void mem_callback(char* dest) {
++
++	int x, total, free, buffer, cache, srec, used;
++	char l[50];
++	FILE* meminfo_file = fopen("/proc/meminfo", "r");
++	if (!meminfo_file) {
++		sprintf(dest, " Err");
++		return;
++	}
++	while (!feof(meminfo_file)) {
++		fscanf(meminfo_file, "%s %d kB", l, &x);
++		if      (!strcmp(l, "MemTotal:"))        total  = x;
++		else if (!strcmp(l, "MemFree:"))         free   = x;
++		else if (!strcmp(l, "Buffers:"))         buffer = x;
++		else if (!strcmp(l, "Cached:"))          cache  = x;
++		else if (!strcmp(l, "SReclaimable:"))    srec   = x;
++	}
++	fclose(meminfo_file);
++	used = total - free - buffer - cache - srec;
++	used /= 1024;
++	sprintf(dest, " %dMiB", used);
++
++}
++
++static const Block blocks[] = {
++	CALLBACK("", mem_callbcak, 7, 0),
++	COMMAND (";", "date '+%A, %d %B %Y | %H:%M'", 2, 0),
+ };
+ 
+ //sets delimeter between status commands. NULL character ('\0') means no delimeter.
+diff --git a/dwmblocks.c b/dwmblocks.c
+index ded717c..86711a6 100644
+--- a/dwmblocks.c
++++ b/dwmblocks.c
+@@ -21,6 +21,7 @@
+ typedef struct {
+ 	char* icon;
+ 	char* command;
++	void (*callback) (char* output);
+ 	unsigned int interval;
+ 	unsigned int signal;
+ } Block;
+@@ -28,6 +29,8 @@ typedef struct {
+ void dummysighandler(int num);
+ #endif
+ void sighandler(int num);
++void getcallbacks(int time);
++void getsigcallbacks(unsigned int signal);
+ void getcmds(int time);
+ void getsigcmds(unsigned int signal);
+ void setupsignals();
+@@ -55,9 +58,37 @@ static char statusstr[2][STATUSLENGTH];
+ static int statusContinue = 1;
+ static int returnStatus = 0;
+ 
++void getcallback(const Block *block, char *output)
++{
++	if (!block->callback) return;
++	strcpy(output, block->icon);
++	(*block->callback)(output + strlen(block->icon));
++}
++
++void getcallbacks(int time) 
++{
++	const Block* current;
++	for (unsigned int i = 0; i < LENGTH(blocks); i++) {
++		current = blocks + i;
++		if ((current->interval != 0 && time % current->interval == 0) || time == -1)
++			getcallback(current,statusbar[i]);
++	}
++}
++
++void getsigcallbacks(unsigned int signal)
++{
++	const Block *current;
++	for (unsigned int i = 0; i < LENGTH(blocks); i++) {
++		current = blocks + i;
++		if (current->signal == signal)
++			getcallback(current,statusbar[i]);
++	}
++}
++
+ //opens process *cmd and stores output in *output
+ void getcmd(const Block *block, char *output)
+ {
++	if (!block->command) return;
+ 	strcpy(output, block->icon);
+ 	FILE *cmdf = popen(block->command, "r");
+ 	if (!cmdf)
+@@ -161,8 +192,10 @@ void statusloop()
+ 	setupsignals();
+ 	int i = 0;
+ 	getcmds(-1);
++	getcallbacks(-1);
+ 	while (1) {
+ 		getcmds(i++);
++		getcallbacks(i);
+ 		writestatus();
+ 		if (!statusContinue)
+ 			break;

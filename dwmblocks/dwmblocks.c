@@ -21,6 +21,7 @@
 typedef struct {
 	char* icon;
 	char* command;
+	void (*callback) (char* output);
 	unsigned int interval;
 	unsigned int signal;
 } Block;
@@ -28,6 +29,8 @@ typedef struct {
 void dummysighandler(int num);
 #endif
 void sighandler(int num);
+void getcallbacks(int time);
+void getsigcallbacks(unsigned int signal);
 void getcmds(int time);
 void getsigcmds(unsigned int signal);
 void setupsignals();
@@ -55,9 +58,37 @@ static char statusstr[2][STATUSLENGTH];
 static int statusContinue = 1;
 static int returnStatus = 0;
 
+void getcallback(const Block *block, char *output)
+{
+	if (!block->callback) return;
+	strcpy(output, block->icon);
+	(*block->callback)(output + strlen(block->icon));
+}
+
+void getcallbacks(int time) 
+{
+	const Block* current;
+	for (unsigned int i = 0; i < LENGTH(blocks); i++) {
+		current = blocks + i;
+		if ((current->interval != 0 && time % current->interval == 0) || time == -1)
+			getcallback(current,statusbar[i]);
+	}
+}
+
+void getsigcallbacks(unsigned int signal)
+{
+	const Block *current;
+	for (unsigned int i = 0; i < LENGTH(blocks); i++) {
+		current = blocks + i;
+		if (current->signal == signal)
+			getcallback(current,statusbar[i]);
+	}
+}
+
 //opens process *cmd and stores output in *output
 void getcmd(const Block *block, char *output)
 {
+	if (!block->command) return;
 	strcpy(output, block->icon);
 	FILE *cmdf = popen(block->command, "r");
 	if (!cmdf)
@@ -161,8 +192,10 @@ void statusloop()
 	setupsignals();
 	int i = 0;
 	getcmds(-1);
+	getcallbacks(-1);
 	while (1) {
 		getcmds(i++);
+		getcallbacks(i);
 		writestatus();
 		if (!statusContinue)
 			break;

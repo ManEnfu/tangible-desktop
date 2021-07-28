@@ -91,7 +91,6 @@ void cpuload_callback(char* dest) {
         &r1, &r2, &r3, &r4, &r5, &r6, &r7, &r8, &r9, &r10
     );
     fclose(stat_file);
-    printf("hi\n");
     new_active = r1 + r2 + r3 + r6 + r7 + r8 + r9 + r10;
     new_total = new_active + r4 + r5;
     diff_active = new_active - cache_active;
@@ -155,8 +154,7 @@ static const Block blocks[] = {
 	CALLBACK("      ",          wifi_callback,      4, 0),
 	CALLBACK("      ",          volume_callback,    3, 10),
 	CALLBACK("      ",          bat_callback,       3, 0),
-	COMMAND ("|     dwm6.2",    "",                 1000, 0),
-	COMMAND (";", "bash -c ~/.config/scripts/myschedule.sh", 10, 0),
+	COMMAND ("      ", "bash -c ~/.config/scripts/myschedule.sh", 10, 0),
 };
 
 //sets delimeter between status commands. NULL character ('\0') means no delimeter.

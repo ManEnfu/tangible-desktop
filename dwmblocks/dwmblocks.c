@@ -214,6 +214,7 @@ void dummysighandler(int signum)
 void sighandler(int signum)
 {
 	getsigcmds(signum-SIGPLUS);
+	getsigcallbacks(signum-SIGPLUS);
 	writestatus();
 }
 

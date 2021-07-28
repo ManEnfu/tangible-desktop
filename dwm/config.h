@@ -130,6 +130,11 @@ static Key keys[] = {
     /* Misc */
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
+	{ 0,                            XK_Print,  spawn,          SHCMD("~/.config/scripts/screenshot.sh") },
+	{ ShiftMask,                    XK_Print,  spawn,          SHCMD("~/.config/scripts/screenshot-select.sh") },
+    { MODKEY,                 XK_bracketright, spawn,          SHCMD("~/.config/scripts/vol-raise.sh") },
+    { MODKEY,                  XK_bracketleft, spawn,          SHCMD("~/.config/scripts/vol-lower.sh") },
+    { MODKEY,                    XK_backslash, spawn,          SHCMD("~/.config/scripts/vol-toggle.sh") },
 };
 
 /* button definitions */

@@ -76,6 +76,8 @@ theme.menu_height = dpi(20)
 theme.menu_width  = dpi(160)
 theme.menu_bg_normal = "#161616"
 theme.menu_bg_focus = "#323232"
+theme.menu_border_width = dpi(1)
+theme.menu_border_color = "#0a0a0a"
 
 -- You can add as many variables as
 -- you wish and access them by using

@@ -21,8 +21,8 @@ local function worker(args)
     local panel = awful.wibar({
         position = "bottom", 
         screen = args.screen,
-        bg = "#00000000", 
-        height = dpi(24) + bargap
+        bg = beautiful.bg_normal, 
+        height = dpi(28)
     })
 
     -- status_panel = wibox.widget {
@@ -36,9 +36,10 @@ local function worker(args)
 
     panel:setup {
         widget = wibox.container.margin,
-        bottom = bargap,
+        top = dpi(2),
         left = bargap,
         right = bargap,
+        bottom = dpi(2),
         {
             layout = wibox.layout.stack,
             {
@@ -48,12 +49,12 @@ local function worker(args)
                     spacing = bargap,
                     {
                         layout = wibox.layout.fixed.horizontal,
-                        {
-                            widget = wibox.container.background,
-                            bg = beautiful.bg_focus,
-                            forced_width = dpi(4),
-                            wibox.widget {}
-                        },
+                        -- {
+                        --     widget = wibox.container.background,
+                        --     bg = beautiful.bg_focus,
+                        --     forced_width = dpi(4),
+                        --     wibox.widget {}
+                        -- },
                         {
                             widget = wibox.container.background,
                             bg = beautiful.bg_normal,
@@ -62,7 +63,8 @@ local function worker(args)
                                 widget = wibox.container.margin,
                                 left = dpi(8),
                                 right = dpi(8),
-                                myschedule
+                                -- myschedule
+                                wibox.widget.textbox("Bottom panel")
                             }
                         }
                     },
@@ -98,12 +100,12 @@ local function worker(args)
                                 wibox.widget.textbox("awesome-4.3"),
                             },
                         },
-                        {
-                            widget = wibox.container.background,
-                            bg = beautiful.bg_focus,
-                            forced_width = dpi(4),
-                            wibox.widget {}
-                        },
+                        -- {
+                        --     widget = wibox.container.background,
+                        --     bg = beautiful.bg_focus,
+                        --     forced_width = dpi(4),
+                        --     wibox.widget {}
+                        -- },
                     }
                 }
             },

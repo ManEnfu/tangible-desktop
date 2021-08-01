@@ -71,10 +71,17 @@ globalkeys = gears.table.join(
     awful.key({ modkey }, "b", 
         function() 
             local screen = awful.screen.focused()
-            screen.mywibox.visible = not screen.mywibox.visible
-            -- screen.mybotpanel.visible = not screen.mybotpanel.visible
+            screen.mytoppanel.visible = not screen.mytoppanel.visible
         end,
-        {description = "toggle wibar", group = "awesome"}
+        {description = "toggle top panel", group = "awesome"}
+    ),
+    
+    awful.key({ modkey }, "v", 
+        function() 
+            local screen = awful.screen.focused()
+            screen.mybotpanel.visible = not screen.mybotpanel.visible
+        end,
+        {description = "toggle bottom panel", group = "awesome"}
     ),
 
     awful.key({ }, "XF86AudioRaiseVolume", 
@@ -194,6 +201,13 @@ globalkeys = gears.table.join(
     awful.key({ modkey,           }, "u", 
         awful.client.urgent.jumpto,
         {description = "jump to urgent client", group = "client"}
+    ),
+    
+    awful.key({ "Mod1",           }, "Tab",
+        function ()
+            awful.client.focus.byidx(1)
+        end,
+        {description = "cycle clients", group = "client"}
     ),
     
     awful.key({ modkey,           }, "Tab",

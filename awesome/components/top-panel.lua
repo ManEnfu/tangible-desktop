@@ -21,7 +21,7 @@ local function worker(args)
     local panel = awful.wibar({
         position = "top", 
         screen = args.screen,
-        -- bg = beautiful.bg_normal, 
+        bg = beautiful.bg_normal, 
         height = dpi(28)
     })
 

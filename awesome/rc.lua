@@ -235,7 +235,8 @@ awful.screen.connect_for_each_screen(function(s)
             mybattery,
         }
     }
-    -- s.mybotpanel = bottom_panel {screen = s}
+    s.mybotpanel = bottom_panel {screen = s}
+    s.mybotpanel.visible = false
 
 end)
 

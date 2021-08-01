@@ -75,7 +75,7 @@ local function worker(args)
                     widget = wibox.container.background,
                     id = 'selected_background',
                     forced_height = 2,
-                    forced_width = 16,
+                    forced_width = 20,
                     wibox.widget {},
                 },
             },

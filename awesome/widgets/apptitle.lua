@@ -7,6 +7,7 @@ local beautiful     = require("beautiful")
 local naughty       = require("naughty")
 local gears         = require("gears")
 local cairo         = require("lgi").cairo
+local wbuttons      = require("widgets.buttons")
 local shapes = require("util.shapes")
 local module_path = (...):match ("(.+/)[^/]+$") or ""
 
@@ -47,9 +48,11 @@ local function apptitle_oncreate(self, c, index, ctable)
     local button_container = self:get_children_by_id('button_container')[1]
     button_container:set_widget(wibox.widget {
         layout = wibox.layout.fixed.horizontal,
-        spacing = 8,
-        awful.titlebar.widget.maximizedbutton(c),
-        awful.titlebar.widget.closebutton(c)
+        -- awful.titlebar.widget.maximizedbutton(c),
+        -- awful.titlebar.widget.closebutton(c)
+        wbuttons.minimize_button(c, 6),
+        wbuttons.maximize_button(c, 6),
+        wbuttons.close_button(c, 6)
     })
     -- button_container:set_widget(wibox.widget.textbox("a"))
     -- button_container.bg = beautiful.bg_focus
@@ -82,21 +85,21 @@ local function worker(args)
             bg = beautiful.bg_normal_bright,
             shape = shapes.roundedrect,
             {
-                widget = wibox.container.margin,
-                margins = 6,
+                layout = wibox.layout.align.horizontal,
+                spacing = 6,
                 {
-                    layout = wibox.layout.align.horizontal,
-                    spacing = 6,
+                    widget = wibox.container.margin,
+                    margins = 6,
                     {
                         id = 'text_role',
                         widget = wibox.widget.textbox,
                         forced_width = 200
                     },
-                    nil,
-                    {
-                        id = 'button_container',
-                        widget = wibox.container.place,
-                    },
+                },
+                nil,
+                {
+                    id = 'button_container',
+                    widget = wibox.container.place,
                 },
             },
             create_callback = apptitle_oncreate

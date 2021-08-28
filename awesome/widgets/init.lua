@@ -14,6 +14,7 @@ local mod = {
     tasklist = require(module_path .. "widgets.tasklist"),
     schedule = require(module_path .. "widgets.schedule"),
     nightmode= require(module_path .. "widgets.nightmode"),
+    buttons  = require(module_path .. "widgets.buttons"),
 }
 
 return mod

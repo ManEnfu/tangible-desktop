@@ -50,9 +50,9 @@ local function taglist_callback(self, tag, index, ttable)
         tag_bg.bg = nil
         task_bg.bg = beautiful.bg_normal_bright
     end
-    touch_left = false
-    touch_right = false
-    touch_middle = false
+    local touch_left = false
+    local touch_right = false
+    local touch_middle = false
     if index ~= 1 then
         if selected and 
             (#(ttable[index-1]:clients()) > 0 or ttable[index-1].selected) then

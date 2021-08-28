@@ -5,6 +5,7 @@ local gears = require("gears")
 local awful = require("awful")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
+local shapes = require("util.shapes")
 local module_path = (...):match ("(.+/)[^/]+$") or ""
 
 local tasklist = {}

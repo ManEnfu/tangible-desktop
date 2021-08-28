@@ -36,23 +36,17 @@ local function worker(args)
     ---------------------------------------------------------------------------
     schedule_widget = wibox.widget {
         layout = wibox.layout.fixed.horizontal,
-        wibox.widget.textbox("<b></b>"),
-        wibox.widget.textclock("<b>%A, %d %B %Y | %H:%M</b>"),
+        wibox.widget.textbox(""),
     }
 
     ---------------------------------------------------------------------------
     -- UPDATE WIDGET PERIODICALLY
     ---------------------------------------------------------------------------
-    awful.widget.watch("bash -c ~/.config/myschedule/myschedule.sh", timeout, 
+    awful.widget.watch("bash -c ~/.config/scripts/myschedule.sh", timeout, 
     function(widget, stdout)
         local children = widget:get_children()
         stdout = string.gsub(stdout, "\n", "")
         children[1]:set_text("" .. stdout .. "")
-        if stdout == "" then
-            children[2].format = "<b>%A, %d %B %Y | %H:%M</b>"
-        else
-            children[2].format = "<b> | %d %B %Y | %H:%M</b>"
-        end
     end, schedule_widget)
 
     return schedule_widget

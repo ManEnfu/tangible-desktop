@@ -63,8 +63,7 @@ local function worker(args)
                                 widget = wibox.container.margin,
                                 left = dpi(8),
                                 right = dpi(8),
-                                -- myschedule
-                                wibox.widget.textbox("Bottom panel")
+                                myschedule
                             }
                         }
                     },

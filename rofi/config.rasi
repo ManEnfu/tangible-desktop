@@ -5,7 +5,7 @@ lines: 10;
 columns: 1;
 font: "Ubuntu 8";
 /*	bw: 1;*/
-/*	location: 0;*/
+location: 0;
 padding: 10;
 /*	yoffset: 0;*/
 /*	xoffset: 0;*/
@@ -19,7 +19,7 @@ show-icons: true;
 /*	run-shell-command: "{terminal} -e {cmd}";*/
 /*	window-command: "wmctrl -i -R {window}";*/
 /*	window-match-fields: "all";*/
-icon-theme: "Tela ubuntu dark";
+icon-theme: "Tela dark";
 /*	drun-match-fields: "name,generic,exec,categories,keywords";*/
 /*	drun-categories: ;*/
 /*	drun-show-actions: false;*/

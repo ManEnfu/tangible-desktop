@@ -88,6 +88,7 @@ element-icon {
 }
 window {
     /* padding:          25% 35%; */
+    width: 40%;
     background-color: var(window-background);
     border:           0;
     border-radius:    0;
@@ -113,6 +114,7 @@ listview {
     spacing:      2px ;
     fixed-height: 0;
     border:       0px 0px 0px 0px ;
+    lines: 10;
 }
 scrollbar {
     width:        2px ;

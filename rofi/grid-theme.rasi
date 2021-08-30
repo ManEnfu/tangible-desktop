@@ -1,11 +1,6 @@
 configuration {
     drun-display-format: "{name}";
     show-icons: true;
-    fullscreen: false;
-    width: 40;
-    columns: 4;
-    lines: 3; 
-
 }
 
 * {
@@ -25,6 +20,7 @@ window {
     background-color: @window-bg;
     border:           0;
     border-radius:    0;
+    width: 40%;
 }
 
 element {
@@ -76,6 +72,7 @@ element-icon {
     background-color: rgba ( 0, 0, 0, 0 % );
     size:             4.8000em ;
     text-color:       inherit;
+    horizontal-align: 0.5;
 }
 
 mainbox {
@@ -95,6 +92,8 @@ listview {
     border:       0px 0px 0px 0px ;
     background-color: @bg;
     fixed-columns: true;
+    columns: 4;
+    lines: 3; 
 }
 
 

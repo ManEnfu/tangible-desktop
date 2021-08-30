@@ -391,7 +391,7 @@ globalkeys = gears.table.join(
     awful.key({ modkey, "Shift" }, "o", 
         function() 
             awful.spawn.with_shell(
-                "rofi -modi drun,run,window,ssh,file-browser -show file-browser"
+                "rofi -modi drun,run,window,ssh,filebrowser -show filebrowser"
             ) 
         end,
         {description = "file quick open", group = "launcher"}

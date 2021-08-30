@@ -21,7 +21,7 @@ declare -a options=(
 
 choice=$(\
     printf '%s\n' "${options[@]}" | \
-    rofi -dmenu -p "$up_time" -i -lines 5 -width 388 -theme "$theme")
+    rofi -dmenu -p "$up_time" -i -theme "$theme")
 
 if [[ $choice == $option_sleep ]]; then
     i3lock -c 242424 && sleep 0.5 && loginctl suspend

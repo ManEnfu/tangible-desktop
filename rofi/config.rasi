@@ -1,12 +1,12 @@
 configuration {
 modi: "drun,run,window,ssh";
-width: 40;
-lines: 10;
-columns: 1;
+/* width: 40; */
+/* lines: 10; */
+/* columns: 1; */
 font: "Ubuntu 8";
 /*	bw: 1;*/
 location: 0;
-padding: 10;
+/* padding: 10; */
 /*	yoffset: 0;*/
 /*	xoffset: 0;*/
 /*	fixed-num-lines: true;*/
@@ -45,7 +45,7 @@ icon-theme: "Tela dark";
 /*	filter: ;*/
 /*	separator-style: "dash";*/
 /*	hide-scrollbar: false;*/
-fullscreen: false;
+/* fullscreen: false; */
 /*	fake-transparency: false;*/
 /*	dpi: -1;*/
 /*	threads: 0;*/
@@ -76,7 +76,7 @@ display-run: "";
 display-drun: "";
 /*	display-combi: ;*/
 /*	display-keys: ;*/
-display-file-browser: "";
+display-filebrowser: "";
 /*	kb-primary-paste: "Control+V,Shift+Insert";*/
 /*	kb-secondary-paste: "Control+v,Insert";*/
 /*	kb-clear-line: "Control+w";*/

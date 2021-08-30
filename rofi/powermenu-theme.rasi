@@ -2,8 +2,6 @@
 configuration {
     drun-display-format: "{name}";
     show-icons: false;
-    fullscreen: false;
-    width: 100;
 }
 
 * {
@@ -22,6 +20,7 @@ window {
     background-color: @window-bg;
     border:           0;
     border-radius:    0;
+    width: 388px;
 }
 
 element {
@@ -66,7 +65,7 @@ element-text {
     background-color: rgba ( 0, 0, 0, 0 % );
     highsel:        inherit;
     text-color:       inherit;
-    padding:          0px 12px 24px 12px;
+    padding:          8px 12px 8px 12px;
 }
 
 element-icon {

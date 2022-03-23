@@ -77,15 +77,16 @@ element-icon {
 mainbox {
     border-radius: 4px;
     background-color: @bg;
-    padding: 0px;
+    padding: 4px;
     border:  0;
     max-height: 10px;
+    spacing: 4px;
     children: [inputbar, listview];
 }
 
 
 listview {
-    padding:      4px;
+    padding:      0px;
     scrollbar:    false;
     spacing:      2px ;
     fixed-height: 0;
@@ -101,6 +102,7 @@ inputbar {
     background-color: #242424; 
     text-color: @fg;
     spacing:    0px;
+    border-radius: 4px;
     children:   [textbox-prompt-colon, prompt];
 }
 

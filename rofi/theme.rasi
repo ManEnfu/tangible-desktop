@@ -38,6 +38,7 @@ element {
     padding: 2px 12px ;
     spacing: 8px ;
     border:  0;
+    border-radius:    4px;
 }
 element normal.normal {
     background-color: var(normal-background);
@@ -91,12 +92,12 @@ window {
     width: 40%;
     background-color: var(window-background);
     border:           0;
-    border-radius:    0;
+    border-radius:    4px;
 }
 mainbox {
-    border-radius: 4px;
+    border-radius: 0;
     background-color: var(background);
-    padding: 0px;
+    padding: 4px;
     border:  0;
 }
 message {
@@ -149,6 +150,7 @@ textbox-num-sep {
     text-color: rgba ( 128, 128, 128, 100 % );
 }
 inputbar {
+    border-radius:    4px;
     padding:    12px ;
     background-color: #242424; 
     spacing:    0px ;

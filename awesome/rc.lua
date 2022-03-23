@@ -164,7 +164,7 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 mycpu = widgets.cpu { timeout = 5 }
 mymemory = widgets.memory { timeout = 5 }
 mysensors = widgets.sensors { timeout = 7 }
-mywifi = widgets.wifi { timeout = 4, interface = "wlp5s0" }
+mywifi = widgets.wifi { timeout = 4, interface = "wlan0" }
 myvolume = widgets.volume { 
     timeout = 3, 
     play = config_dir .. "/sound_click_tick.wav"
@@ -184,7 +184,7 @@ awful.screen.connect_for_each_screen(function(s)
     -- Each screen has its own tag table.
     -- local tagnames = { "1", "2", "3", "4", "5", "6", "7", "8", "9" }
     local tagnames = { 
-        "term1", "term2", "web", "file", "doc", 
+        "term1", "term2", "web", "web2", "file", 
         "media", "design", "game", "virt" 
     }
     -- awful.tag(

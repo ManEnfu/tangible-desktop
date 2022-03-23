@@ -67,4 +67,22 @@ function buttons.minimize_button(c, padding)
     end)
 end
 
+function buttons.floating_button(c, padding)
+    local ret = buttons.padded_button(
+        c.floating and icon_dir .. "float-on-button.png"
+            or icon_dir .. "float-off-button.png",
+        padding,
+        function()
+            c.floating = not c.floating
+        end
+    )
+    c:connect_signal("property::floating", function()
+        ret:set_image(
+            c.floating and icon_dir .. "float-on-button.png"
+                or icon_dir .. "float-off-button.png"
+        )
+    end)
+    return ret
+end
+
 return buttons

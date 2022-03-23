@@ -45,15 +45,15 @@ local apptitle_buttons = gears.table.join(
 -- APPTITLE UPDATE CALLBACK
 -------------------------------------------------------------------------------
 local function apptitle_oncreate(self, c, index, ctable)
-    local button_container = self:get_children_by_id('button_container')[1]
-    button_container:set_widget(wibox.widget {
-        layout = wibox.layout.fixed.horizontal,
-        -- awful.titlebar.widget.maximizedbutton(c),
-        -- awful.titlebar.widget.closebutton(c)
-        wbuttons.minimize_button(c, 6),
-        wbuttons.maximize_button(c, 6),
-        wbuttons.close_button(c, 6)
-    })
+    -- local button_container = self:get_children_by_id('button_container')[1]
+    -- button_container:set_widget(wibox.widget {
+    --     layout = wibox.layout.fixed.horizontal,
+    --     -- awful.titlebar.widget.maximizedbutton(c),
+    --     -- awful.titlebar.widget.closebutton(c)
+    --     wbuttons.minimize_button(c, 6),
+    --     wbuttons.maximize_button(c, 6),
+    --     wbuttons.close_button(c, 6)
+    -- })
     -- button_container:set_widget(wibox.widget.textbox("a"))
     -- button_container.bg = beautiful.bg_focus
 end

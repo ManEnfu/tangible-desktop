@@ -28,10 +28,10 @@ theme.fg_urgent     = "#ffffff"
 theme.fg_minimize   = "#ffffff"
 
 theme.useless_gap   = dpi(2)
-theme.border_width  = dpi(0)
-theme.border_normal = "#242424"
-theme.border_focus  = "#139d2c"
-theme.border_marked = "#91231c"
+theme.border_width  = dpi(1)
+theme.border_normal = theme.bg_normal
+theme.border_focus  = theme.bg_normal
+theme.border_marked = theme.bg_normal
 
 theme.systray_icon_spacing = dpi(4)
 -- There are other variable sets
@@ -46,6 +46,9 @@ theme.systray_icon_spacing = dpi(4)
 -- hotkeys_[bg|fg|border_width|border_color|shape|opacity|modifiers_fg|label_bg|label_fg|group_margin|font|description_font]
 -- Example:
 --theme.taglist_bg_focus = "#ff0000"
+theme.titlebar_bg_normal = theme.bg_normal
+theme.titlebar_bg_focus = theme.bg_normal
+
 
 -- Generate taglist squares:
 local taglist_square_size = dpi(4)

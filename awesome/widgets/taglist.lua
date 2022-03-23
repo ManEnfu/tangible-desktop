@@ -11,6 +11,9 @@ local module_path = (...):match ("(.+/)[^/]+$") or ""
 
 local taglist = {}
 
+local icon_dir = gears.filesystem.get_configuration_dir() .. "/"
+    .. module_path .. "/icons/"
+
 -------------------------------------------------------------------------------
 -- TAGLIST MOUSE CLICK BEHAVIOR
 -------------------------------------------------------------------------------
@@ -36,12 +39,18 @@ local taglist_buttons = gears.table.join(
 -------------------------------------------------------------------------------
 local function taglist_callback(self, tag, index, ttable)
     local selected = tag.selected
-    local tag_bg = 
+    local tag_bg =
         self:get_children_by_id('tag_background')[1]
-    local task_bg = 
+    -- local tag_margin =
+    --     tag_bg:get_children()[1]
+    local task_bg =
         self:get_children_by_id('task_background')[1]
+    local empty_icon =
+        self:get_children_by_id('empty_icon')[1]
+    local occ_icon =
+        self:get_children_by_id('occ_icon')[1]
 
-    self:get_children_by_id('tasklist')[1].visible = 
+    self:get_children_by_id('tasklist')[1].visible =
         #tag:clients() > 0
     if selected then
         tag_bg.bg = beautiful.bg_focus
@@ -54,7 +63,7 @@ local function taglist_callback(self, tag, index, ttable)
     local touch_right = false
     local touch_middle = false
     if index ~= 1 then
-        if selected and 
+        if selected and
             (#(ttable[index-1]:clients()) > 0 or ttable[index-1].selected) then
             touch_left = true
         end
@@ -94,6 +103,11 @@ local function taglist_callback(self, tag, index, ttable)
         end
     end
 
+    -- tag_margin.margins = #tag:clients() > 0 and 2 or 6
+    -- tag_bg.forced_width = #tag:clients() > 0 and 8 or nil
+    empty_icon.visible = #tag:clients() == 0
+    occ_icon.visible = #tag:clients() > 0
+
 
 end
 
@@ -126,16 +140,25 @@ function worker(args)
                 widget = wibox.container.background,
                 bg = beautiful.bg_normal,
                 {
-                    widget = wibox.container.margin,
-                    left  = 6,
-                    right = 6,
-                    top = 6,
-                    bottom = 6,
+                    layout = wibox.layout.fixed.horizontal,
                     {
-                        layout = wibox.layout.fixed.horizontal,
+                        id = "empty_icon",
+                        widget = wibox.container.margin,
+                        margins = 6,
                         {
                             id     = 'icon_role',
                             widget = wibox.widget.imagebox,
+                        }
+                    },
+                    {
+                        id = "occ_icon",
+                        widget = wibox.container.margin,
+                        margins = 2,
+                        visible = false;
+                        {
+                            forced_width = 4,
+                            widget = wibox.widget.imagebox,
+                            image = icon_dir .. "circle2.png"
                         }
                     }
                 }

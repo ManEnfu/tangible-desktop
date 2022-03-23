@@ -6,6 +6,8 @@ local awful = require("awful")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
 local shapes = require("util.shapes")
+local wbuttons      = require("widgets.buttons")
+local dpi = beautiful.xresources.apply_dpi
 
 -------------------------------------------------------------------------------
 -- SIGNALS
@@ -14,7 +16,7 @@ local shapes = require("util.shapes")
 client.connect_signal("manage", function (c)
     -- Set the windows at the slave,
     -- i.e. put it at the end of others instead of setting it master.
-    c.shape = shapes.roundedrect
+    -- c.shape = shapes.roundedrect
     if not awesome.startup then awful.client.setslave(c) end
 
     if awesome.startup
@@ -39,12 +41,46 @@ client.connect_signal("request::titlebars", function(c)
         end)
     )
 
-    awful.titlebar(c, { size = 4, position = "left" }) : setup {
-        buttons = buttons,
-        layout = wibox.layout.align.vertical,
-        nil,
-        nil,
-        nil,
+    -- awful.titlebar(c, { size = 4, position = "left" }) : setup {
+    --     buttons = buttons,
+    --     layout = wibox.layout.align.vertical,
+    --     nil,
+    --     nil,
+    --     nil,
+    -- }
+    awful.titlebar(c, { size = dpi(27), position = "left" }) : setup {
+        widget = wibox.container.margin,
+        right = dpi(2),
+        left = dpi(1),
+        top = dpi(1),
+        bottom = dpi(1),
+        {
+            widget = wibox.container.background,
+            bg = beautiful.bg_normal_bright,
+            shape = shapes.roundedrect,
+            id = "true_bg",
+            {
+                layout = wibox.layout.align.vertical,
+                spacing = dpi(6),
+                {
+                    widget = wibox.container.margin,
+                    margins = dpi(4),
+                    buttons = buttons,
+                    awful.titlebar.widget.iconwidget(c)
+                },
+                {
+                    widget = wibox.container.margin,
+                    buttons = buttons,
+                },
+                {
+                    layout = wibox.layout.fixed.vertical,
+                    wbuttons.minimize_button(c, 6),
+                    wbuttons.floating_button(c, 6),
+                    wbuttons.maximize_button(c, 6),
+                    wbuttons.close_button(c, 6)
+                }
+            }
+        }
     }
 end)
 
@@ -56,6 +92,8 @@ end)
 client.connect_signal("focus", 
     function(c) 
         c.border_color = beautiful.border_focus 
+        awful.titlebar(c, { size = dpi(27), position = "left" })
+            :get_children_by_id("true_bg")[1].bg = beautiful.bg_normal_bright
     end
 )
 
@@ -63,6 +101,8 @@ client.connect_signal(
     "unfocus", 
     function(c) 
         c.border_color = beautiful.border_normal 
+        awful.titlebar(c, { size = dpi(27), position = "left" })
+            :get_children_by_id("true_bg")[1].bg = beautiful.bg_normal
     end
 )
 

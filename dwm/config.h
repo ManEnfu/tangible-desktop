@@ -67,6 +67,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_p,      spawn,          SHCMD("~/.config/dmenu/dmenu_power.sh") },
 	{ MODKEY|ControlMask,           XK_p,      spawn,          SHCMD("~/.config/dmenu/dmenu_pass.sh") },
 	{ MODKEY|ShiftMask,             XK_i,      spawn,          SHCMD("~/.config/dmenu/dmenu_ambient.sh") },
+    { MODKEY,                       XK_Left,   shiftview,      {.i = -1 } },
+    { MODKEY,                       XK_Right,  shiftview,      {.i = +1 } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },

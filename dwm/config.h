@@ -64,6 +64,9 @@ static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY|ShiftMask,             XK_p,      spawn,          SHCMD("~/.config/dmenu/dmenu_power.sh") },
+	{ MODKEY|ControlMask,           XK_p,      spawn,          SHCMD("~/.config/dmenu/dmenu_pass.sh") },
+	{ MODKEY|ShiftMask,             XK_i,      spawn,          SHCMD("~/.config/dmenu/dmenu_ambient.sh") },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -95,6 +98,12 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+	{ MODKEY|ShiftMask,             XK_r,      quit,           {1} },
+	{ 0,                            XK_Print,  spawn,          SHCMD("~/.config/scripts/screenshot.sh") },
+	{ ShiftMask,                    XK_Print,  spawn,          SHCMD("~/.config/scripts/screenshot-select.sh") },
+    { MODKEY,                 XK_bracketright, spawn,          SHCMD("~/.config/scripts/vol-raise.sh") },
+    { MODKEY,                  XK_bracketleft, spawn,          SHCMD("~/.config/scripts/vol-lower.sh") },
+    { MODKEY,                    XK_backslash, spawn,          SHCMD("~/.config/scripts/vol-toggle.sh") },
 };
 
 /* button definitions */

@@ -28,4 +28,25 @@ shapes.roundedtop = function(cr, w, h)
     )
 end
 
+shapes.roundedbottom = function(cr, w, h)
+    return gears.shape.partially_rounded_rect(
+        cr, w, h,
+        false, false, true, true, 4
+    )
+end
+
+shapes.roundedbottomleft = function(cr, w, h)
+    return gears.shape.partially_rounded_rect(
+        cr, w, h,
+        false, false, false, true, 4
+    )
+end
+
+shapes.roundedbottomright = function(cr, w, h)
+    return gears.shape.partially_rounded_rect(
+        cr, w, h,
+        false, false, true, false, 4
+    )
+end
+
 return shapes

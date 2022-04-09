@@ -40,6 +40,8 @@ local function worker(args)
     -- WIDGET DEFINITION
     ---------------------------------------------------------------------------
     wifi_widget = wibox.widget {
+        cached_rx = -1,
+        cached_tx = -1,
         layout = wibox.layout.fixed.horizontal,
         {
             widget = wibox.container.margin,
@@ -53,25 +55,62 @@ local function worker(args)
     ---------------------------------------------------------------------------
     -- UPDATE WIDGET PERIODICALLY
     ---------------------------------------------------------------------------
-    awful.widget.watch("iwconfig " .. interface, timeout, 
-    function(widget, stdout)
-        local ssid = string.match(stdout, 'ESSID:"?(%w+)"?')
-        local children = widget:get_children()
-        if ssid ~= nil then
-            if ssid == "off" then
+    -- awful.widget.watch("iwconfig " .. interface, timeout, 
+    -- function(widget, stdout)
+    --     local ssid = string.match(stdout, 'ESSID:"?(%w+)"?')
+    --     local children = widget:get_children()
+    --     if ssid ~= nil then
+    --         if ssid == "off" then
+    --             children[1]:set_widget(icons[2])
+    --             children[2]:set_text("N/A")
+    --         else
+    --             local strength = string.match(stdout, 'Link Quality=(%d+)')
+    --             children[1]:set_widget(icons[1])
+    --             children[2]:set_text( 
+    --                 math.ceil(tonumber(strength)*10/7) .. "%"
+    --             )
+    --         end
+    --     else
+    --         children[2]:set_text("Err")
+    --     end
+    -- end, wifi_widget)
+
+    gears.timer {
+        timeout = timeout,
+        call_now = true,
+        autostart = true,
+        callback = function()
+            local function readstat(path)
+                local file = io.open(path, "r")
+                local line = file:read()
+                file:close()
+                return line
+            end
+            local children = wifi_widget:get_children()
+            local state = readstat(
+                string.format("/sys/class/net/%s/operstate", interface))
+            if state == "up" then
+                local rx = readstat(
+                    string.format("/sys/class/net/%s/statistics/rx_bytes", interface))
+                local tx = readstat(
+                    string.format("/sys/class/net/%s/statistics/tx_bytes", interface))
+                if wifi_widget.cached_rx == -1 then
+                    wifi_widget.cached_rx = rx
+                    wifi_widget.cached_tx = tx
+                end
+                local rx_rate = (rx - wifi_widget.cached_rx) / timeout / 1024
+                local tx_rate = (tx - wifi_widget.cached_tx) / timeout / 1024
+                local st = string.format("%.1f|%.1fK/s", rx_rate, tx_rate)
+                children[1]:set_widget(icons[1])
+                children[2]:set_text(st)
+                wifi_widget.cached_rx = rx
+                wifi_widget.cached_tx = tx
+            else
                 children[1]:set_widget(icons[2])
                 children[2]:set_text("N/A")
-            else
-                local strength = string.match(stdout, 'Link Quality=(%d+)')
-                children[1]:set_widget(icons[1])
-                children[2]:set_text( 
-                    math.ceil(tonumber(strength)*10/7) .. "%"
-                )
             end
-        else
-            children[2]:set_text("Err")
         end
-    end, wifi_widget)
+    }
 
     ---------------------------------------------------------------------------
     -- CLICK FUNCTION

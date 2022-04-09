@@ -36,10 +36,8 @@ local function worker(args)
 
     panel:setup {
         widget = wibox.container.margin,
-        top = dpi(4),
         left = bargap,
         right = bargap,
-        bottom = dpi(4),
         {
             layout = wibox.layout.stack,
             {
@@ -48,14 +46,9 @@ local function worker(args)
                     layout = wibox.layout.fixed.horizontal,
                     spacing = bargap,
                     {
-                        layout = wibox.layout.fixed.horizontal,
-                        -- {
-                        --     widget = wibox.container.background,
-                        --     bg = beautiful.bg_focus,
-                        --     forced_width = dpi(4),
-                        --     shape = shapes.roundedleft,
-                        --     wibox.widget {}
-                        -- },
+                        layout = wibox.container.margin,
+                        top = dpi(4),
+                        bottom = dpi(4),
                         {
                             widget = wibox.container.background,
                             bg = beautiful.bg_normal_bright,
@@ -69,12 +62,12 @@ local function worker(args)
                         }
                     },
                     {
-                        widget = wibox.container.background,
-                        bg = "#00000000",
-                        shape = shapes.roundedrect,
+                        layout = wibox.container.margin,
+                        top = dpi(0),
+                        bottom = dpi(0),
                         {
                             layout = wibox.layout.fixed.horizontal,
-                            widgets.taglist { screen = args.screen },
+                            widgets.taglist { screen = args.screen, vmargins = dpi(4) },
                         },
                     },
                     -- {
@@ -92,9 +85,9 @@ local function worker(args)
                     left = bargap + dpi(6),
                     right = bargap,
                     {
-                        widget = wibox.container.background,
-                        -- bg = beautiful.bg_normal,
-                        shape = shapes.roundedrect,
+                        layout = wibox.container.margin,
+                        top = dpi(4),
+                        bottom = dpi(4),
                         {
                             layout = wibox.layout.align.horizontal,
                             nil,
@@ -117,15 +110,17 @@ local function worker(args)
                         shape = shapes.roundedrect,
                         {
                             widget = wibox.container.margin,
-                            top = dpi(4),
-                            bottom = dpi(4),
+                            top = dpi(8),
+                            bottom = dpi(8),
                             left = dpi(8),
                             right = dpi(8),
                             wibox.widget.systray(),
                         },
                     },
                     {
-                        layout = wibox.layout.fixed.horizontal,
+                        layout = wibox.container.margin,
+                        top = dpi(4),
+                        bottom = dpi(4),
                         {
                             widget = wibox.container.background,
                             bg = beautiful.bg_normal_bright,
@@ -136,13 +131,6 @@ local function worker(args)
                                 awful.widget.layoutbox(args.screen),
                             },
                         },
-                        -- {
-                        --     widget = wibox.container.background,
-                        --     bg = beautiful.bg_focus,
-                        --     forced_width = dpi(4),
-                        --     shape = shapes.roundedright,
-                        --     wibox.widget {}
-                        -- },
                     }
                 }
             },

@@ -22,7 +22,7 @@ local function worker(args)
         position = "top", 
         screen = args.screen,
         bg = beautiful.bg_normal, 
-        height = dpi(28)
+        height = dpi(32)
     })
 
     status_panel = wibox.widget {
@@ -36,10 +36,10 @@ local function worker(args)
 
     panel:setup {
         widget = wibox.container.margin,
-        top = dpi(2),
+        top = dpi(4),
         left = bargap,
         right = bargap,
-        bottom = dpi(2),
+        bottom = dpi(4),
         {
             layout = wibox.layout.stack,
             {

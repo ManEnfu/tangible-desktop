@@ -164,7 +164,7 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 mycpu = widgets.cpu { timeout = 5 }
 mymemory = widgets.memory { timeout = 5 }
 mysensors = widgets.sensors { timeout = 7 }
-mywifi = widgets.wifi { timeout = 4, interface = "wlan0" }
+mynet = widgets.net { timeout = 4, interface = "wlan0" }
 myvolume = widgets.volume { 
     timeout = 3, 
     play = config_dir .. "/sound_click_tick.wav"
@@ -230,7 +230,7 @@ awful.screen.connect_for_each_screen(function(s)
             mymemory,
             mydisk,
             mysensors,
-            mywifi,
+            mynet,
             myvolume,
             mybattery,
         }

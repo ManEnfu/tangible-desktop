@@ -61,7 +61,7 @@
 
 /* enums */
 enum { CurNormal, CurResize, CurMove, CurLast }; /* cursor */
-enum { SchemeNorm, SchemeSel, SchemeAccent }; /* color schemes */
+enum { SchemeNorm, SchemeSel, SchemeAccent, SchemeAccent2 }; /* color schemes */
 enum { NetSupported, NetWMName, NetWMState, NetWMCheck,
        NetWMFullscreen, NetActiveWindow, NetWMWindowType,
        NetWMWindowTypeDialog, NetClientList, NetLast }; /* EWMH atoms */
@@ -782,8 +782,10 @@ drawbar(Monitor *m)
 	x = margin;
 	for (i = 0; i < LENGTH(tags); i++) {
 		w = TEXTW(tags[i]);
-		drw_setscheme(drw, scheme[m->tagset[m->seltags] & 1 << i ? SchemeAccent : SchemeNorm]);
+		drw_setscheme(drw, scheme[m->tagset[m->seltags] & 1 << i ? SchemeAccent2 : SchemeNorm]);
 		drw_text(drw, x, margin, w, bh - margin*2, lrpad / 2, tags[i], urg & 1 << i);
+		drw_setscheme(drw, scheme[m->tagset[m->seltags] & 1 << i ? SchemeAccent : SchemeNorm]);
+        drw_rect(drw, x, 0, w, margin, 1, 1);
 		if (occ & 1 << i)
 			drw_rect(drw, x + boxs, boxs + margin, boxw, boxw,
 				m == selmon && selmon->sel && selmon->sel->tags & 1 << i,

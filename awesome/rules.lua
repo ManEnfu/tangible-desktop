@@ -6,6 +6,42 @@
 -------------------------------------------------------------------------------
 local awful = require("awful")
 local beautiful = require("beautiful")
+local naughty       = require("naughty")
+
+
+awful.rules.add_rule_source(
+    'wm-decor-hints', 
+    function(c, properties, callbacks)
+        -- st = ''
+        -- for k,v in pairs(properties) do
+        --     st = st .. k .. ' ' .. tostring(v) .. '\n'
+        -- end
+        -- naughty.notify{
+        --     title = c.name,
+        --     text = '>' .. st
+        -- }
+        if c.motif_wm_hints then
+            if c.motif_wm_hints.decorations then
+                local all_dec_hints_false = true
+                for _,v in pairs(c.motif_wm_hints.decorations) do
+                    if v then
+                            all_dec_hints_false = false
+                        break
+                    end
+                end
+                if all_dec_hints_false then
+                    properties.request_no_titlebar = true
+                    properties.titlebars_enabled = false
+                end
+                -- naughty.notify{
+                --     title = c.name,
+                --     text = '>>' .. tostring(properties.titlebars_enabled)
+                -- }
+            end
+        end
+    end,
+    {}, {'awful.rules'}
+)
 
 -------------------------------------------------------------------------------
 -- RULES
@@ -67,8 +103,8 @@ awful.rules.rules = {
     ---------------------------------------------------------------------------
     -- TITLE BAR
     ---------------------------------------------------------------------------
-    { rule_any = {type = { "normal", "dialog" }
-      }, properties = { titlebars_enabled = true }
+    { rule_any = {type = { "normal", "dialog" }},
+      properties = { titlebars_enabled = true }
     },
 
     -- Set Firefox to always map on the tag named "2" on screen 1.

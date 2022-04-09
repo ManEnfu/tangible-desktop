@@ -8,6 +8,7 @@ local beautiful = require("beautiful")
 local shapes = require("util.shapes")
 local wbuttons      = require("widgets.buttons")
 local dpi = beautiful.xresources.apply_dpi
+local naughty       = require("naughty")
 
 -------------------------------------------------------------------------------
 -- SIGNALS
@@ -48,12 +49,12 @@ client.connect_signal("request::titlebars", function(c)
     --     nil,
     --     nil,
     -- }
-    awful.titlebar(c, { size = dpi(27), position = "left" }) : setup {
+    awful.titlebar(c, { size = dpi(31), position = "left" }) : setup {
         widget = wibox.container.margin,
-        right = dpi(2),
-        left = dpi(1),
-        top = dpi(1),
-        bottom = dpi(1),
+        right = dpi(4),
+        left = dpi(3),
+        top = dpi(3),
+        bottom = dpi(3),
         {
             widget = wibox.container.background,
             bg = beautiful.bg_normal_bright,
@@ -89,20 +90,24 @@ end)
 --     c:emit_signal("request::activate", "mouse_enter", {raise = false})
 -- end)
 
-client.connect_signal("focus", 
-    function(c) 
-        c.border_color = beautiful.border_focus 
-        awful.titlebar(c, { size = dpi(27), position = "left" })
-            :get_children_by_id("true_bg")[1].bg = beautiful.bg_normal_bright
+client.connect_signal("focus",
+    function(c)
+        c.border_color = beautiful.border_focus
+        if not c.request_no_titlebar then
+            awful.titlebar(c, { size = dpi(31), position = "left" })
+                :get_children_by_id("true_bg")[1].bg = beautiful.bg_normal_bright
+        end
     end
 )
 
 client.connect_signal(
-    "unfocus", 
-    function(c) 
-        c.border_color = beautiful.border_normal 
-        awful.titlebar(c, { size = dpi(27), position = "left" })
-            :get_children_by_id("true_bg")[1].bg = beautiful.bg_normal
+    "unfocus",
+    function(c)
+        c.border_color = beautiful.border_normal
+        if not c.request_no_titlebar then
+            awful.titlebar(c, { size = dpi(31), position = "left" })
+                :get_children_by_id("true_bg")[1].bg = beautiful.bg_normal
+        end
     end
 )
 

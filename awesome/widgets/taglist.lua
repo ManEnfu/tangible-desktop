@@ -11,6 +11,9 @@ local module_path = (...):match ("(.+/)[^/]+$") or ""
 
 local taglist = {}
 
+local icon_dir = gears.filesystem.get_configuration_dir() .. "/"
+    .. module_path .. "/icons/"
+
 -------------------------------------------------------------------------------
 -- TAGLIST MOUSE CLICK BEHAVIOR
 -------------------------------------------------------------------------------
@@ -42,10 +45,13 @@ local function taglist_callback(self, tag, index, ttable)
         self:get_children_by_id('sel_background')[1]
     local empty_icon =
         self:get_children_by_id('empty_icon')[1]
+    local occ_icon =
+        self:get_children_by_id('occ_icon')[1]
 
     self:get_children_by_id('tasklist')[1].visible =
         #tag:clients() > 0
     empty_icon.visible = #tag:clients() == 0
+    occ_icon.visible = #tag:clients() > 0
 
     if selected then
         sel_bg.bg = beautiful.bg_focus
@@ -145,10 +151,22 @@ local function worker(args)
                             }
                         },
                         {
+                            id = "occ_icon",
+                            widget = wibox.container.margin,
+                            top = 2,
+                            left = 2,
+                            visible = false,
+                            {
+                                forced_width = 4,
+                                widget = wibox.widget.imagebox,
+                                image = icon_dir .. "circle2.png"
+                            }
+                        },
+                        {
                             id = 'tasklist',
                             widget = wibox.container.margin,
                             right = 2,
-                            left = 2,
+                            left = 0,
                             -- this will be replaced with tasklist widget
                             wibox.widget {}
                         }

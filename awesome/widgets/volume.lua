@@ -80,6 +80,7 @@ local function worker(args)
         update_widget(widget, stdout)
     end, volume_widget)
 
+
     ---------------------------------------------------------------------------
     -- CLICK FUNCTION
     ---------------------------------------------------------------------------
@@ -106,6 +107,10 @@ local function worker(args)
             end
         )
     end
+    
+    awesome.connect_signal("signal::volume", function()
+        volume_widget:force_update()
+    end)
 
     return volume_widget
 end

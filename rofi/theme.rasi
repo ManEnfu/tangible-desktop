@@ -9,7 +9,7 @@
     separatorcolor:              var(foreground);
     urgent-foreground:           var(red);
     alternate-urgent-background: var(lightbg);
-    lightbg:                     #323232;
+    lightbg:                     #303030;
     lightbg2:                     #cd823d;
     background-color:            rgba ( 0, 0, 0, 0 % );
     border-color:                var(foreground);
@@ -22,7 +22,7 @@
     urgent-background:           var(background);
     selected-normal-foreground:  var(lightfg);
     active-foreground:           var(blue);
-    background:                  #161616;
+    background:                  #101010;
     window-background:           rgba ( 0, 0, 0, 50 % );
     selected-active-background:  var(blue);
     active-background:           var(background);
@@ -152,7 +152,7 @@ textbox-num-sep {
 inputbar {
     border-radius:    4px;
     padding:    12px ;
-    background-color: #242424; 
+    background-color: #202020; 
     spacing:    0px ;
     text-color: var(normal-foreground);
     children:   [ prompt,textbox-prompt-colon,entry,num-filtered-rows,textbox-num-sep,num-rows,case-indicator ];

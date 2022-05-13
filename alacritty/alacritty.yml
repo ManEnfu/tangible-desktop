@@ -1,5 +1,3 @@
-background_opacity: 1.0
-
 font:
   size: 8
   normal:
@@ -14,6 +12,7 @@ window:
   padding:
     x: 4
     y: 4 
+  opacity: 1.0
 
 key_bindings:
   - { key: Return, mods: Control|Shift, action: SpawnNewInstance }
@@ -21,7 +20,7 @@ key_bindings:
 
 colors:
   primary:
-    background: '#161616'
+    background: '#101010'
     foreground: '#dfdfdf'
 
   normal:

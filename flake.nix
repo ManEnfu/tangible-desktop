@@ -1,5 +1,5 @@
 {
   outputs = { self, nixpkgs }: {
-    nixosModules = import ./modules;
+    nixosModule = import ./modules;
   };
 }

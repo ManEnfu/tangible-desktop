@@ -14,9 +14,9 @@ local theme = {}
 
 theme.font          = "Ubuntu 8"
 
-theme.bg_normal     = "#161616"
-theme.bg_normal_bright     = "#242424"
-theme.bg_focus      = "#0d8cb2" --"#416879" --"#cd823d"
+theme.bg_normal     = "#101010"
+theme.bg_normal_bright     = "#202020"
+theme.bg_focus      = "#0da9c8" --"#416879" --"#cd823d"
 theme.bg_focus_bright      = "#04323f" --"#263238" --"#e29654"
 theme.bg_urgent     = "#ff0000"
 theme.bg_minimize   = "#444444"
@@ -77,8 +77,8 @@ theme.notification_icon_size = 64
 theme.menu_submenu_icon = icon_dir.."submenu.png"
 theme.menu_height = dpi(20)
 theme.menu_width  = dpi(160)
-theme.menu_bg_normal = "#161616"
-theme.menu_bg_focus = "#323232"
+theme.menu_bg_normal = "#101010"
+theme.menu_bg_focus = "#303030"
 theme.menu_border_width = dpi(1)
 theme.menu_border_color = "#0a0a0a"
 

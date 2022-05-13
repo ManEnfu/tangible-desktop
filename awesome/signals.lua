@@ -95,7 +95,7 @@ client.connect_signal("focus",
         c.border_color = beautiful.border_focus
         if not c.request_no_titlebar then
             awful.titlebar(c, { size = dpi(31), position = "left" })
-                :get_children_by_id("true_bg")[1].bg = beautiful.bg_normal_bright
+                :get_children_by_id("true_bg")[1].bg = beautiful.bg_focus_bright
         end
     end
 )

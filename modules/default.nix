@@ -25,7 +25,7 @@ in {
     ];
 
     gtk = {
-      enable = true;
+      # enable = true;
       iconTheme = {
         package = pkgs.tela-icon-theme;
         name = "Tela-dark";
@@ -37,7 +37,7 @@ in {
     };
 
     qt = {
-      enable = true;
+      # enable = true;
       platformTheme = "gtk";
       style = {
         package = pkgs.libsForQt5.qtstyleplugins;

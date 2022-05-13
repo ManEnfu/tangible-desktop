@@ -3,7 +3,7 @@ with lib;
 with builtins;
 let
   cfg = config.desktopConfig.tangible;
-  configDir = ./.
+  configDir = ./.;
 in {
   options.desktopConfig.tangible = {
     enable = mkOption {
@@ -42,8 +42,8 @@ in {
       style = {
         package = pkgs.libsForQt5.qtstyleplugins;
         name = "gtk2";
-      }
-    }
+      };
+    };
 
     xdg.configFile = {
       "awesome" = {

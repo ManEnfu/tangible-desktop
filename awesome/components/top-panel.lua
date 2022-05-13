@@ -92,12 +92,7 @@ local function worker(args)
                             layout = wibox.layout.align.horizontal,
                             nil,
                             widgets.apptitle { screen = args.screen },
-                            {
-                                widget = wibox.container.margin,
-                                left = dpi(8),
-                                right = dpi(8),
-                                status_panel
-                            }
+                            nil,
                         }
                     },
                 },
@@ -105,17 +100,27 @@ local function worker(args)
                     layout = wibox.layout.fixed.horizontal,
                     spacing = bargap,
                     {
-                        widget = wibox.container.background,
-                        -- bg = beautiful.bg_normal,
-                        shape = shapes.roundedrect,
-                        {
-                            widget = wibox.container.margin,
-                            top = dpi(8),
-                            bottom = dpi(8),
-                            left = dpi(8),
-                            right = dpi(8),
-                            wibox.widget.systray(),
-                        },
+                        widget = wibox.container.margin,
+                        top = dpi(4),
+                        bottom = dpi(4),
+                        left = dpi(4),
+                        right = dpi(4),
+                        status_panel
+                    },
+                    {
+                        widget = wibox.container.margin,
+                        top = dpi(8),
+                        bottom = dpi(8),
+                        left = dpi(4),
+                        right = dpi(4),
+                        wibox.widget.systray(),
+                    },
+                    {
+                        widget = wibox.container.margin,
+                        left = dpi(4),
+                        right = dpi(4),
+                        -- myschedule,
+                        wibox.widget.textclock("<b>%d %b %y %H:%M</b>"),
                     },
                     {
                         layout = wibox.container.margin,
@@ -134,23 +139,23 @@ local function worker(args)
                     }
                 }
             },
-            {
-                widget = wibox.container.place,
-                halign = "center",
-                content_fill_vertical = true,
-                    {
-                        widget = wibox.container.background,
-                        -- bg = beautiful.bg_normal_bright,
-                        shape = shapes.roundedrect,
-                        {
-                            widget = wibox.container.margin,
-                            left = dpi(8),
-                            right = dpi(8),
-                            -- myschedule,
-                            wibox.widget.textclock("<b>%a, %d %b %y | %H:%M</b>"),
-                        }
-                    },
-            },
+            -- {
+            --     widget = wibox.container.place,
+            --     halign = "center",
+            --     content_fill_vertical = true,
+            --         {
+            --             widget = wibox.container.background,
+            --             -- bg = beautiful.bg_normal_bright,
+            --             shape = shapes.roundedrect,
+            --             {
+            --                 widget = wibox.container.margin,
+            --                 left = dpi(8),
+            --                 right = dpi(8),
+            --                 -- myschedule,
+            --                 wibox.widget.textclock("<b>%a, %d %b %y | %H:%M</b>"),
+            --             }
+            --         },
+            -- },
         }
     }
      

@@ -19,10 +19,10 @@ local bottom_panel = {}
 -------------------------------------------------------------------------------
 local function worker(args)
     local panel = awful.wibar({
-        position = "bottom", 
+        position = "left", 
         screen = args.screen,
         bg = beautiful.bg_normal, 
-        height = dpi(28)
+        width = dpi(32)
     })
 
     -- status_panel = wibox.widget {

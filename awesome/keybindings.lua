@@ -363,6 +363,15 @@ globalkeys = gears.table.join(
         end,
         {description = "show applications", group = "launcher"}
     ),
+    
+    awful.key({ modkey }, "c", 
+        function() 
+            awful.spawn.with_shell(
+                "gcolor3"
+            ) 
+        end,
+        {description = "show applications", group = "launcher"}
+    ),
 
     -- Menubar
     awful.key({ modkey }, "p", 

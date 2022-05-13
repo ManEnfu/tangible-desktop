@@ -78,6 +78,7 @@ awful.rules.rules = {
           "Arandr",
           "Blueman-manager",
           "Gpick",
+          "Gcolor3",
           "Kruler",
           "MessageWin",  -- kalarm.
           "Sxiv",
@@ -124,7 +125,7 @@ awful.rules.rules = {
     },
     { 
         rule_any = { class = { "mpv", "vlc" } }, 
-        properties = { tag = "media", focus = true },
+        properties = { tag = "media", focus = true, fullscreen = true },
         callback = function(c) c:jump_to() end
     }
 }

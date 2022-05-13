@@ -3,7 +3,7 @@ with lib;
 with builtins;
 let
   cfg = config.desktopConfig.tangible;
-  configDir = ./.;
+  configDir = ../.;
 in {
   options.desktopConfig.tangible = {
     enable = mkOption {

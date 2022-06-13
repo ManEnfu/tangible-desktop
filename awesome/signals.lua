@@ -49,18 +49,18 @@ client.connect_signal("request::titlebars", function(c)
     --     nil,
     --     nil,
     -- }
-    awful.titlebar(c, { size = dpi(31), position = "left" }) : setup {
+    awful.titlebar(c, { size = dpi(23), position = "left" }) : setup {
         widget = wibox.container.margin,
-        right = dpi(4),
-        left = dpi(3),
-        top = dpi(3),
-        bottom = dpi(3),
-        {
-            widget = wibox.container.background,
-            bg = beautiful.bg_normal_bright,
-            shape = shapes.roundedrect,
-            id = "true_bg",
-            {
+        -- right = dpi(4),
+        -- left = dpi(3),
+        -- top = dpi(3),
+        -- bottom = dpi(3),
+        -- {
+        --     widget = wibox.container.background,
+        --     bg = beautiful.bg_normal,
+        --     shape = shapes.roundedrect,
+        --     id = "true_bg",
+        --     {
                 layout = wibox.layout.align.vertical,
                 spacing = dpi(6),
                 {
@@ -80,8 +80,8 @@ client.connect_signal("request::titlebars", function(c)
                     wbuttons.maximize_button(c, 6),
                     wbuttons.close_button(c, 6)
                 }
-            }
-        }
+            -- }
+        -- }
     }
 end)
 
@@ -90,26 +90,26 @@ end)
 --     c:emit_signal("request::activate", "mouse_enter", {raise = false})
 -- end)
 
-client.connect_signal("focus",
-    function(c)
-        c.border_color = beautiful.border_focus
-        if not c.request_no_titlebar then
-            awful.titlebar(c, { size = dpi(31), position = "left" })
-                :get_children_by_id("true_bg")[1].bg = beautiful.bg_focus_bright
-        end
-    end
-)
+-- client.connect_signal("focus",
+--     function(c)
+--         c.border_color = beautiful.border_focus
+--         if not c.request_no_titlebar then
+--             awful.titlebar(c, { size = dpi(23), position = "left" })
+--                 :get_children_by_id("true_bg")[1].bg = beautiful.bg_focus_bright
+--         end
+--     end
+-- )
 
-client.connect_signal(
-    "unfocus",
-    function(c)
-        c.border_color = beautiful.border_normal
-        if not c.request_no_titlebar then
-            awful.titlebar(c, { size = dpi(31), position = "left" })
-                :get_children_by_id("true_bg")[1].bg = beautiful.bg_normal
-        end
-    end
-)
+-- client.connect_signal(
+--     "unfocus",
+--     function(c)
+--         c.border_color = beautiful.border_normal
+--         if not c.request_no_titlebar then
+--             awful.titlebar(c, { size = dpi(23), position = "left" })
+--                 :get_children_by_id("true_bg")[1].bg = beautiful.bg_normal
+--         end
+--     end
+-- )
 
 screen.connect_signal("arrange", function(s)
     local one_tiled_client = #s.tiled_clients == 1

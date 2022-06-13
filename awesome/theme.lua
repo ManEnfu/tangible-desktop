@@ -47,7 +47,7 @@ theme.systray_icon_spacing = dpi(4)
 -- Example:
 --theme.taglist_bg_focus = "#ff0000"
 theme.titlebar_bg_normal = theme.bg_normal
-theme.titlebar_bg_focus = theme.bg_normal
+theme.titlebar_bg_focus = theme.bg_focus_bright
 
 
 -- Generate taglist squares:

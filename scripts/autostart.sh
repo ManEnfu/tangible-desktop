@@ -12,6 +12,7 @@ run ~/.fehbg
 run picom --experimental-backend
 run nm-applet
 run lxpolkit
+run libinput-gestures
 # run lxqt-policykit-agent
 
 [[ $XDG_SESSION_DESKTOP == "dwm" ]] && run dwmblocks

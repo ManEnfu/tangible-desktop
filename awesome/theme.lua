@@ -48,6 +48,9 @@ theme.systray_icon_spacing = dpi(4)
 --theme.taglist_bg_focus = "#ff0000"
 theme.titlebar_bg_normal = theme.bg_normal
 theme.titlebar_bg_focus = theme.bg_focus_bright
+theme.tooltip_fg_color = theme.fg_normal
+theme.tooltip_bg_color = theme.bg_normal
+theme.tooltip_border_color = theme.bg_normal
 
 
 -- Generate taglist squares:
@@ -131,6 +134,8 @@ theme.layout_cornernw = icon_dir.."layouts/cornernww.png"
 theme.layout_cornerne = icon_dir.."layouts/cornernew.png"
 theme.layout_cornersw = icon_dir.."layouts/cornersww.png"
 theme.layout_cornerse = icon_dir.."layouts/cornersew.png"
+
+theme.layout_tilemax = icon_dir.."layouts/tilemaxw.png"
 
 -- Generate Awesome icon:
 theme.awesome_icon = theme_assets.awesome_icon(

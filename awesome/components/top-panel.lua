@@ -120,7 +120,7 @@ local function worker(args)
                         left = dpi(4),
                         right = dpi(4),
                         -- myschedule,
-                        wibox.widget.textclock("<b>%d %b %y %H:%M</b>"),
+                        wibox.widget.textclock("<b>%d %b %y | %H:%M</b>"),
                     },
                     {
                         layout = wibox.container.margin,

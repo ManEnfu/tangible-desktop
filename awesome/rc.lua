@@ -34,6 +34,7 @@ local menubar = require("menubar")
 
 -- Widget collection
 local widgets = require("widgets")
+local custom_layout = require("layout")
 
 local shapes = require("util.shapes")
 
@@ -92,6 +93,7 @@ awful.layout.layouts = {
     awful.layout.suit.tile.bottom,
     awful.layout.suit.floating,
     awful.layout.suit.max,
+    custom_layout.tilemax,
     --awful.layout.suit.fair,
     -- awful.layout.suit.tile.left,
     -- awful.layout.suit.tile.top,

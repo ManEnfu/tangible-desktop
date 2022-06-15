@@ -212,19 +212,22 @@ globalkeys = gears.table.join(
     
     awful.key({ modkey,           }, "Tab",
         function ()
-            awful.client.focus.byidx(1)
-        end,
-        {description = "cycle clients", group = "client"}
-    ),
-    
-    awful.key({ modkey, "Shift"   }, "Tab",
-        function ()
             awful.client.focus.history.previous()
             if client.focus then
                 client.focus:raise()
             end
         end,
-        {description = "go back", group = "client"}
+        {description = "previously focused client clients", group = "client"}
+    ),
+    
+    awful.key({ modkey, "Shift"   }, "Tab",
+        function ()
+            client.focus = awful.client.getmaster()
+            if client.focus then
+                client.focus:raise()
+            end
+        end,
+        {description = "focus master client", group = "client"}
     ),
     
     awful.key({ modkey, "Control" }, "n",

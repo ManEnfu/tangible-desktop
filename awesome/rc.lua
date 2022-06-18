@@ -166,7 +166,7 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 mycpu = widgets.cpu { timeout = 5 }
 mymemory = widgets.memory { timeout = 5 }
 mysensors = widgets.sensors { timeout = 7 }
-mynet = widgets.net { timeout = 4, interface = "wlan0" }
+mynet = widgets.net { timeout = 4, interface = "wlp5s0" }
 myvolume = widgets.volume { 
     timeout = 3, 
     play = config_dir .. "/sound_click_tick.wav"

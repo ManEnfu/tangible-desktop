@@ -22,6 +22,8 @@ in {
       feh
       redshift
       networkmanagerapplet
+
+      (nerdfonts.override { fonts = [ "Ubuntu" "JetBrainsMono" ] })
     ];
 
     gtk = {

@@ -42,6 +42,10 @@ in {
         name = "Ubuntu";
         size = 8;
       };
+      cursorTheme = {
+      	package = pkgs.quintom-cursor-theme;
+	name = "Quintom_Ink";
+      };
     };
 
     qt = {

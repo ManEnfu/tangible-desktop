@@ -22,6 +22,7 @@ in {
       feh
       redshift
       networkmanagerapplet
+      lxde.lxsession
 
       (nerdfonts.override { fonts = [ "Ubuntu" "JetBrainsMono" ]; })
     ];

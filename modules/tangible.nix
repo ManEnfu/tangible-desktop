@@ -23,7 +23,7 @@ in {
       redshift
       networkmanagerapplet
 
-      (nerdfonts.override { fonts = [ "Ubuntu" "JetBrainsMono" ] };)
+      (nerdfonts.override { fonts = [ "Ubuntu" "JetBrainsMono" ]; })
     ];
 
     gtk = {

@@ -27,6 +27,12 @@ in {
       (nerdfonts.override { fonts = [ "Ubuntu" "JetBrainsMono" ]; })
     ];
 
+    home.pointerCursor = {
+        package = pkgs.quintom-cursor-theme;
+        name = "Quintom_Ink";
+        gtk.enable = true; 
+    };
+
     gtk = {
       enable = true;
       iconTheme = {
@@ -41,10 +47,6 @@ in {
         package = pkgs.ubuntu_font_family;
         name = "Ubuntu";
         size = 8;
-      };
-      cursorTheme = {
-      	package = pkgs.quintom-cursor-theme;
-	name = "Quintom_Ink";
       };
     };
 

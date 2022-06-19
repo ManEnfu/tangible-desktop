@@ -23,6 +23,8 @@ in {
       redshift
       networkmanagerapplet
       lxde.lxsession
+      scrot
+      playerctl
 
       (nerdfonts.override { fonts = [ "Ubuntu" "JetBrainsMono" ]; })
     ];

@@ -1,6 +1,6 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
-up_time=$(uptime -p)
+up_time=$(uptime)
 username=$(id -un)
 
 theme="$HOME/.config/rofi/powermenu-theme.rasi"
@@ -24,15 +24,15 @@ choice=$(\
     rofi -dmenu -p "$up_time" -i -theme "$theme")
 
 if [[ $choice == $option_sleep ]]; then
-    i3lock -c 242424 && sleep 0.5 && loginctl suspend
+    i3lock -c 242424 && sleep 0.5 && suspend
 elif [[ $choice == $option_reboot ]]; then
-    loginctl reboot
+    reboot
 elif [[ $choice == $option_poweroff ]]; then
-    loginctl poweroff
+    poweroff
 elif [[ $choice == $option_lock ]]; then
     i3lock -c 242424
 elif [[ $choice == $option_logout ]]; then
-    if [[ $XDG_SESSION_DESKTOP == "awesome" ]]; then 
+    if [[ $XDG_SESSION_DESKTOP == "none+awesome" ]]; then 
         awesome-client "awesome.quit()"
     else 
         loginctl kill-user $username

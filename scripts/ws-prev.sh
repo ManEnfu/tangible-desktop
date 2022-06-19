@@ -1,3 +1,3 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
-[[ $XDG_SESSION_DESKTOP == "awesome" ]] && awesome-client "require('awful').tag.viewprev()"
+[[ $XDG_SESSION_DESKTOP == "none+awesome" ]] && awesome-client "require('awful').tag.viewprev()"

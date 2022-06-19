@@ -1,6 +1,6 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
-ambient_files=$(echo 'Stop Playing' && /bin/ls -1 ~/Musics/ambient)
+ambient_files=$(echo 'Stop Playing' && ls -1 ~/Musics/ambient)
 
 declare -a ambient_list=$ambient_files
 

@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 theme="$HOME/.config/rofi/grid-theme.rasi"
 

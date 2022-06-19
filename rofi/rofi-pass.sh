@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 shopt -s nullglob globstar
 

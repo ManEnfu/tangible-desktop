@@ -75,7 +75,7 @@ local function worker(args)
         end
     end
 
-    awful.widget.watch("~/.config/scripts/vol-get.sh", timeout, 
+    awful.widget.watch("sh -c ~/.config/scripts/vol-get.sh", timeout, 
     function(widget, stdout)
         update_widget(widget, stdout)
     end, volume_widget)
@@ -101,7 +101,7 @@ local function worker(args)
 
     volume_widget.force_update = function(self)
         awful.spawn.easy_async_with_shell(
-            "amixer sget Master", 
+            "~/.config/scripts/vol-get.sh", 
             function(stdout, stderr, exr, exc)
                 update_widget(volume_widget, stdout)
             end

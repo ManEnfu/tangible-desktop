@@ -75,7 +75,7 @@ local function worker(args)
         end
     end
 
-    awful.widget.watch("amixer -D pulse sget Master ", timeout, 
+    awful.widget.watch("amixer sget Master ", timeout, 
     function(widget, stdout)
         update_widget(widget, stdout)
     end, volume_widget)
@@ -86,8 +86,8 @@ local function worker(args)
     ---------------------------------------------------------------------------
     volume_widget:buttons(gears.table.join(
         awful.button({}, 1, function()
-            local f = io.popen("amixer -D pulse sget Master ")
-            local str = "amixer -D pulse sget Master"
+            local f = io.popen("amixer sget Master ")
+            local str = "amixer sget Master"
             for line in f:lines() do
                 str = str .. "\n" .. line
             end
@@ -101,7 +101,7 @@ local function worker(args)
 
     volume_widget.force_update = function(self)
         awful.spawn.easy_async_with_shell(
-            "amixer -D pulse sget Master", 
+            "amixer sget Master", 
             function(stdout, stderr, exr, exc)
                 update_widget(volume_widget, stdout)
             end

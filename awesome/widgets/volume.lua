@@ -59,10 +59,10 @@ local function worker(args)
     ---------------------------------------------------------------------------
     local function update_widget(widget, stdout)
         local volume_level = string.match(stdout, '(%-?%d+)%%')
-        local unmuted = string.match(stdout, '%[(o[nf]+)%]')
+        local mute = string.match(stdout, 'Mute: (yes|no)')
         local children = widget:get_children()
         if volume_level ~= nil then 
-            if unmuted == "off" then
+            if mute == "yes" then
                 children[1]:set_widget(icons[3])
             elseif tonumber(volume_level) > 0 then
                 children[1]:set_widget(icons[1])
@@ -75,7 +75,8 @@ local function worker(args)
         end
     end
 
-    awful.widget.watch("amixer sget Master ", timeout, 
+    awful.widget.watch("pactl get-sink-volume $(pactl get-default-sink);" .. 
+        "pactl get-sink-mute $(pactl get-default-sink)", timeout, 
     function(widget, stdout)
         update_widget(widget, stdout)
     end, volume_widget)

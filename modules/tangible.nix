@@ -30,6 +30,7 @@ in {
     home.pointerCursor = {
         package = pkgs.quintom-cursor-theme;
         name = "Quintom_Ink";
+        size = 24;
         gtk.enable = true; 
     };
 

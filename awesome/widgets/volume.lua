@@ -59,10 +59,10 @@ local function worker(args)
     ---------------------------------------------------------------------------
     local function update_widget(widget, stdout)
         local volume_level = string.match(stdout, '(%-?%d+)%%')
-        local mute = string.match(stdout, 'Mute: (yes|no)')
+        local mute = string.match(stdout, 'Mute: ([yn])')
         local children = widget:get_children()
         if volume_level ~= nil then 
-            if mute == "yes" then
+            if mute == "y" then
                 children[1]:set_widget(icons[3])
             elseif tonumber(volume_level) > 0 then
                 children[1]:set_widget(icons[1])

@@ -52,10 +52,10 @@ local function worker(args)
     ---------------------------------------------------------------------------
     -- UPDATE WIDGET PERIODICALLY
     ---------------------------------------------------------------------------
-    awful.widget.watch("df -h", timeout, 
+    awful.widget.watch("df -h /", timeout, 
     function(widget, stdout)
         local children = widget:get_children()
-        local sda, size, used = string.match(stdout, '(sda%d+) +(%d+%w) +(%d+%w)')
+        local sda, size, used = string.match(stdout, '(%w+) +(%d+.?%d*[KMG]) +(%d+.?%d*[KMG])')
         if args.long then
             children[2]:set_text(used .. '/' .. size)
         else

@@ -75,8 +75,7 @@ local function worker(args)
         end
     end
 
-    awful.widget.watch("pactl get-sink-volume $(pactl get-default-sink);" .. 
-        "pactl get-sink-mute $(pactl get-default-sink)", timeout, 
+    awful.widget.watch("pactl get-sink-volume $(pactl get-default-sink);", timeout, 
     function(widget, stdout)
         update_widget(widget, stdout)
     end, volume_widget)

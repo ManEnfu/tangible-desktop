@@ -75,7 +75,7 @@ local function worker(args)
         end
     end
 
-    awful.widget.watch("pactl get-sink-volume $(pactl get-default-sink);", timeout, 
+    awful.widget.watch("~/.config/scripts/vol-get.sh", timeout, 
     function(widget, stdout)
         update_widget(widget, stdout)
     end, volume_widget)

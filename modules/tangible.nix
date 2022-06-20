@@ -88,6 +88,9 @@ in {
         source = "${configDir}/scripts";
         recursive = true;
       };
+      "libinput-gestures.conf" = {
+        source = "${configDir}/libinput-gestures.conf"
+      };
     };
   };
 }

@@ -89,7 +89,7 @@ in {
         recursive = true;
       };
       "libinput-gestures.conf" = {
-        source = "${configDir}/libinput-gestures.conf"
+        source = "${configDir}/libinput-gestures.conf";
       };
     };
   };

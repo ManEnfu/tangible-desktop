@@ -27,6 +27,7 @@ in {
       playerctl
       libinput-gestures
       libnotify
+      wmctrl
 
       (nerdfonts.override { fonts = [ "Ubuntu" "JetBrainsMono" ]; })
     ];

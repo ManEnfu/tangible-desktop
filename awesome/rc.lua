@@ -151,7 +151,7 @@ else
 end
 
 mylauncher = awful.widget.launcher({ 
-    image = config_dir .. "/icons/artix-logo.png",                                 
+    image = config_dir .. "/icons/nix-snowflake.png",                                 
     menu = mymainmenu 
 })
 

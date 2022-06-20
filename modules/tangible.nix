@@ -25,6 +25,8 @@ in {
       lxde.lxsession
       scrot
       playerctl
+      libinput-gestures
+      libnotify
 
       (nerdfonts.override { fonts = [ "Ubuntu" "JetBrainsMono" ]; })
     ];

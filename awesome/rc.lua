@@ -132,20 +132,20 @@ if has_fdo then
         },
         after =  { 
             { "Open Terminal", terminal },
-            { "Suspend","i3lock -c 242424 && sleep 0.5 && loginctl suspend" },
-            { "Reboot", "loginctl reboot" },
-            { "Power Off", "loginctl poweroff" }
+            { "Suspend","i3lock -c 242424 && sleep 0.5 && suspend" },
+            { "Reboot", "reboot" },
+            { "Power Off", "poweroff" }
         }
     })
 else
     mymainmenu = awful.menu({ 
         items = { 
             { "Awesome", myawesomemenu, beautiful.awesome_icon },
-            { "Applications", xdgmenu },
+            { "Applications", "bash -c 'sleep 0.05 && ~/.config/rofi/rofi-drun.sh'" },
             { "Open Terminal", terminal },
-            { "Suspend","i3lock -c 242424 && sleep 0.5 && loginctl suspend" },
-            { "Reboot", "loginctl reboot" },
-            { "Power Off", "loginctl poweroff" }
+            { "Suspend","i3lock -c 242424 && sleep 0.5 && suspend" },
+            { "Reboot", "reboot" },
+            { "Power Off", "poweroff" }
         },
     })
 end
@@ -174,7 +174,8 @@ myvolume = widgets.volume {
 mybattery = widgets.battery { timeout = 3 }
 myschedule = widgets.schedule { timeout = 60 }
 mydisk = widgets.disk { timeout = 120 }
-mynightmode = widgets.nightmode {}
+-- mynightmode = widgets.nightmode {}
+mylight = widgets.light {}
 
 -------------------------------------------------------------------------------
 -- SCREEN
@@ -227,12 +228,13 @@ awful.screen.connect_for_each_screen(function(s)
     s.mytoppanel = top_panel {
         screen = s,
         widgets = {
-            mynightmode,
+            -- mynightmode,
             mycpu,
             mymemory,
             mydisk,
             mysensors,
             mynet,
+            mylight,
             myvolume,
             mybattery,
         }
@@ -242,7 +244,8 @@ awful.screen.connect_for_each_screen(function(s)
 
 end)
 
-require("keybindings")
+require("kbd")
+-- require("keybindings")
 
 require("rules")
 

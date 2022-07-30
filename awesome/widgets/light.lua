@@ -11,7 +11,7 @@ local module_path = (...):match ("(.+/)[^/]+$") or ""
 
 local theme = beautiful.get()
 
-local volume = {}
+local nightmode = {}
 
 -------------------------------------------------------------------------------
 -- WORKER FUNCTION
@@ -35,87 +35,89 @@ local function worker(args)
         .. module_path .. "/icons/"
 
     local icons = {
-        wibox.widget.imagebox(icon_dir .. "volume-on.png"),
-        wibox.widget.imagebox(icon_dir .. "volume-off.png"),
-        wibox.widget.imagebox(icon_dir .. "volume-mute.png"),
+        wibox.widget.imagebox(icon_dir .. "nightmode-off.png"),
+        wibox.widget.imagebox(icon_dir .. "nightmode-on.png"),
+        -- wibox.widget.textbox("D"),
+        -- wibox.widget.textbox("N"),
     }
 
     ---------------------------------------------------------------------------
     -- WIDGET DEFINITION
     ---------------------------------------------------------------------------
-    local volume_widget = wibox.widget {
+    local light_widget = wibox.widget {
         layout = wibox.layout.fixed.horizontal,
         {
             widget = wibox.container.margin,
             margins = 6,
+            icons[1],
         },
         {
-            widget = wibox.widget.textbox
+            widget =  wibox.widget.textbox
         },
+        nightmode_enabled = false
     }
-   
+
     ---------------------------------------------------------------------------
-    -- UPDATE WIDGET PERIODICALLY
+    -- UPDATE BRIGHTNESS
     ---------------------------------------------------------------------------
-    local function update_widget(widget, stdout)
-        local volume_level = string.match(stdout, '(%-?%d+)%%')
-        local mute = string.match(stdout, 'Mute: ([yn])')
+    local function update_brightness(widget, stdout)
+        local brightness_level = string.match(stdout, '(%d+)%%')
         local children = widget:get_children()
-        if volume_level ~= nil then 
-            if mute == "y" then
-                children[1]:set_widget(icons[3])
-            elseif tonumber(volume_level) > 0 then
-                children[1]:set_widget(icons[1])
-            else
-                children[1]:set_widget(icons[2])
-            end
-            children[2]:set_text(volume_level .. "%")
+        if brightness_level ~= nil then
+            children[2]:set_text(brightness_level .. "%")
         else
             children[2]:set_text("--%")
         end
     end
 
-    awful.widget.watch("sh -c '~/.config/scripts/vol get'", timeout, 
+    awful.widget.watch("sh -c '~/.config/scripts/brightness get'", timeout,
     function(widget, stdout)
-        update_widget(widget, stdout)
-    end, volume_widget)
+        update_brightness(widget, stdout)
+    end, light_widget)
 
+    light_widget.force_update_brightness = function(self)
+        awful.spawn.easy_async_with_shell(
+            "~/.config/scripts/brightness get",
+            function(stdout, stderr, exr, exc)
+                update_brightness(self, stdout)
+            end
+        )
+    end
+
+    awesome.connect_signal("signal::brightness", function()
+        light_widget:force_update_brightness()
+    end)
 
     ---------------------------------------------------------------------------
     -- CLICK FUNCTION
     ---------------------------------------------------------------------------
-    volume_widget:buttons(gears.table.join(
+    light_widget:buttons(gears.table.join(
         awful.button({}, 1, function()
-            local f = io.popen("sh -c '~/.config/scripts/vol get'")
-            local str = ""
-            for line in f:lines() do
-                str = str .. "\n" .. line
-            end
-            naughty.notify {
-                preset = naughty.config.presets.normal,
-                title = "Volume Info",
-                text = str
-            }
-        end)
+            light_widget:nightmode_toggle()
+        end
+        )
     ))
 
-    volume_widget.force_update = function(self)
-        awful.spawn.easy_async_with_shell(
-            "~/.config/scripts/vol get", 
-            function(stdout, stderr, exr, exc)
-                update_widget(volume_widget, stdout)
-            end
-        )
+    light_widget.nightmode_toggle = function(self)
+        local children = self:get_children()
+        self.nightmode_enabled = not (self.nightmode_enabled)
+        if self.nightmode_enabled == false then
+            children[1]:set_widget(icons[1])
+            awful.spawn.with_shell("redshift -x")
+        else
+            children[1]:set_widget(icons[2])
+            awful.spawn.with_shell("redshift -PO 4500")
+        end
     end
-    
-    awesome.connect_signal("signal::volume", function()
-        volume_widget:force_update()
+
+    awesome.connect_signal("signal::nightmode", function()
+        light_widget:nightmode_toggle()
     end)
 
-    return volume_widget
+    return light_widget
 end
 
 return setmetatable(
-    volume, 
+    nightmode, 
     {__call = function(_, ...) return worker(...) end}
 )

@@ -6,7 +6,7 @@
 
   outputs = { self, nixpkgs }: let
     system = "x86_64-linux";
-    pkgs = import .nixpkgs { inherit system; };
+    pkgs = import nixpkgs { inherit system; };
     
     overlay-tangible = final: prev: {
       # extra = import ./pkgs { pkgs = import nixpkgs { inherit system; }; };

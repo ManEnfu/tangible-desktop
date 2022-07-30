@@ -10,7 +10,7 @@
     
     overlay-tangible = final: prev: {
       # extra = import ./pkgs { pkgs = import nixpkgs { inherit system; }; };
-      tangible.picom-jonaburg = pkgs.callPackage ./picom-jonaburg.nix {};
+      tangible.picom-jonaburg = pkgs.callPackage ./pkgs/picom-jonaburg.nix {};
       tangible.waybar-hyprland-workspace-fix = prev.waybar.overrideAttrs (oldAttrs: {
         preConfigure = ''
           sed -i 's/zext_workspace_handle_v1_activate(workspace_handle_);/const std::string command = "hyprctl dispatch workspace " + name_;\n\tsystem(command.c_str());/g' src/modules/wlr/workspace_manager.cpp # use hyprctl to switch workspaces

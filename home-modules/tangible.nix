@@ -133,6 +133,12 @@ in {
         source = getConfigDir "./qtile";
         # recursive = true;
       };
+      ".config/hypr" = {
+        source = getConfigDir "./hypr";
+      };
+      ".config/waybar" = {
+        source = getConfigDir "./waybar";
+      };
       ".config/libinput-gestures.conf" = {
         source = getConfigDir "./libinput-gestures.conf";
       };

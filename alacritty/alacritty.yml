@@ -24,22 +24,22 @@ colors:
     foreground: '#dfdfdf'
 
   normal:
-    black:    '#282828'
+    black:    '#101010'
     red:      '#cf1d00'
     green:    '#60c419'
     yellow:   '#cd823d'
     blue:     '#2f7caf'
     magenta:  '#bd47c2'
     cyan:     '#58a69c'
-    white:    '#808080'
+    white:    '#dfdfdf'
   
   bright:
-    black:    '#404040'
+    black:    '#323232'
     red:      '#df533d'
     green:    '#66d05e'
     yellow:   '#edee58'
     blue:     '#5fa7cd'
     magenta:  '#ce71d2'
     cyan:     '#a0c9c4'
-    white:    '#dfdfdf'
+    white:    '#ffffff'
 

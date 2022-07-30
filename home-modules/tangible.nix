@@ -6,7 +6,7 @@ let
   configDir = "/etc/nixos/tangible-desktop";
   mkSymlink = config.lib.file.mkOutOfStoreSymlink;
   getConfigDir = if cfg.mutableConfig
-    then path: config.lib.file.mkOutOfStoreSymlink "${mutableConfigDir}/${path}" 
+    then path: config.lib.file.mkOutOfStoreSymlink "${cfg.mutableConfigDir}/${path}" 
     else path: ../${path};
 in {
   options.desktop.tangible = {

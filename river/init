@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# River Configurations
+
+
+# Keybindings
+
+# General
+
+riverctl map normal Super+Shift Q exit
+riverctl map normal Super+Shift C close
+
+# Launcher
+
+riverctl map normal Super       Return  spawn   alacritty
+riverctl map normal Super       P       spawn   "~/.config/scripts/run-menu drun"
+riverctl map normal Super       R       spawn   "~/.config/scripts/run-menu run"
+riverctl map normal Super+Shift P       spawn   "~/.config/scripts/run-menu power"

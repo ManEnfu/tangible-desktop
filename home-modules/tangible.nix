@@ -144,6 +144,9 @@ in {
       ".config/dunst" = {
         source = getConfigDir "./dunst";
       };
+      ".config/river" = {
+        source = getConfigDir "./river";
+      };
       ".config/libinput-gestures.conf" = {
         source = getConfigDir "./libinput-gestures.conf";
       };

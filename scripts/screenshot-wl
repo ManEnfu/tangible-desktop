@@ -1,0 +1,20 @@
+#!/bin/sh
+
+if [ "$1" = "select" ]; then
+    GEOM=$(slurp -b "#0000008f" -c "#dfdfdf" -d)
+elif [ "$1" = "active-window" ]; then
+    if [ "$XDG_CURRENT_DESKTOP" = "hyprland" ]; then
+        AT=$(hyprctl activewindow | grep "at: " | sed "s/at: //")
+        SIZE=$(hyprctl activewindow | grep "size: " | sed "s/size: //;s/,/x/")
+        GEOM="$AT $SIZE"
+    fi
+fi
+
+NAME=$(date "+%Y-%m-%d_%H-%M-%S.png")
+if [ -n "$GEOM" ]; then
+    grim -g "$GEOM" ~/Pictures/Screenshots/$NAME \
+        && notify-send "Screenshot taken" $NAME -t 5000 -i ~/Pictures/Screenshots/$NAME
+else 
+    grim ~/Pictures/Screenshots/$NAME \
+        && notify-send "Screenshot taken" $NAME -t 5000 -i ~/Pictures/Screenshots/$NAME
+fi

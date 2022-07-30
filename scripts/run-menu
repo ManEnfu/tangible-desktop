@@ -2,15 +2,14 @@
 
 shopt -s nullglob globstar
 
-if [ $WAYLAND_DISPLAY ]; then
-    menu="rofi"
-fi
-
 if [ -z $menu ]; then
     menu="rofi"
 fi
 
 if [ $menu = "rofi" ]; then
+    if [ -n $2 ]; then
+        alias rofi="rofi -location $2"
+    fi
     theme_grid="$HOME/.config/rofi/grid-theme.rasi"
     theme_row="$HOME/.config/rofi/theme.rasi"
     theme_power="$HOME/.config/rofi/powermenu-theme.rasi"
@@ -25,6 +24,7 @@ fi
 drun () {
     if [ $menu = "rofi" ]; then
         rofi -show drun -theme "$theme_grid"
+        
     elif [ $menu = "wofi" ]; then
         wofi -I -m --show drun
     fi
@@ -132,9 +132,9 @@ ambientmenu () {
 }
 
 if [ $1 = "drun" ]; then
-    drun
+    drun $2
 elif [ $1 = "run" ]; then
-    run
+    run $2
 elif [ $1 = "power" ]; then
     powermenu
 elif [ $1 = "pass" ]; then

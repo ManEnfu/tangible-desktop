@@ -141,6 +141,9 @@ in {
       ".config/waybar" = {
         source = getConfigDir "./waybar";
       };
+      ".config/dunst" = {
+        source = getConfigDir "./dunst";
+      };
       ".config/libinput-gestures.conf" = {
         source = getConfigDir "./libinput-gestures.conf";
       };

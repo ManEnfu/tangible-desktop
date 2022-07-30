@@ -105,7 +105,7 @@
     "custom/launcher": {
         "format": " ",
         "tooltip-format": "Launcher",
-        "on-click": "pkill rofi || ~/.config/scripts/run-menu drun"
+        "on-click": "pkill rofi || ~/.config/scripts/run-menu drun 1"
     },
 
     "custom/hyprland-apptitle": {
@@ -115,7 +115,7 @@
     
     "custom/power": {
         "format": " ",
-        "on-click": "pkill rofi || ~/.config/scripts/run-menu power"
+        "on-click": "pkill rofi || ~/.config/scripts/run-menu power 3"
     }
     // "tray": {
     //     "icon-size": 16,

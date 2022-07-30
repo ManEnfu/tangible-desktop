@@ -23,7 +23,7 @@
     selected-normal-foreground:  var(lightfg);
     active-foreground:           var(blue);
     background:                  #101010;
-    window-background:           rgba ( 0, 0, 0, 50 % );
+    window-background:           #080808;
     selected-active-background:  var(blue);
     active-background:           var(background);
     selected-normal-background:  var(lightbg);
@@ -91,6 +91,7 @@ window {
     /* padding:          25% 35%; */
     width: 40%;
     background-color: var(window-background);
+    padding: 2px 2px;
     border:           0;
     border-radius:    4px;
 }

@@ -9,7 +9,7 @@ configuration {
     selbg:                     #303030;
     selbg2:                     #cd823d;
     bg:                  #101010;
-    window-bg:   rgba ( 0, 0, 0, 50 % );
+    window-bg:   #080808;
     fg:                  #dfdfdf;
     urgent: #ff0000;
     active: #0000ff;
@@ -18,9 +18,8 @@ configuration {
 window {
     border-radius: 4px;
     background-color: @window-bg;
-    border:           0;
-    border-radius:    0;
-    width: 388px;
+    padding: 2px 2px;
+    width: 392px;
 }
 
 element {

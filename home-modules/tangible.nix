@@ -6,7 +6,7 @@ let
   configDir = "/etc/nixos/tangible-desktop";
   mkSymlink = config.lib.file.mkOutOfStoreSymlink;
   getConfigDir = if cfg.mutableConfig
-    then path: config.lib.file.mkOutOfStoreSymlink "${mutableConfigDir}/${path}"; 
+    then path: config.lib.file.mkOutOfStoreSymlink "${mutableConfigDir}/${path}" 
     else path: ../${path};
 in {
   options.desktop.tangible = {
@@ -43,7 +43,7 @@ in {
 
       # X11 Stuffs
       alacritty
-      extra.picom-jonaburg
+      tangible.picom-jonaburg
       feh
       redshift
       networkmanagerapplet
@@ -57,7 +57,7 @@ in {
       
       # Wayland Stuffs
       wofi
-      waybar-hyprland-workspace-fix
+      tangible.waybar-hyprland-workspace-fix
       wev
       wl-clipboard
       libappindicator-gtk3

@@ -1,0 +1,147 @@
+#!/bin/sh
+
+shopt -s nullglob globstar
+
+if [ $WAYLAND_DISPLAY ]; then
+    menu="rofi"
+fi
+
+if [ -z $menu ]; then
+    menu="rofi"
+fi
+
+if [ $menu = "rofi" ]; then
+    theme_grid="$HOME/.config/rofi/grid-theme.rasi"
+    theme_row="$HOME/.config/rofi/theme.rasi"
+    theme_power="$HOME/.config/rofi/powermenu-theme.rasi"
+    alias dmenu="rofi -dmenu -i"
+fi
+
+if [ $menu = "wofi" ]; then
+    alias dmenu="wofi --dmenu --cache-file=/dev/null -i"
+fi
+
+# Application menu
+drun () {
+    if [ $menu = "rofi" ]; then
+        rofi -show drun -theme "$theme_grid"
+    elif [ $menu = "wofi" ]; then
+        wofi -I -m --show drun
+    fi
+}
+
+# Run menu
+run () {
+    if [ $menu = "rofi" ]; then
+        rofi -show run
+    elif [ $menu = "wofi" ]; then
+        wofi --show run
+    elif [ $menu = "dmenu" ]; then
+        dmenu
+    fi
+}
+
+
+# Logout / Power menu
+powermenu () {
+    up_time=$(uptime)
+    username=$(id -un)
+
+    theme="$HOME/.config/rofi/powermenu-theme.rasi"
+
+    option_sleep=""
+    option_reboot=""
+    option_poweroff=""
+    option_lock=""
+    option_logout=""
+
+    declare -a options=(
+        $option_sleep
+        $option_reboot
+        $option_poweroff
+        $option_lock
+        $option_logout
+    )
+
+    if [ $menu = "rofi" ]; then
+        choice=$(\
+            printf '%s\n' "${options[@]}" | \
+            dmenu -p "$up_time" -theme "$theme_power")
+    else
+        choice=$(\
+            printf '%s\n' "${options[@]}" | \
+            dmenu -p "$up_time")
+    fi
+
+    if [[ $choice == $option_sleep ]]; then
+        i3lock -c 101010 && sleep 0.5 && suspend
+    elif [[ $choice == $option_reboot ]]; then
+        reboot
+    elif [[ $choice == $option_poweroff ]]; then
+        poweroff
+    elif [[ $choice == $option_lock ]]; then
+        i3lock -c 101010
+    elif [[ $choice == $option_logout ]]; then
+        if [[ $XDG_SESSION_DESKTOP == "none+awesome" ]]; then 
+            awesome-client "awesome.quit()"
+        else 
+            loginctl kill-user $username
+        fi
+    fi
+}
+
+# pass powered Password Manager
+passmenu () {
+    typeit=0
+    if [[ $1 == "--type" ]]; then
+        typeit=1
+        shift
+    fi
+
+    prefix=${PASSWORD_STORE_DIR-~/.password-store}
+    password_files=( "$prefix"/**/*.gpg )
+    password_files=( "${password_files[@]#"$prefix"/}" )
+    password_files=( "${password_files[@]%.gpg}" )
+
+    password=$(printf '%s\n' "${password_files[@]}" | dmenu -p "聾")
+
+    [[ -n $password ]] || exit
+
+    if [[ $typeit = 0 ]]; then
+        PASSWORD_STORE_CLIP_TIME=8 pass show -c "$password" 2>/dev/null && notify-send "Password Manager" "Password for $password copied to clipboard and will be cleared in $PASSWORD_STORE_CLIP_TIME seconds."
+    else
+        pass show "$password" | { IFS= read -r pass; printf %s "$pass"; } |
+            xdotool type --clearmodifiers --file -
+    fi
+}
+
+# Ambient sound selector
+ambientmenu () {
+    ambient_files=$(echo 'Stop Playing' && ls -1 ~/Musics/ambient)
+
+    declare -a ambient_list=$ambient_files
+
+    choice=$(printf '%s\n' "${ambient_list[@]}" | dmenu -p ' ')
+
+    if [ "$choice" == "Stop Playing" ]; then
+        killall mpv
+    elif [ "$choice" != "" ]; then
+        killall mpv
+        mpv --loop --quiet ~/Musics/ambient/"$choice" || exit
+    fi
+}
+
+if [ $1 = "drun" ]; then
+    drun
+elif [ $1 = "run" ]; then
+    run
+elif [ $1 = "power" ]; then
+    powermenu
+elif [ $1 = "pass" ]; then
+    passmenu
+elif [ $1 = "ambient" ]; then
+    ambientmenu
+else
+    echo "a"
+fi
+

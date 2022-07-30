@@ -6,8 +6,6 @@ function run {
     fi
 }
 
-amixer -D pulse > /dev/null
-
 run ~/.fehbg
 run picom --experimental-backend
 run nm-applet

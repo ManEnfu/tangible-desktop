@@ -7,8 +7,7 @@ let
   mkSymlink = config.lib.file.mkOutOfStoreSymlink;
   getConfigDir = if cfg.mutableConfig
     then path: config.lib.file.mkOutOfStoreSymlink "${cfg.mutableConfigDir}/${path}" 
-    else path: config.lib.file.mkOutOfStoreSymlink "${cfg.mutableConfigDir}/${path}"; 
-    # else path: ../${path};
+    else path: ../${path};
 in {
   options.desktop.tangible = {
     enable = mkOption {

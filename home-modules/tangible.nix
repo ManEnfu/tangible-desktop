@@ -63,6 +63,8 @@ in {
       libappindicator-gtk3
       swaybg
       socat
+      grim
+      slurp
 
       (nerdfonts.override { fonts = [ "Ubuntu" "JetBrainsMono" "FiraCode" ]; })
     ];

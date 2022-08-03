@@ -65,6 +65,7 @@ in {
       socat
       grim
       slurp
+      eww-wayland
 
       (nerdfonts.override { fonts = [ "Ubuntu" "JetBrainsMono" "FiraCode" ]; })
     ];

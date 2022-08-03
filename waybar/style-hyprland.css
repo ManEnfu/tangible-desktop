@@ -1,6 +1,6 @@
 * {
     font-size: 8pt;
-    font-family: Ubuntu Nerd Font;
+    font-family: Ubuntu;
 }
 
 window#waybar {
@@ -49,10 +49,9 @@ window#waybar {
 #battery,
 #backlight {
     margin: 4px 0px;
-    /* padding: 4px 4px 4px 20px; */
-    padding: 4px;
-    /* background-color: #202020; */
-    /* border-radius: 4px; */
+    padding: 4px 4px 4px 24px;
+    background-color: #101010;
+    border-radius: 4px;
     transition-property: background-color, color;
     transition-duration: 0.4s;
     background-repeat: no-repeat;
@@ -61,16 +60,80 @@ window#waybar {
 }
 
 #clock {
+    padding: 4px;
     font-weight: bold;
 }
 
-/* #pulseaudio { */
-/*     background-image: url("icons/volume-on.png"); */
-/* } */
+#pulseaudio {
+    background-image: url("icons/speaker.png");
+}
 
-/* #backlight { */
-/*     background-image: url("icons/nightmode-off.png"); */
-/* } */
+#pulseaudio.muted {
+    background-image: url("icons/speaker-mute.png");
+    color: #646464;
+}
+
+#backlight {
+    background-image: url("icons/light.png");
+}
+
+#cpu {
+    background-image: url("icons/cpu.png");
+}
+
+#memory {
+    background-image: url("icons/memory.png");
+}
+
+#disk {
+    background-image: url("icons/disk.png");
+}
+
+#battery {
+    background-image: url("icons/battery-4.png");
+    background-size: 18px 12px;
+    padding-left: 30px; 
+}
+
+#battery.b-4 {
+    background-image: url("icons/battery-4.png");
+}
+
+#battery.b-3 {
+    background-image: url("icons/battery-3.png");
+}
+
+#battery.b-2 {
+    background-image: url("icons/battery-2.png");
+}
+
+#battery.b-1 {
+    background-image: url("icons/battery-1.png");
+}
+
+#battery.b-0 {
+    background-image: url("icons/battery-0.png");
+}
+
+#battery.charging.b-4 {
+    background-image: url("icons/battery-charge-4.png");
+}
+
+#battery.charging.b-3 {
+    background-image: url("icons/battery-charge-3.png");
+}
+
+#battery.charging.b-2 {
+    background-image: url("icons/battery-charge-2.png");
+}
+
+#battery.charging.b-1 {
+    background-image: url("icons/battery-charge-1.png");
+}
+
+#battery.charging.b-0 {
+    background-image: url("icons/battery-charge-0.png");
+}
 
 #custom-launcher,
 #custom-power {
@@ -97,15 +160,14 @@ window#waybar {
 
 #custom-hyprland-apptitle {
     margin: 4px 0px;
-    padding: 4px 4px;
     font-weight: bold;
-}
-
-#pulseaudio.muted {
-    color: #646464;
 }
 
 #clock:hover {
     background-color: #202020;
 }
 
+#tray {
+    margin: 4px 0px;
+    padding: 4px 4px;
+}

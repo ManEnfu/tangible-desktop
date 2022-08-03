@@ -1,0 +1,162 @@
+{
+    "position": "top",
+    "height": 32,
+    "layer": "top",
+
+    "modules-left": [
+        "custom/launcher",
+        "wlr/workspaces", 
+        "wlr/taskbar",
+        "custom/hyprland-apptitle"
+    ],
+
+    "modules-center": [
+        "clock",
+    ],
+    
+    "modules-right": [
+        "backlight#icon",
+        "backlight#bar",
+        "pulseaudio#icon",
+        "pulseaudio#bar",
+        "cpu",
+        "memory",
+        "disk",
+        "battery",
+        "network",
+        "tray",
+        "custom/power",
+    ],
+
+    "wlr/workspaces": {
+        "format": "{name}",
+        "on-click": "activate",
+        "all-outputs": true,
+        "format-icons": {
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "6": "6",
+            "7": "7",
+            "8": "8",
+            "9": "9",
+            "10": "10",
+            "default": "1"
+        },
+        "height": 24
+    },
+
+    "wlr/taskbar": {
+        "format": "{icon}{title}"
+    },
+
+    "pulseaudio#icon": {
+        "format": " ",
+    },
+
+    "pulseaudio#bar": {
+        "format": " ",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "states": {
+            "p-100": 100,
+            "p-90": 90,
+            "p-80": 80,
+            "p-70": 70,
+            "p-60": 60,
+            "p-50": 50,
+            "p-40": 40,
+            "p-30": 30,
+            "p-20": 20,
+            "p-10": 10,
+            "p-0": 0,
+        },
+        "on-click": "pavucontrol"
+    },
+
+    "cpu": {
+        "format": " {usage}%",
+    },
+
+    "backlight#icon": {
+        "format": " ",
+        "tooltip-format": "Brightness: {percent}%"
+    },
+    
+    "backlight#bar": {
+        "format": " ",
+        "tooltip-format": "Brightness: {percent}%",
+        "states": {
+            "p-100": 100,
+            "p-90": 90,
+            "p-80": 80,
+            "p-70": 70,
+            "p-60": 60,
+            "p-50": 50,
+            "p-40": 40,
+            "p-30": 30,
+            "p-20": 20,
+            "p-10": 10,
+            "p-0": 0,
+        },
+    },
+    
+    "memory": {
+        "interval": 5,
+        "format": " {used:0.1f}GiB",
+        "on-click": "",
+    },
+
+    "network": {
+        "format": "{ifname}",
+        "format-wifi": "{essid}",
+        "tooltip-format-wifi": "{ifname}: {essid} ({signalStrength}%)\nUp:\nDown:",
+        "on-click": "nm-connection-editor",
+    },
+
+    "disk": {
+        "interval": 30,
+        "format": " {used}",
+        "on-click": "pcmanfm-qt",
+    },
+
+    "battery": {
+        "format": "{icon}   {capacity}%",
+        "format-icons": ["", "", "", "", ""],
+    },
+
+    "clock": {
+        "interval": 2,
+        "format": "{:%d %b %y | %H:%M}"
+    },
+
+    "custom/launcher": {
+        "format": " ",
+        "tooltip-format": "Launcher",
+        "on-click": "pkill rofi || ~/.config/scripts/run-menu drun 1"
+    },
+
+    "custom/hyprland-apptitle": {
+        "restart-interval": 1,
+        "max-length": 40,
+        "exec": "~/.config/waybar/scripts/hyprland-apptitle.sh",
+    },
+    
+    "custom/power": {
+        "format": " ",
+        "on-click": "pkill rofi || ~/.config/scripts/run-menu power 3"
+    },
+    "tray": {
+        "icon-size": 16,
+        "spacing": 4
+    }
+}

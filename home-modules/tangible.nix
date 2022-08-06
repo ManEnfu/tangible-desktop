@@ -67,6 +67,8 @@ in {
       slurp
       eww-wayland
 
+      jq
+
       (nerdfonts.override { fonts = [ "Ubuntu" "JetBrainsMono" "FiraCode" ]; })
     ];
 

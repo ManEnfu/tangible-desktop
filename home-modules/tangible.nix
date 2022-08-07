@@ -67,6 +67,7 @@ in {
       slurp
       eww-wayland
 
+      python3
       jq
 
       (nerdfonts.override { fonts = [ "Ubuntu" "JetBrainsMono" "FiraCode" ]; })

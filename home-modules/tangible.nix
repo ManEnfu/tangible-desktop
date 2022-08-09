@@ -21,7 +21,7 @@ in {
       description = "mutableConfig";
     };
     mutableConfigDir = mkOption {
-      type = types.string;
+      type = types.str;
       description = "mutableConfigDir";
     };
     awesome = mkEnableOption "awesome";

@@ -1,15 +1,18 @@
-{ stdenv
+{ stdenvNoCC
 , lib
 }:
 
-stdenv.mkDerivation {
+stdenvNoCC.mkDerivation {
   name = "tangible-icons";
   src = ../fonts/TangibleIcons.ttf;
 
+  dontUnpack = true;
+
   installPhase = ''
     local out_ttf=$out/share/fonts/truetype/tangible-icons
+    ls env-vars
     mkdir -p $out_ttf
-    install -m444 -Dt $out_tff TangibleIcons.ttf 
+    install -Dm444 $src $out_ttf/TangibleIcons.ttf 
   '';
 
   meta = with lib; {

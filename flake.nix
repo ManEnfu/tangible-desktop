@@ -24,5 +24,7 @@
       nixpkgs.overlays = [ overlay-tangible ];
       imports = [ ./home-modules ]; 
     };
+
+    packages.${system} = overlay-tangible null pkgs;
   };
 }

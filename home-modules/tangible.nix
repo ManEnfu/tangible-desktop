@@ -70,7 +70,7 @@ in {
       python3
       jq
 
-      tangible-desktop
+      tangible-icons
 
       (nerdfonts.override { fonts = [ "Ubuntu" "JetBrainsMono" "FiraCode" ]; })
     ];

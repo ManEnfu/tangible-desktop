@@ -67,7 +67,8 @@ in {
       slurp
       eww-wayland
 
-      python3
+      python310
+      python310Packages.pulsectl
       jq
 
       tangible-icons

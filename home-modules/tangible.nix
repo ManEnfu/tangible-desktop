@@ -67,9 +67,9 @@ in {
       slurp
       eww-wayland
 
-      python310.withPackages (p: with p; [
+      (python310.withPackages (p: with p; [
         pulsectl
-      ])
+      ]))
       jq
 
       tangible-icons

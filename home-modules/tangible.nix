@@ -69,6 +69,7 @@ in {
 
       (python310.withPackages (p: with p; [
         pulsectl
+        watchdog
       ]))
       jq
 

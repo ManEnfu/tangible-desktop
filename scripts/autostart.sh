@@ -8,7 +8,7 @@ function run {
 
 run ~/.fehbg
 run picom --experimental-backend
-run nm-applet
+run nm-applet --indicator
 run lxpolkit
 run libinput-gestures
 # run lxqt-policykit-agent

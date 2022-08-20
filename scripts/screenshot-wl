@@ -2,7 +2,11 @@
 
 if [ "$1" = "select" ]; then
     GEOM=$(slurp -b "#0000008f" -c "#dfdfdf" -d)
+    if [ -z "$GEOM" ]; then
+        exit 1
+    fi
 elif [ "$1" = "active-window" ]; then
+    # Each compositor have their own way to display window information
     if [ "$XDG_CURRENT_DESKTOP" = "hyprland" ]; then
         AT=$(hyprctl activewindow | grep "at: " | sed "s/at: //")
         SIZE=$(hyprctl activewindow | grep "size: " | sed "s/size: //;s/,/x/")

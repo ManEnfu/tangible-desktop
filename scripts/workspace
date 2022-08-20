@@ -1,0 +1,5 @@
+#!/bin/sh
+
+if pgrep Hyprland; then
+    hyprctl dispatch workspace $1
+fi

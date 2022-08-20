@@ -212,6 +212,8 @@ end
 globalkeys = gears.table.join(globalkeys, key_group ("tag", {
     { M, "Left",  awful.tag.viewprev, "previous tag" },
     { M, "Right", awful.tag.viewnext, "next tag" },
+    { M, "Prior",  awful.tag.viewprev, "previous tag" },
+    { M, "Next", awful.tag.viewnext, "next tag" },
 }))
 
 for i = 1, 9 do

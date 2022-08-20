@@ -1,13 +1,15 @@
 # tangible-desktop
 
-Desktop configuration for various window managers. 
-Aims for clean desktop with information-dense panel.
+Desktop configuration for various window managers.
+
+![Awesome](./docs/screenshot-awesome.png)
+
+![Hyprland](./docs/screenshot-hyprland.png)
 
 ## Requirements
 
 - One of these window managers:
     - `awesome`
-    - `dwm`
 - `alacritty`: terminal emulator
 - `rofi`: run launcher
 - `gcolor3`: color chooser & picker

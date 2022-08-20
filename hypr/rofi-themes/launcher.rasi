@@ -1,0 +1,157 @@
+configuration {
+  show-icons: true;
+  drun-display-format: "{name}";
+  display-drun: "Æ";
+  location: 1;
+}
+
+// Variables
+
+* {
+  primary1: #080808;
+  primary2: #101010;
+  primary3: #202020;
+  primary4: #282828;
+  secondary2: #ffffff;
+  
+  accent1: #04323f;
+  accent2: #0da9c8;
+
+  background-color: transparent;
+  color: @secondary2;
+}
+
+// Window
+window {
+  background-color: @primary2;
+  border: 0 1px 0 0 ;
+  border-color: @primary1;
+  width: 600px;
+  height: 100%;
+}
+
+// Mainbox
+mainbox {
+  background-color: @primary2;
+  padding: 8px;
+  spacing: 4px;
+}
+
+listview {
+  padding: 8px;
+  spacing: 6px;
+  fixed-height: true;
+  fixed-columns: true;
+  columns: 4;
+}
+
+// Input Bar
+inputbar {
+  margin: 8px 100px;
+  background-color: #202020;
+  border-radius: 4px;
+  border: 0 0 2px 0;
+  border-color: @primary1;
+  children: [ prompt,entry,num-filtered-rows,textbox-num-sep,num-rows,case-indicator ];
+}
+
+prompt {
+  font: "TangibleIcons 12";
+  vertical-align: 0.5;
+  horizontal-align: 0.5;
+  padding: 0 10px;
+  background-color: transparent;
+  border: 0 1px 0 0;
+  border-color: @primary2;
+}
+
+textbox-prompt-colon {
+  margin: 0 0.3em 0 0;
+  expand: false;
+  str: " ";
+  background-color: transparent;
+}
+
+entry {
+  padding: 12px 8px;
+  placeholder-color: #808080;
+  placeholder: "Launch application";
+  background-color: transparent;
+}
+
+num-filtered-rows {
+  padding: 12px 0;
+  expand: false;
+  color: #808080;
+  background-color: transparent;
+}
+
+textbox-num-sep {
+  padding: 12px 0;
+  expand: false;
+  str: "/";
+  color: #808080;
+  background-color: transparent;
+}
+
+num-rows {
+  padding: 12px 8px 12px 0;
+  expand: false;
+  color: #808080;
+  background-color: transparent;
+}
+
+// Element
+element {
+  padding: 12px 12px;
+  spacing: 8px;
+  border: 0;
+  orientation: vertical;
+  border-radius: 4px;
+}
+
+element normal.normal,
+element alternate.normal {
+  background-color: @primary2;
+}
+
+element normal.urgent,
+element alternate.urgent {
+  background-color: @primary1;
+}
+
+element normal.active,
+element alternate.active {
+  background-color: @primary3;
+}
+
+element selected.normal,
+element selected.urgent,
+element selected.active {
+  background-color: @accent1;
+}
+
+element-text {
+  background-color: transparent;
+  padding: 8px;
+  horizontal-align: 0.5;
+}
+
+element-icon {
+  background-color: transparent;
+  size: 4.8em;
+  horizontal-align: 0.5;
+}
+
+// Message
+
+message {
+  background-color: transparent; 
+}
+
+error-message {
+  padding: 8px;
+  background-color: @primary2;
+}
+
+// vim:tabstop=2:shiftwidth=2:expandtab

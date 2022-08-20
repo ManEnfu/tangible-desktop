@@ -1,0 +1,47 @@
+{ 
+    "position": "right", 
+    "layer": "top",
+    "spacing": 4,
+
+    "modules-left": [
+        "tray"
+    ],
+
+    "modules-right": [
+        "custom/lock",
+        "custom/sleep",
+        "custom/logout",
+        "custom/restart",
+        "custom/poweroff"
+    ],
+
+    "tray": {
+        "icon-size": 16,
+        "spacing": 4,
+    },
+
+    "custom/poweroff": {
+        "format": "Ã",
+        "on-click": "systemctl poweroff",
+    },
+
+    "custom/restart": {
+        "format": "Í",
+        "on-click": "systemctl reboot",
+    },
+    
+    "custom/logout": {
+        "format": "Ï",
+        "on-click": "sh -c 'loginctl kill-user $USER'",
+    },
+
+    "custom/sleep": {
+        "format": "Ì",
+        "on-click": " ",
+    },
+
+    "custom/lock": {
+        "format": "Î",
+        "on-click": "sh -c 'swaylock'",
+    },
+}

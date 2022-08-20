@@ -1,0 +1,32 @@
+* {
+    font-size: 8pt;
+    font-family: Ubuntu;
+}
+
+window#waybar {
+    background-color: #101010;
+    color: #ffffff;
+    border-left: 1px solid #040404;
+}
+
+#tray {
+    min-width: 24px;
+    margin: 0px 0px;
+    padding: 4px 4px;
+}
+
+#custom-poweroff,
+#custom-restart,
+#custom-logout,
+#custom-sleep,
+#custom-lock {
+  font-family: TangibleIcons;
+  font-size: 12pt;
+  margin: 2px 4px;
+  min-width: 24px;
+  min-height: 24px;
+}
+
+#custom-poweroff {
+  margin-bottom: 4px;
+}

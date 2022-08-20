@@ -1,0 +1,171 @@
+@keyframes ripple {
+  to {
+    background-size: 1000% 1000%;
+  }
+}
+
+
+* {
+  all: unset; //Unsets everything so you can style everything from scratch
+}
+
+.panel {
+  background-color: #101010;
+  padding: 0px 4px;
+  font-size: 8pt;
+  font-family: Ubuntu;
+  color: #ffffff;
+  border-bottom: 1px solid #040404;
+}
+
+tooltip.background {
+  background-color: #101010;
+  border-radius: 4px;
+  border: 1px solid #040404;
+}
+
+.workspaces button {
+  margin: 0px 0px 0px 0px;
+}
+
+.workspaces button .ws-main {
+  font-size: 12pt;
+  min-width: 24px;
+  min-height: 24px;
+  background-color: #101010;
+  border-radius: 12px;
+  // border-bottom-right-radius: 4px;
+  // border-bottom-left-radius: 4px;
+  color: #646464;
+  font-weight: normal;
+  transition-property: background-color, border-radius, color;
+  transition-duration: 0.4s
+}
+
+.workspaces button.occupied .ws-main {
+  color: #ffffff;
+  background-color: #202020;
+  border-radius: 4px;
+}
+
+.workspaces button.active .ws-main {
+  color: #ffffff;
+  background-color: #04323f;
+  border-radius: 0px 0px 4px 4px;
+  // border-top-right-radius: 0px;
+  // border-top-left-radius: 0px;
+}
+
+.workspaces button:hover .ws-main {
+  color: #ffffff;
+  border-radius: 0px 0px 4px 4px;
+}
+
+.workspaces button.occupied:hover .ws-main {
+  color: #ffffff;
+  background-color: #282828;
+}
+
+.workspaces button.active:hover .ws-main {
+  color: #ffffff;
+  background-color: #04323f;
+}
+
+.workspaces button.close-left .ws-main {
+  // box-shadow: 0 4px #ffffff inset
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+;}
+
+.workspaces button.close-right .ws-main {
+  // box-shadow: 0 4px #ffffff inset
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.workspaces button .ws-ribbon {
+  min-height: 4px;
+  margin: 0 0px;
+  background-color: #101010;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border-top: 0px solid transparent;
+  box-shadow: 0 0px #ffffff inset;
+  transition-property: background-color, box-shadow, margin, border-radius;
+  transition-duration: 0.4s
+}
+
+.workspaces button.occupied .ws-ribbon {
+  margin: 0 8px;
+  background-color: #101010;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  box-shadow: 0 4px #0da9c8 inset;
+}
+
+.workspaces button.active .ws-ribbon {
+  margin: 0 0px;
+  background-color: #04323f;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  box-shadow: 0 4px #0da9c8 inset;
+}
+
+.workspaces button:hover .ws-ribbon {
+  margin: 0 0px;
+  background-color: #101010;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  box-shadow: 0 4px #ffffff inset
+}
+
+.apptitle {
+  margin: 4px 0px;
+  padding: 0px 8px;
+  font-weight: bold;
+}
+
+.clock {
+  font-weight: bold;
+}
+
+.metric, .clock {
+  margin: 4px 0px;
+  padding: 0px 4px;
+  border-radius: 12px;
+  background-color: #101010;
+  transition-property: background-color, border-radius;
+  transition-duration: 0.4s
+}
+
+.metric:hover, .clock:hover {
+  border-radius: 4px;
+  background-color: #282828;
+}
+
+.tangible-button {
+  margin: 4px 0px;
+  min-width: 24px;
+  border-radius: 12px;
+  background-color: #101010;
+  transition-property: background-color, border-radius, color;
+  transition-duration: 0.4s
+}
+
+.tangible-button.disabled {
+  color: #646464;
+}
+
+.tangible-button:hover {
+  border-radius: 4px;
+  background-color: #282828;
+}
+
+.tangible-button.disabled:hover {
+  background-color: #101010;
+}
+
+.tangible-icon {
+  font-family: TangibleIcons;
+  font-size: 12pt;
+}

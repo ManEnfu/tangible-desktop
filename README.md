@@ -2,38 +2,57 @@
 
 Desktop configuration for various window managers.
 
+### Awesome
 ![Awesome](./docs/screenshot-awesome.png)
 
+### Hyprland
 ![Hyprland](./docs/screenshot-hyprland.png)
 
 ## Requirements
 
-- One of these window managers:
-    - `awesome`
+### General 
 - `alacritty`: terminal emulator
 - `rofi`: run launcher
 - `gcolor3`: color chooser & picker
-- `picom`: X compositor
-- `feh`: image viewer & background setter
 - `pactl`: volume control
-- `redshift`: night light
 - `networkmanagerapplet`
 - `lxsession`: Policykit client
-- `scrot`: screenshot
 - `playerctl`: media player controller
 - `libinput-gestures`: enable gestures for X 
 - `libnotify`: send notifications 
-- `wmctrl`: control window manager
 - Fonts
     - Ubuntu
     - Ubuntu Nerd Font
     - JetBrainsMono Nerd Font
+    - TangibleIcons (available in `fonts` folder)
 - Themes (optional)
     - Kvantum: Qt theme engine
     - Materia GTK theme
     - Materia Kvantum them
     - Tela icon theme
     - Quintom cursor theme
+
+### X11
+- One of these window managers:
+    - `awesome`
+- `feh`: image viewer & background setter
+- `redshift`: night light
+- `picom`: X compositor
+- `scrot`: screenshot
+- `wmctrl`: control window manager
+- `xclip`: clipboard
+
+### Wayland
+- One of these window managers:
+    - `Hyprland`
+- `python` with packages:
+    - `pulsectl`
+    - `watchdog`
+- `waybar`: panel
+- `eww`: panel & widgets
+- `wl-clipboard`: clipboard
+- `grim` and `slurp`: screenshot
+- `pipewire`, `wireplumber`, and `xdg-desktop-portal-wlr`: screenshare
 
 ## Keybindings
 
@@ -95,6 +114,8 @@ Desktop configuration for various window managers.
 
 ### Volume and Media Control
 
+| Keybind | Action |
+| :---    | :---   |
 | <kbd>Super + [</kbd>          | Lower volume |
 | <kbd>Super + ]</kbd>          | Raise volume |
 | <kbd>Super + \\</kbd>         | Toggle volume |

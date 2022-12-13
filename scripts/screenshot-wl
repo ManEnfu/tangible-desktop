@@ -17,8 +17,8 @@ fi
 NAME=$(date "+%Y-%m-%d_%H-%M-%S.png")
 if [ -n "$GEOM" ]; then
     grim -g "$GEOM" ~/Pictures/Screenshots/$NAME \
-        && notify-send "Screenshot taken" $NAME -t 5000 -i ~/Pictures/Screenshots/$NAME
+        && notify-send "Screenshot taken" $NAME -t 5000 -i ~/Pictures/Screenshots/$NAME -a "Screenshot"
 else 
     grim ~/Pictures/Screenshots/$NAME \
-        && notify-send "Screenshot taken" $NAME -t 5000 -i ~/Pictures/Screenshots/$NAME
+        && notify-send "Screenshot taken" $NAME -t 5000 -i ~/Pictures/Screenshots/$NAME -a "Screenshot"
 fi

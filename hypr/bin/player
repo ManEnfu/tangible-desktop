@@ -1,0 +1,9 @@
+#!/bin/sh
+
+if [ $1 = "toggle" ]; then
+    playerctl play-pause
+elif [ $1 = "next" ]; then
+    playerctl next
+elif [ $1 = "prev" ]; then
+    playerctl previous
+fi

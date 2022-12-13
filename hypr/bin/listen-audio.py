@@ -2,7 +2,7 @@
 
 from pulsectl import Pulse, PulseLoopStop
 import json
-import subprocess
+import time
 
 def get_event_callback(index):
     def callback(ev):
@@ -17,9 +17,8 @@ def get_sink_value(sink):
         'mute': sink.mute == 1,
     }
 
-pulse = Pulse()
-
-try:
+def listen_pulse():
+    pulse = Pulse()
 
     # List sinks
     sinks = {s.index: s for s in pulse.sink_list()}
@@ -49,7 +48,9 @@ try:
         sink_value = get_sink_value(default_sink)
         print(json.dumps(sink_value), flush = True)
 
-except:
-    pass
-    # subprocess.call("notify-send 'tg-listen-pulse' 'Listener exited unexpectedly.'", 
-    #                 shell = True)
+
+for i in range(3):
+    try:
+        listen_pulse()
+    except:
+        time.sleep(2.0)

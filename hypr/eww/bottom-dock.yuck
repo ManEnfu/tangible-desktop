@@ -1,0 +1,67 @@
+(defvar dock-expand true)
+(defvar dock-height "false")
+
+(defwindow bottom-dock-trigger
+  :monitor 0
+  :windowtype "overlay"
+  :geometry (geometry
+    :x "0%"
+    :y "0%"
+    :width "400px"
+    :height "10px"
+    :anchor "bottom center")
+  :stacking "fg"
+  :exclusive "false"
+  :focusable "false"
+  (bottom-dock-trigger))
+
+(defwidget bottom-dock-trigger []
+  (eventbox
+    :class "bottom-dock-trigger"
+    :space-evenly false
+    :hexpand true
+    :onhover "${EWW_CMD} open bottom-dock-main"
+    ))
+
+; (defwidget dock-trigger-area []
+;   (eventbox
+;     :class "dock-trigger-area")
+
+(defwindow bottom-dock-main
+  :monitor 0
+  :windowtype "overlay"
+  :geometry (geometry
+    :x "0%"
+    :y "-64px"
+    :width "400px"
+    :height "128px"
+    :anchor "bottom center")
+  :stacking "overlay"
+  :exclusive "false"
+  :focusable "false"
+  (bottom-dock))
+
+(defwidget bottom-dock []
+  (eventbox 
+    :class "bottom-dock"
+    :orientation "h"
+    :space-evenly false
+    :hexpand true
+    :onhoverlost "${EWW_CMD} close bottom-dock-main"
+    (dock-area)))
+
+(defwidget dock-area []
+  (box
+    :class "dock-area"
+    ; :orientation "h"
+    :hexpand true
+    :space-evenly false
+    (tangible-icon-button 
+      :icon icon-search
+      :scale 2
+      :tooltip "Menu"
+      :onclick "")
+    (button
+      "hello"
+      )))
+

@@ -1,0 +1,45 @@
+(defwindow bg-dashboard
+  :monitor 0
+  :stacking "bg"
+  :geometry (geometry
+    :x "100px"
+    :y "100px"
+    :width "600px"
+    :height "400px"
+    :anchor "bottom left")
+  :exclusive "false"
+  :focusable "false"
+  (bg-dashboard))
+
+(defwidget bg-dashboard []
+  (box 
+    :class "bg-dashboard"
+    :orientation "h"
+    :halign "start"
+    :spacing 4
+    :space-evenly false
+    (bg-clock)))
+
+(defwidget bg-clock []
+  (box 
+    :class "bg-clock"
+    :orientation "v"
+    :valign "end"
+    :spacing 10
+    :space-evenly false
+    (label
+      :style "font-size: 2.5em;"
+      :halign "start"
+      :text "Ò${time-info.yearFull}")
+    (label
+      :style "font-size: 2.5em;"
+      :halign "start"
+      :text "Ó${time-info.monthNum}  Ô${time-info.date}")
+    (label
+      :style "font-size: 10em;"
+      :halign "start"
+      :text "${time-info.hour}")
+    (label
+      :style "font-size: 10em;"
+      :halign "start"
+      :text "${time-info.minute}")))

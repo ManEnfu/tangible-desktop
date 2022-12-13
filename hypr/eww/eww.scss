@@ -1,3 +1,5 @@
+@import "theme.scss";
+
 @keyframes ripple {
   to {
     background-size: 1000% 1000%;
@@ -9,19 +11,68 @@
   all: unset; //Unsets everything so you can style everything from scratch
 }
 
-.panel {
-  background-color: #101010;
+.top-panel {
+  background-color: $dark2;
   padding: 0px 4px;
-  font-size: 8pt;
+  font-size: 9pt;
   font-family: Ubuntu;
-  color: #ffffff;
-  border-bottom: 1px solid #040404;
+  color: $light3;
+  border-bottom: 1px solid $dark1;
+}
+
+.right-panel {
+  background-color: $dark2;
+  padding: 8px 40px 8px 8px;
+  font-size: 9pt;
+  font-family: Ubuntu;
+  color: $light3;
+  border-left: 1px solid $dark1;
+}
+
+.bottom-dock-trigger {
+  background-color: transparent;
+}
+
+.bottom-dock {
+  background-color: transparent;
+  transition-property: padding-top;
+  transition-duration: 0.4s;
+
+  & .dock-area {
+    background-color: transparent;
+    border-top: 1px solid transparent;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    margin-top: 64px;
+    margin-bottom: 0px;
+    transition-property: margin-top, margin-bottom, background-color, border-color;
+    transition-duration: 0.4s;
+  }
+
+  &:hover .dock-area {
+    margin-top: 0px;
+    margin-bottom: 64px;
+    border-color: $dark1;
+    background-color: $dark2;
+  }
+}
+
+// .bottom-dock-trigger:hover {
+//   background-color: $accent3;
+// }
+
+.bg-dashboard {
+  // background-color: $light2;
+  background-color: transparent;
+  color: $light2;
 }
 
 tooltip.background {
-  background-color: #101010;
+  background-color: $dark2;
   border-radius: 4px;
-  border: 1px solid #040404;
+  border: 1px solid $dark1;
 }
 
 .workspaces button {
@@ -29,56 +80,53 @@ tooltip.background {
 }
 
 .workspaces button .ws-main {
-  font-size: 12pt;
   min-width: 24px;
   min-height: 24px;
-  background-color: #101010;
+  background-color: $dark2;
   border-radius: 12px;
   // border-bottom-right-radius: 4px;
   // border-bottom-left-radius: 4px;
-  color: #646464;
+  color: $light1;
   font-weight: normal;
   transition-property: background-color, border-radius, color;
   transition-duration: 0.4s
 }
 
 .workspaces button.occupied .ws-main {
-  color: #ffffff;
-  background-color: #202020;
+  color: $light3;
+  background-color: $dark3;
   border-radius: 4px;
 }
 
 .workspaces button.active .ws-main {
-  color: #ffffff;
-  background-color: #04323f;
+  color: $light3;
+  background-color: $accent1;
   border-radius: 0px 0px 4px 4px;
   // border-top-right-radius: 0px;
   // border-top-left-radius: 0px;
 }
 
 .workspaces button:hover .ws-main {
-  color: #ffffff;
+  color: $light3;
   border-radius: 0px 0px 4px 4px;
 }
 
 .workspaces button.occupied:hover .ws-main {
-  color: #ffffff;
-  background-color: #282828;
+  color: $light3;
+  background-color: $dark4;
 }
 
 .workspaces button.active:hover .ws-main {
-  color: #ffffff;
-  background-color: #04323f;
+  color: $light3;
+  background-color: $accent3;
 }
 
 .workspaces button.close-left .ws-main {
-  // box-shadow: 0 4px #ffffff inset
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
 ;}
 
 .workspaces button.close-right .ws-main {
-  // box-shadow: 0 4px #ffffff inset
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
 }
@@ -86,37 +134,37 @@ tooltip.background {
 .workspaces button .ws-ribbon {
   min-height: 4px;
   margin: 0 0px;
-  background-color: #101010;
+  background-color: $dark2;
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
   border-top: 0px solid transparent;
-  box-shadow: 0 0px #ffffff inset;
+  box-shadow: 0 0px $light3 inset;
   transition-property: background-color, box-shadow, margin, border-radius;
   transition-duration: 0.4s
 }
 
 .workspaces button.occupied .ws-ribbon {
   margin: 0 8px;
-  background-color: #101010;
+  background-color: $dark2;
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
-  box-shadow: 0 4px #0da9c8 inset;
+  box-shadow: 0 4px $accent2 inset;
 }
 
 .workspaces button.active .ws-ribbon {
   margin: 0 0px;
-  background-color: #04323f;
+  background-color: $accent1;
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
-  box-shadow: 0 4px #0da9c8 inset;
+  box-shadow: 0 4px $accent2 inset;
 }
 
 .workspaces button:hover .ws-ribbon {
   margin: 0 0px;
-  background-color: #101010;
+  background-color: $dark2;
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
-  box-shadow: 0 4px #ffffff inset
+  box-shadow: 0 4px $light3 inset
 }
 
 .apptitle {
@@ -125,47 +173,174 @@ tooltip.background {
   font-weight: bold;
 }
 
+.large-clock {
+  padding: 10px;
+  border-radius: 32px;
+  background-color: $dark2;
+  transition-property: background-color, border-radius;
+  transition-duration: 0.4s
+}
+
+.large-clock:hover {
+  border-radius: 4px;
+  background-color: $dark4;
+}
+
+.notification-list {
+  border-radius: 4px;
+  background-color: $dark3;
+  min-height: 40px;
+}
+
+.notification-entry {
+  padding: 10px;
+  border-radius: 32px;
+  background-color: $dark3;
+  transition-property: background-color, border-radius;
+  transition-duration: 0.4s;
+}
+
+.notification-entry:hover {
+  background-color: $dark4;
+  border-radius: 4px;
+}
+
 .clock {
   font-weight: bold;
 }
 
 .metric, .clock {
-  margin: 4px 0px;
-  padding: 0px 4px;
+  padding: 4px 4px;
+  min-height: 16px;
   border-radius: 12px;
-  background-color: #101010;
+  background-color: $dark2;
   transition-property: background-color, border-radius;
   transition-duration: 0.4s
 }
 
 .metric:hover, .clock:hover {
   border-radius: 4px;
-  background-color: #282828;
+  background-color: $dark4;
 }
 
 .tangible-button {
-  margin: 4px 0px;
-  min-width: 24px;
+  padding: 4px 4px;
+  min-width: 16px;
+  min-height: 16px;
   border-radius: 12px;
-  background-color: #101010;
+  background-color: $dark2;
   transition-property: background-color, border-radius, color;
   transition-duration: 0.4s
 }
 
 .tangible-button.disabled {
-  color: #646464;
+  color: $light1;
 }
 
 .tangible-button:hover {
   border-radius: 4px;
-  background-color: #282828;
+  background-color: $dark4;
 }
 
 .tangible-button.disabled:hover {
-  background-color: #101010;
+  background-color: $dark2;
 }
 
 .tangible-icon {
   font-family: TangibleIcons;
-  font-size: 12pt;
+  // font-size: 12pt;
+  font-size: 1.3em;
+}
+
+.indicator-circular-normal {
+  color: $accent2;
+  background-color: $dark1;
+  transition-property: background-color, color;
+  transition-duration: 0.4s;
+}
+
+button:hover .indicator-circular-normal {
+  background-color: $dark2;
+}
+
+.indicator-temperature trough {
+  all: unset;
+  background-color: $dark1;
+  border-radius: 4px;
+  min-width: 8px;
+  min-height: 40px;
+  transition-property: background-color;
+  transition-duration: 0.4s;
+}
+
+button:hover .indicator-temperature trough {
+  background-color: $dark2;
+}
+
+.indicator-temperature trough progress {
+  all: unset;
+  background-color: $accent2;
+  border-radius: 4px;
+  min-width: 8px;
+  transition-property: background-color;
+  transition-duration: 0.4s;
+}
+
+.indicator-slider trough {
+  all: unset;
+  background-color: $dark1;
+  border-radius: 4px;
+  min-height: 8px;
+  min-width: 40px;
+}
+
+.indicator-slider trough highlight {
+  all: unset;
+  background-color: $accent2;
+  border-radius: 4px;
+  transition-property: background-color;
+  transition-duration: 0.4s;
+}
+
+.indicator-critical {
+  color: $critical;
+}
+
+.indicator-critical trough progress,
+.indicator-critical trough highlight {
+  background-color: $critical;
+}
+
+.bg-clock {
+  // border-left: 8px solid $accent1;
+  border-left: 8px solid $light3;
+  padding: 8px 32px;
+  // color: $accent1;
+  color: $light3;
+  font-family: TangibleIcons;
+}
+
+
+.submap {
+  background-color: $accent1;
+  border-radius: 4px;
+}
+
+.submap:hover {
+  background-color: $accent3;
+}
+
+.header {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.subheader {
+  font-size: 0.9em;
+  color: $light1;
+}
+
+.vertical-separator {
+  min-width: 1px; 
+  background-color: $light3;
 }

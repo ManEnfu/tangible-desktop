@@ -1,0 +1,16 @@
+* {
+  primary1: #080808;
+  primary2: #101010;
+  primary3: #202020;
+  primary4: #282828;
+  secondary2: #ffffff;
+  
+  accent1: #04323f;
+  accent2: #0da9c8;
+
+  /* accent1: #5f2d2c; */
+  /* accent2: #e2535a; */
+
+  background-color: transparent;
+  color: @secondary2;
+}

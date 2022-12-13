@@ -1,0 +1,105 @@
+(defwidget tangible-button [?onclick ?tooltip ?disable ?visible]
+  (button :class "tangible-button ${disable == true ? 'disabled' : ''}"
+          :onclick onclick
+          :tooltip tooltip
+          :visible visible
+    (children)))
+
+(defwidget tangible-icon-button [?onclick icon ?tooltip ?disable ?scale ?visible]
+  (tangible-button :disable disable
+                   :onclick onclick
+                   :tooltip tooltip
+                   :visible visible
+    (tangible-icon :icon icon 
+      :scale scale)))
+
+(defwidget tangible-indicator-icon [icon value ?tooltip ?onclick]
+  ; (button :class "metric"
+  ;         :tooltip tooltip
+  (tangible-button :tooltip tooltip
+    :onclick onclick
+    (box :spacing 4
+         :orientation "h"
+         :space-evenly false
+      (tangible-icon :icon icon)
+      value)))
+
+(defwidget tangible-indicator-icon2 [icon1 icon2 value ?tooltip ?onclick]
+  ; (button :class "metric"
+  ;         :tooltip tooltip
+  (tangible-button :tooltip tooltip
+    :onclick onclick
+    (box :spacing 4
+         :orientation "h"
+         :space-evenly false
+      (tangible-icon :icon icon1)
+      value
+      (tangible-icon :icon icon2))))
+
+(defwidget tangible-icon [icon ?scale]
+  (label :class "tangible-icon"
+         :valign "center"
+         :halign "center"
+         :style { scale == "" ? "" : "font-size: ${scale}em;" }
+         :text icon))
+
+(defwidget tangible-indicator-circular [icon value percentage critical ?tooltip]
+  (tangible-button :tooltip tooltip
+    (box :spacing 8
+         :orientation "v"
+         :space-evenly false
+         :style "padding: 4px;"
+      (overlay
+        (circular-progress
+          :class "indicator-circular-normal ${ percentage >= critical ? 'indicator-critical' : '' }"
+          ; :style "color: ${percentage-color["color"][round(percentage/10,0)]};"
+          :value percentage
+          :start-at 75
+          :clockwise true
+          :height 80
+          :width 80
+          :thickness 6)
+        (tangible-icon 
+          :icon icon
+          :scale 3))
+      value)))
+
+(defwidget tangible-indicator-slider [icon value-display value min max critical ?tooltip ?onchange ?onclick]
+    (box :spacing 8
+         :orientation "h"
+         :space-evenly false
+         :style "padding: 0px;"
+      (tangible-icon-button
+        :icon icon
+        :scale 1.8
+        :onclick onclick
+        :tooltip tooltip)
+      (scale
+        :hexpand true
+        :class "indicator-slider ${ value >= critical ? 'indicator-critical' : '' }"
+        :valign "center"
+        :value value
+        :max max
+        :min min
+        :timeout "1s"
+        :round-digits 0
+        :onchange onchange
+        :orientation "h")))
+
+(defwidget tangible-temperature-bar [value ?tooltip]
+  (tangible-button :tooltip tooltip
+    (box :spacing 8
+         :orientation "v"
+         :space-evenly false
+         :style "padding: 4px;"
+      (progress
+        :class "indicator-temperature ${ value >= 80 ? 'indicator-critical' : '' }"
+        :flipped true
+        :halign "center"
+        :value value
+        :height 80
+        :orientation "v")
+      "${value}°C")))
+
+(defwidget vertical-separator []
+  (box :class "vertical-separator"))

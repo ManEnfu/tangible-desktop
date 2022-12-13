@@ -1,0 +1,146 @@
+(defwindow right-panel
+  :monitor 0
+  :windowtype "overlay"
+  :geometry (geometry :x "0%"
+                      :y "0%"
+                      :width "432px"
+                      :height "100%"
+                      :anchor "top right")
+  :stacking "fg"
+  (right-panel))
+
+(defwidget right-panel []
+  (box :class "right-panel"
+       :orientation "v"
+       :spacing 4  
+       :space-evenly false
+    (large-clock)
+    (box 
+      :orientation "h"
+      :halign "center"
+      :spacing 4
+      :space-evenly false
+      (tangible-indicator-circular
+        :icon icon-cpu
+        :tooltip "CPU"
+        :value "${round(EWW_CPU['avg'], 0)}%"
+        :critical 70
+        :percentage {EWW_CPU['avg']})
+      (tangible-temperature-bar
+        :value {EWW_TEMPS['ACPITZ_TEMP1']}
+        :tooltip "Temperature")
+      (tangible-indicator-circular
+        :icon icon-memory
+        :tooltip "Memory"
+        :value "${round(EWW_RAM['used_mem']/1048576, 0)}M"
+        :critical 70
+        :percentage {EWW_RAM['used_mem_perc']})
+      (tangible-indicator-circular
+        :icon icon-disk
+        :tooltip "Disk"
+        :value "${round(EWW_DISK['/']['used']/1073741824, 0)}G"
+        :critical 70
+        :percentage {EWW_DISK['/']['used_perc']}))
+    (tangible-indicator-slider
+      :icon icon-sun
+      :value-display "${bri-info}%"
+      :value bri-info
+      :critical 110
+      :min 0
+      :max 100
+      :onchange "brightnessctl s {}%"
+      :tooltip "Brightness")
+    (tangible-indicator-slider
+      :icon {(vol-info['port'] == 'analog-output-headphones') 
+        ? vol-info['mute'] ? icon-headphone-mute : icon-headphone
+        : vol-info['mute'] ? icon-speaker-mute : icon-speaker}
+      :value-display "${vol-info['volume']}%"
+      :value {vol-info['volume']}
+      :critical 70
+      :min 0
+      :max 100
+      ; :onchange "pactl set-sink-volume @DEFAULT_SINK@ {}%"
+      :tooltip "Volume Mute/Unmute")
+    (label :class "header"
+           :halign "start" 
+           :text "Calendar")
+    (calendar)
+    (label :class "header"
+           :halign "start" 
+           :text "Notifications")
+    (notification-list)
+    (box :height 32)))
+
+(defwidget large-clock []
+  (button :class "large-clock"
+    (box :orientation "h"
+         :spacing 8
+         :space-evenly false
+         :halign "start"
+      ; time-info)))
+      (label :style "font-size: 3em; font-weight: bold;"
+             :valign "baseline"
+             :text "${time-info['hour']}")
+      (label :style "font-size: 3em;"
+             :valign "baseline"
+             :text "${time-info['minute']}")
+      (label :style "font-size: 2em;"
+             :valign "baseline"
+             :text "${time-info['second']}")
+      (vertical-separator)
+      (box :orientation "v"
+           :spacing 4
+           :space-evenly false
+           :valign "center"
+        (label :style "font-size: 1.2em; font-weight: bold;"
+               :halign "start"
+               :text "${time-info['dowFull']}")
+        (label :style "font-size: 1em;"
+               :halign "start"
+               :text "${time-info['date']} ${time-info['monthFull']} ${time-info['yearFull']}")))))
+      ; "${time-info['hour']}:${time-info['minute']}:${time-info['second']}")))
+
+(defwidget notification-list []
+  (box :class "notification-list"
+       :orientation "v"
+       :vexpand true
+    (scroll :hscroll true
+      (box 
+        :orientation "v"
+        :space-evenly false
+        (box
+          :class "subheader"
+          :orientation "v"
+          :space-evenly false
+          :style "padding: 30px 10px;"
+          :visible {arraylength(notifications['data'][0]) == 0}
+          (tangible-icon
+            :icon icon-bell
+            :scale 8)
+          (label
+            :halign "center"
+            :text "No Notifications."))
+        (for notification in {notifications['data'][0]}
+          (notification-entry
+            :notification notification)
+       )))))
+
+(defwidget notification-entry [notification]
+  (button :class "notification-entry"
+    (box :orientation "h"
+         :spacing 8
+         :space-evenly false
+      (image
+        :image-width 80
+        :path {notification['icon_path']['data']})
+      (box :orientation "v"
+           :spacing 4
+           :space-evenly false
+        (label :class "subheader"
+               :halign "start"
+               :text {notification['appname']['data']})
+        (label :class "header"
+               :halign "start"
+               :text {notification['summary']['data']})
+        (label :halign "start"
+               :text {notification['body']['data']})))))

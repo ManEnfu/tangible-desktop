@@ -1,0 +1,5 @@
+#!/bin/sh
+color=$(grim -g "$(slurp -p -b '#00000000')" -t ppm - \
+    | convert - -format '%[pixel:p{0,0}]' txt:- )
+
+notify-send "Color Picked" "$color" -t 5000

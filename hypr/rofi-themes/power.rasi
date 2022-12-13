@@ -1,0 +1,77 @@
+configuration {
+  drun-display-format: "{name}";
+  display-drun: "Æ";
+  show-icons: false;
+}
+
+@import "./colors.rasi"
+
+// Window
+window {
+  font: "Ubuntu 9";
+  background-color: #101010c0;
+  /* width: 100%; */
+  /* height: 100%; */
+  fullscreen: true;
+}
+
+// Mainbox
+mainbox {
+  padding: 8px;
+  margin: calc( 50% - 80px ) calc( 50% - 300px );
+  children: [ listview ];
+}
+
+listview {
+  enabled: true;
+  padding: 0px;
+  scrollbar: false;
+  spacing: 6px;
+  fixed-height: true;
+  fixed-columns: true;
+  columns: 5;
+  lines: 1;
+  expand: false;
+
+  cycle: true;
+  dynamic: true;
+}
+
+element {
+  enabled: true;
+  border-radius: 4px;
+  spacing: 0px;
+  margin: 0px;
+  padding: 30px;
+}
+
+element normal.normal,
+element alternate.normal {
+  background-color: transparent;
+}
+
+element normal.urgent,
+element alternate.urgent {
+  background-color: @primary1;
+}
+
+element normal.active,
+element alternate.active {
+  background-color: @primary3;
+}
+
+element selected.normal,
+element selected.urgent,
+element selected.active {
+  background-color: @accent1;
+  border: 0 0 2px 0 ;
+  border-color: @primary1;
+}
+
+element-text {
+  expand: true;
+  font: "TangibleIcons 32";
+  highsel: inherit;
+  horizontal-align: 0.5;
+  vertical-align: 0.5;
+}

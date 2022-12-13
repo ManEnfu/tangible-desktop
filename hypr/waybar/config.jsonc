@@ -2,6 +2,7 @@
     "position": "right", 
     "layer": "top",
     "spacing": 4,
+    "exclusive": false,
 
     "modules-left": [
         "tray"

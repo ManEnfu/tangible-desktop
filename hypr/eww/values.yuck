@@ -1,0 +1,38 @@
+(defpoll datetime :interval "2s" "date '+%d %b %y | %H:%M'")
+(deflisten vol-info "~/.config/hypr/bin/run-single ~/.config/hypr/bin/listen-audio.py")
+(deflisten bri-info "~/.config/hypr/bin/run-single ~/.config/hypr/bin/listen-brightness.py")
+(deflisten hyprland "~/.config/hypr/bin/run-single ~/.config/hypr/bin/listen-hyprland.py")
+(defvar time-info-format '{
+    "hour": %H
+    "minute": %M,
+    "second": %S
+  }')
+(defpoll time-info :interval "1s" `date '+{
+    "hour": "%H",
+    "minute": "%M",
+    "second": "%S",
+    "dow": "%a",
+    "dowFull": "%A",
+    "date": "%d",
+    "month": "%b",
+    "monthNum": "%m",
+    "monthFull": "%B",
+    "year": "%y", 
+    "yearFull": "%Y"
+}'`)
+(defpoll notifications :interval "10s" "dunstctl history")
+(defpoll wifi-info :interval "2s" "~/.config/hypr/bin/wifi")
+
+(defvar percentage-color '{"color": [
+    "#0DA9C8",
+    "#55A3BB",
+    "#749DAC",
+    "#8C979C",
+    "#9F9089",
+    "#B08873",
+    "#BF8154",
+    "#CC7814",
+    "#CA5C11",
+    "#C82C0D",
+    "#C82C0D"
+  ]}')

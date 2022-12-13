@@ -1,0 +1,5 @@
+@import "./common.rasi"
+
+entry {
+  placeholder: "Run command";
+}

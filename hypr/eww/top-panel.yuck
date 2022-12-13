@@ -1,0 +1,162 @@
+; Top panel, with workspace, clock, an status.
+(defwindow top-panel
+  :monitor 0
+  :windowtype "dock"
+  :geometry (geometry 
+    :x "0%"
+    :y "0%"
+    :width "100%"
+    :height "32px"
+    :anchor "top center")
+  :stacking "fg"
+  :exclusive "true"
+  (top-panel))
+
+(defwidget top-panel []
+  (centerbox 
+    :class "top-panel"         
+    :orientation "h"
+    ; Left: Launcher, Workspace/tasklist, Window Title
+    (box 
+      :orientation "h"
+      :halign "start"
+      :spacing 4
+      :space-evenly false
+      (box 
+        :orientation "h"
+        :halign "center"
+        :spacing 4
+        :space-evenly false
+        :style "padding: 4px 0;"
+        (tangible-icon-button 
+          :icon icon-search
+          :tooltip "Applications"
+          :onclick "pkill -x -9 rofi || rofi -show drun -theme ~/.config/hypr/rofi-themes/launcher.rasi &"))
+      (workspaces)
+      (apptitle))
+    ; Center: Time
+    (box 
+      :orientation "h"
+      :halign "center"
+      :spacing 4
+      :space-evenly false
+      :style "padding: 4px 0;"
+      (clock))
+    ; Right: Status
+    (box 
+      :orientation "h"
+      :halign "end"
+      :spacing 4
+      :space-evenly false
+      :style "padding: 4px 0;"
+      (tangible-indicator-icon 
+        :icon icon-cpu
+        :tooltip "CPU"
+        :value "${round(EWW_CPU['avg'], 0)}% | ${EWW_TEMPS['ACPITZ_TEMP1']}°C")
+      (tangible-indicator-icon 
+        :icon icon-memory
+        :tooltip "Memory"
+        :value "${round(EWW_RAM['used_mem']/1073741824, 1)}G")
+      (tangible-indicator-icon 
+        :icon {(vol-info['port'] == 'analog-output-headphones') 
+          ? vol-info['mute'] ? icon-headphone-mute : icon-headphone
+          : vol-info['mute'] ? icon-speaker-mute : icon-speaker}
+        :tooltip "Volume"
+        :value "${vol-info['volume']}%")
+      (tangible-indicator-icon 
+        :icon {icon-battery
+               [(EWW_BATTERY['BAT0']['status'] == 'Charging') ? 'charging' : 'normal']
+               [round(EWW_BATTERY['BAT0']['capacity']/25, 0)]}
+        :tooltip "${EWW_BATTERY['BAT0']['status']}: ${EWW_BATTERY['BAT0']['capacity']}%"
+        :value "${EWW_BATTERY['BAT0']['capacity']}%")
+      (tangible-indicator-icon
+        :icon {(wifi-info.status == "connected") ? icon-wifi-on : icon-wifi-off }
+        :onclick "nmcli device wifi rescan"
+        :tooltip "Wi-Fi ${wifi-info.status}"
+        :value "${wifi-info.essid}")
+      (tangible-indicator-icon2 
+        :icon1 icon-up
+        :icon2 icon-down
+        :onclick "nmcli device wifi rescan"
+        :tooltip "Network rate"
+        :value "${round(EWW_NET['wlp5s0']['NET_UP']/1048576, 1)} | ${round(EWW_NET['wlp5s0']['NET_DOWN']/1048576, 1)}M/s")
+      (submap)
+      (tangible-icon-button 
+        :icon icon-more
+        :tooltip "Dashboard"
+        :onclick "~/.config/hypr/bin/toggle-right-panel")
+    )))
+
+; Workspace
+(defwidget workspaces []
+  (box 
+    :class "workspaces"
+    :orientation "h"
+    :halign "start"
+    :space-evenly false
+    :spacing 0
+    (ws-button :class {hyprland.monitors.eDP-1[0]} :id 1 :icon icon-term)
+    (ws-button :class {hyprland.monitors.eDP-1[1]} :id 2 :icon icon-term)
+    (ws-button :class {hyprland.monitors.eDP-1[2]} :id 3 :icon icon-web)
+    (ws-button :class {hyprland.monitors.eDP-1[3]} :id 4 :icon icon-web)
+    (ws-button :class {hyprland.monitors.eDP-1[4]} :id 5 :icon icon-folder)
+    (ws-button :class {hyprland.monitors.eDP-1[5]} :id 6 :icon icon-media)
+    (ws-button :class {hyprland.monitors.eDP-1[6]} :id 7 :icon icon-design)
+    (ws-button :class {hyprland.monitors.eDP-1[7]} :id 8 :icon icon-game)
+    (ws-button :class {hyprland.monitors.eDP-1[8]} :id 9 :icon icon-virt)))
+
+; Workspace Button
+(defwidget ws-button [class id icon]
+  (button 
+    :class class 
+    :onclick "hyprctl dispatch workspace ${id}"
+    (centerbox 
+      :orientation "v"
+      (box 
+        :class "ws-ribbon"
+        :height 4)
+      (box 
+        :class "ws-main" 
+        (tangible-icon :icon icon))
+      (box :height 4)
+    )))
+
+; Apptitle
+(defwidget apptitle []
+  (box 
+    :class "apptitle"
+    :orientation "h"
+    :spacing 4
+    :space-evenly false
+    {hyprland.activeWindow}
+    (tangible-icon-button 
+      :icon icon-close
+      :tooltip "Close"
+      :visible {hyprland.activeWindow != ''}
+      :disable {hyprland.activeWindow == ''}
+      :onclick "sleep 0.1 && hyprctl dispatch killactive 0")))
+
+; Clock
+(defwidget clock []
+  (button 
+    :class "clock"
+    :tooltip "${time-info.dowFull}, ${time-info.date} ${time-info.monthFull} ${time-info.yearFull}"
+    (box 
+      :orientation "h"
+      :spacing 4
+      :space-evenly false
+      "${time-info.hour} : ${time-info.minute}")))
+
+; Submap indicator
+(defwidget submap []
+  (button 
+    :visible {hyprland.submap != ''}
+    :class "tangible-button submap"
+    :onclick "hyprctl dispatch submap reset"
+    :tooltip "Current submap. Press Shift-Esc to exit."
+    (label 
+      :style "font-weight: bold;"
+      :valign "center"
+      :halign "center"
+      :text {hyprland.submap})))
+    

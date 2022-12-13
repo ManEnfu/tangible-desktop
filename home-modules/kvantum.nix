@@ -35,7 +35,7 @@ in {
     qt = {
       platformTheme = "gtk";
       style = {
-        name = "kvantum";
+        name = "kvantum-dark";
       };
     };
 

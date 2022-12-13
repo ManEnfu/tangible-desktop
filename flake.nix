@@ -2,9 +2,11 @@
   inputs = {
     # nixpkgs
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.05";
+    hyprpaper.url = "github:hyprwm/hyprpaper";
+    hyprpicker.url = "github:hyprwm/hyprpicker";
   };
 
-  outputs = { self, nixpkgs }: let
+  outputs = { self, nixpkgs, ... }@inputs: let
     system = "x86_64-linux";
     pkgs = import nixpkgs { inherit system; };
     
@@ -19,9 +21,15 @@
         mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
       });
     };
+    overlay-hyprpaper = inputs.hyprpaper.overlays.default;
+    overlay-hyprpicker = inputs.hyprpicker.overlays.default;
   in {
     homeModule = { 
-      nixpkgs.overlays = [ overlay-tangible ];
+      nixpkgs.overlays = [ 
+        overlay-tangible 
+        overlay-hyprpaper
+        overlay-hyprpicker
+      ];
       imports = [ ./home-modules ]; 
     };
 

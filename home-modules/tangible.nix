@@ -40,9 +40,9 @@ in {
       lxqt.pcmanfm-qt
       dunst
       rofi-wayland
+      kitty
 
       # X11 Stuffs
-      alacritty
       tangible.picom-jonaburg
       feh
       redshift
@@ -54,18 +54,22 @@ in {
       gcolor3
       i3lock
       xcolor
+
+      # Hypr 
+      hyprpaper
+      hyprpicker
       
       # Wayland Stuffs
-      wofi
       tangible.waybar-hyprland-workspace-fix
-      wev
       wl-clipboard
+      eww-wayland
       libappindicator-gtk3
       swaybg
       socat
       grim
       slurp
-      eww-wayland
+      
+      wev
 
       (python310.withPackages (p: with p; [
         pulsectl
@@ -98,7 +102,7 @@ in {
       font = {
         package = pkgs.ubuntu_font_family;
         name = "Ubuntu";
-        size = 8;
+        size = 9;
       };
     };
 
@@ -128,6 +132,10 @@ in {
         source = getConfigDir "./alacritty";
         # recursive = true;
       };
+      ".config/kitty" = {
+        source = getConfigDir "./kitty";
+        # recursive = true;
+      };
       ".config/picom" = {
         source = getConfigDir "./picom";
         # recursive = true;
@@ -146,9 +154,6 @@ in {
       };
       ".config/hypr" = {
         source = getConfigDir "./hypr";
-      };
-      ".config/waybar" = {
-        source = getConfigDir "./waybar";
       };
       ".config/dunst" = {
         source = getConfigDir "./dunst";

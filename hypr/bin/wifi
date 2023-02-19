@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# status=$(nmcli)
+# Show wifi status
 
 nmcli device | awk '/ wifi / { print "\
 {                                       \n\

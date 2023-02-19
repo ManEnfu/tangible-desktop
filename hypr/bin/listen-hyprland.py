@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+# Listens to hyprland events and output its state in JSON format to be 
+# consumed by EWW widgets.
+
 import os
 import socket
 import json
@@ -189,6 +192,8 @@ class HyprlandEventSocket:
             elif etype == 'submap':
                 state.set_submap(data)
         print(json.dumps(state.to_json()), flush=True)
+
+# Configurations
 
 config = {
     'eDP-1': ['1', '2', '3', '4', '5', '6', '7', '8', '9']

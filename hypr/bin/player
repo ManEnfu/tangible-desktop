@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# Player control
+
 if [ $1 = "toggle" ]; then
     playerctl play-pause
 elif [ $1 = "next" ]; then

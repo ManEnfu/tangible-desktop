@@ -13,7 +13,6 @@
 (defvar icon-wifi-off "Ð")
 (defvar icon-wifi-on "Ñ")
 
-
 (defvar icon-term "æ")
 (defvar icon-web "ç")
 (defvar icon-folder "è")

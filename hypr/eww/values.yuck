@@ -1,12 +1,12 @@
-(defpoll datetime :interval "2s" "date '+%d %b %y | %H:%M'")
+; Shared values
+
+; Listen to pulse events
 (deflisten vol-info "~/.config/hypr/bin/run-single ~/.config/hypr/bin/listen-audio.py")
+; Listen to brightness events
 (deflisten bri-info "~/.config/hypr/bin/run-single ~/.config/hypr/bin/listen-brightness.py")
+; Listen to hyprland events
 (deflisten hyprland "~/.config/hypr/bin/run-single ~/.config/hypr/bin/listen-hyprland.py")
-(defvar time-info-format '{
-    "hour": %H
-    "minute": %M,
-    "second": %S
-  }')
+; Poll time information
 (defpoll time-info :interval "1s" `date '+{
     "hour": "%H",
     "minute": "%M",
@@ -20,7 +20,9 @@
     "year": "%y", 
     "yearFull": "%Y"
 }'`)
+; Poll notification history
 (defpoll notifications :interval "10s" "dunstctl history")
+; Poll wifi information
 (defpoll wifi-info :interval "2s" "~/.config/hypr/bin/wifi")
 
 (defvar percentage-color '{"color": [

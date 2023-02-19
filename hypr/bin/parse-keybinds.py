@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+# Parses hyprland.conf for keybindings and outputs in in a more
+# readable way
+
 import os
 import re
 

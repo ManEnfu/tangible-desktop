@@ -1,3 +1,6 @@
+; Common widgets
+
+; Generic button
 (defwidget tangible-button [?onclick ?tooltip ?disable ?visible]
   (button :class "tangible-button ${disable == true ? 'disabled' : ''}"
           :onclick onclick
@@ -5,6 +8,7 @@
           :visible visible
     (children)))
 
+; Button with icon
 (defwidget tangible-icon-button [?onclick icon ?tooltip ?disable ?scale ?visible]
   (tangible-button :disable disable
                    :onclick onclick
@@ -13,9 +17,8 @@
     (tangible-icon :icon icon 
       :scale scale)))
 
+; Indicator with icon
 (defwidget tangible-indicator-icon [icon value ?tooltip ?onclick]
-  ; (button :class "metric"
-  ;         :tooltip tooltip
   (tangible-button :tooltip tooltip
     :onclick onclick
     (box :spacing 4
@@ -24,9 +27,8 @@
       (tangible-icon :icon icon)
       value)))
 
+; Indicator with icon on both sides
 (defwidget tangible-indicator-icon2 [icon1 icon2 value ?tooltip ?onclick]
-  ; (button :class "metric"
-  ;         :tooltip tooltip
   (tangible-button :tooltip tooltip
     :onclick onclick
     (box :spacing 4
@@ -36,6 +38,7 @@
       value
       (tangible-icon :icon icon2))))
 
+; Icon
 (defwidget tangible-icon [icon ?scale]
   (label :class "tangible-icon"
          :valign "center"
@@ -43,6 +46,7 @@
          :style { scale == "" ? "" : "font-size: ${scale}em;" }
          :text icon))
 
+; Circular indicator
 (defwidget tangible-indicator-circular [icon value percentage critical ?tooltip]
   (tangible-button :tooltip tooltip
     (box :spacing 8
@@ -64,6 +68,7 @@
           :scale 3))
       value)))
 
+; Slider indicator
 (defwidget tangible-indicator-slider [icon value-display value min max critical ?tooltip ?onchange ?onclick]
     (box :spacing 8
          :orientation "h"
@@ -86,6 +91,7 @@
         :onchange onchange
         :orientation "h")))
 
+; Temperature bar indicator
 (defwidget tangible-temperature-bar [value ?tooltip]
   (tangible-button :tooltip tooltip
     (box :spacing 8
@@ -101,5 +107,6 @@
         :orientation "v")
       "${value}°C")))
 
+; Vertical separator
 (defwidget vertical-separator []
   (box :class "vertical-separator"))

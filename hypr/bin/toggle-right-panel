@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# Toggles right panel visibility 
+
 EWW="eww -c $HOME/.config/hypr/eww"
 ISOPEN=$($EWW windows | grep -e "\*right-panel")
 

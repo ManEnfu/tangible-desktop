@@ -1,3 +1,4 @@
+; Background overlay
 (defwindow bg-dashboard
   :monitor 0
   :stacking "bg"
@@ -20,6 +21,7 @@
     :space-evenly false
     (bg-clock)))
 
+; Background clock
 (defwidget bg-clock []
   (box 
     :class "bg-clock"

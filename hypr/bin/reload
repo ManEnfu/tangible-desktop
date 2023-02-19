@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# Reload hyprland and various services
+
 HYPR=~/.config/hypr/
 
 wallpaper_path=$(ls -1 $HYPR/wallpaper.* | head -n1)

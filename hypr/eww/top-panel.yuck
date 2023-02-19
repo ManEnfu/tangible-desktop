@@ -1,4 +1,4 @@
-; Top panel, with workspace, clock, an status.
+; Top panel, with workspace, clock, and status.
 (defwindow top-panel
   :monitor 0
   :windowtype "dock"
@@ -38,7 +38,7 @@
             :image-height 16)))
       (workspaces)
       (apptitle))
-    ; Center: Time
+    ; Center: Clock
     (box 
       :orientation "h"
       :halign "center"
@@ -109,7 +109,7 @@
     (ws-button :class {hyprland.monitors.eDP-1[7]} :id 8 :icon icon-game)
     (ws-button :class {hyprland.monitors.eDP-1[8]} :id 9 :icon icon-virt)))
 
-; Workspace Button
+; Workspace button
 (defwidget ws-button [class id icon]
   (button 
     :class class 
@@ -125,7 +125,7 @@
       (box :height 4)
     )))
 
-; Apptitle
+; Window title indicator
 (defwidget apptitle []
   (box 
     :class "apptitle"

@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+# Listens to brightness change events and output its state in JSON format to be 
+# consumed by EWW widgets.
+
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler, FileModifiedEvent
 import sys

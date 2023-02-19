@@ -1,11 +1,11 @@
 #!/bin/sh
 
+# Volume getter/setter
+
 sink=$(pactl get-default-sink)
 
 update_widget () {
     sleep 0.02
-    [ $XDG_SESSION_DESKTOP = "none+awesome" ] && awesome-client "awesome.emit_signal('signal::volume')"
-    [ $XDG_SESSION_DESKTOP = "none+dwm" ] && pkill -RTMIN+10 dwmblocks
     paplay ~/.config/scripts/sound_click_tick.wav
 }
 

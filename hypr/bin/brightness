@@ -1,9 +1,6 @@
 #!/bin/sh
 
-update_widget () {
-    sleep 0.02
-    [ $XDG_SESSION_DESKTOP = "none+awesome" ] && awesome-client "awesome.emit_signal('signal::brightness')"
-}
+# Brightness getter/setter
 
 if [ $1 = "get" ]; then
     brightnessctl i

@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# Takes a screenshot.
+
 if [ "$1" = "select" ]; then
     GEOM=$(slurp -b "#0000008f" -c "#dfdfdf" -d)
     if [ -z "$GEOM" ]; then

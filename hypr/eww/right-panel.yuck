@@ -1,3 +1,4 @@
+; Right side panel, with more status, calendar, and notification center.
 (defwindow right-panel
   :monitor 0
   :windowtype "overlay"
@@ -71,13 +72,13 @@
     (notification-list)
     (box :height 32)))
 
+; Clock with more information
 (defwidget large-clock []
   (button :class "large-clock"
     (box :orientation "h"
          :spacing 8
          :space-evenly false
          :halign "start"
-      ; time-info)))
       (label :style "font-size: 3em; font-weight: bold;"
              :valign "baseline"
              :text "${time-info['hour']}")
@@ -98,8 +99,8 @@
         (label :style "font-size: 1em;"
                :halign "start"
                :text "${time-info['date']} ${time-info['monthFull']} ${time-info['yearFull']}")))))
-      ; "${time-info['hour']}:${time-info['minute']}:${time-info['second']}")))
 
+; Notification center
 (defwidget notification-list []
   (box :class "notification-list"
        :orientation "v"
@@ -125,6 +126,7 @@
             :notification notification)
        )))))
 
+; Notification entry
 (defwidget notification-entry [notification]
   (button :class "notification-entry"
     (box :orientation "h"

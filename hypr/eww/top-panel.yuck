@@ -28,10 +28,14 @@
         :spacing 4
         :space-evenly false
         :style "padding: 4px 0;"
-        (tangible-icon-button 
-          :icon icon-search
+        (tangible-button 
+          ; :icon icon-search
           :tooltip "Applications"
-          :onclick "pkill -x -9 rofi || rofi -show drun -theme ~/.config/hypr/rofi-themes/launcher.rasi &"))
+          :onclick "pkill -x -9 rofi || rofi -show drun -theme ~/.config/hypr/rofi-themes/launcher.rasi &"
+          (image
+            :path "./icons/nix-snowflake.png"
+            :image-width 16
+            :image-height 16)))
       (workspaces)
       (apptitle))
     ; Center: Time
@@ -153,7 +157,7 @@
     :visible {hyprland.submap != ''}
     :class "tangible-button submap"
     :onclick "hyprctl dispatch submap reset"
-    :tooltip "Current submap. Press Shift-Esc to exit."
+    :tooltip "Current submap. Press Super-Esc to exit."
     (label 
       :style "font-weight: bold;"
       :valign "center"

@@ -6,14 +6,12 @@ if [ "$1" = "select" ]; then
         exit 1
     fi
 elif [ "$1" = "active-window" ]; then
-    # Each compositor have their own way to display window information
-    if [ "$XDG_CURRENT_DESKTOP" = "hyprland" ]; then
-        AT=$(hyprctl activewindow | grep "at: " | sed "s/at: //")
-        SIZE=$(hyprctl activewindow | grep "size: " | sed "s/size: //;s/,/x/")
-        GEOM="$AT $SIZE"
-    fi
+    AT=$(hyprctl activewindow | grep "at: " | sed "s/at: //")
+    SIZE=$(hyprctl activewindow | grep "size: " | sed "s/size: //;s/,/x/")
+    GEOM="$AT $SIZE"
 fi
 
+echo $GEOM
 NAME=$(date "+%Y-%m-%d_%H-%M-%S.png")
 if [ -n "$GEOM" ]; then
     grim -g "$GEOM" ~/Pictures/Screenshots/$NAME \

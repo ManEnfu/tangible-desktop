@@ -60,11 +60,10 @@
 }
 
 // .bottom-dock-trigger:hover {
-//   background-color: $accent3;
+//   background-color: $accent2;
 // }
 
 .bg-dashboard {
-  // background-color: $light2;
   background-color: transparent;
   color: $light2;
 }
@@ -82,43 +81,40 @@ tooltip.background {
 .workspaces button .ws-main {
   min-width: 24px;
   min-height: 24px;
-  background-color: $dark2;
+  background-image: linear-gradient(to bottom, $dark2, $dark2);
   border-radius: 12px;
-  // border-bottom-right-radius: 4px;
-  // border-bottom-left-radius: 4px;
   color: $light1;
   font-weight: normal;
-  transition-property: background-color, border-radius, color;
+  transition-property: background-image, border-radius, color;
   transition-duration: 0.4s
 }
 
 .workspaces button.occupied .ws-main {
   color: $light3;
-  background-color: $dark3;
+  background-image: linear-gradient(to bottom, $dark3, $dark3);
   border-radius: 4px;
 }
 
 .workspaces button.active .ws-main {
   color: $light3;
-  background-color: $accent1;
+  background-image: linear-gradient(to bottom, $accent2, $accent1);
   border-radius: 0px 0px 4px 4px;
-  // border-top-right-radius: 0px;
-  // border-top-left-radius: 0px;
 }
 
 .workspaces button:hover .ws-main {
   color: $light3;
+  background-image: linear-gradient(to bottom, $dark3, $dark2);
   border-radius: 0px 0px 4px 4px;
 }
 
 .workspaces button.occupied:hover .ws-main {
   color: $light3;
-  background-color: $dark4;
+  background-image: linear-gradient(to bottom, $dark4, $accent2);
 }
 
 .workspaces button.active:hover .ws-main {
   color: $light3;
-  background-color: $accent3;
+  background-image: linear-gradient(to bottom, $accent3, $accent2);
 }
 
 .workspaces button.close-left .ws-main {
@@ -134,7 +130,6 @@ tooltip.background {
 .workspaces button .ws-ribbon {
   min-height: 4px;
   margin: 0 0px;
-  background-color: $dark2;
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
   border-top: 0px solid transparent;
@@ -148,7 +143,7 @@ tooltip.background {
   background-color: $dark2;
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
-  box-shadow: 0 4px $accent2 inset;
+  box-shadow: 0 4px $accent3 inset;
 }
 
 .workspaces button.active .ws-ribbon {
@@ -156,7 +151,7 @@ tooltip.background {
   background-color: $accent1;
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
-  box-shadow: 0 4px $accent2 inset;
+  box-shadow: 0 4px $accent3 inset;
 }
 
 .workspaces button:hover .ws-ribbon {
@@ -176,14 +171,14 @@ tooltip.background {
 .large-clock {
   padding: 10px;
   border-radius: 32px;
-  background-color: $dark2;
-  transition-property: background-color, border-radius;
+  background-image: linear-gradient(to bottom, $dark2);
+  transition-property: background-image, border-radius;
   transition-duration: 0.4s
 }
 
 .large-clock:hover {
   border-radius: 4px;
-  background-color: $dark4;
+  background-image: linear-gradient(to bottom, $dark4, $accent1);
 }
 
 .notification-list {
@@ -195,13 +190,13 @@ tooltip.background {
 .notification-entry {
   padding: 10px;
   border-radius: 32px;
-  background-color: $dark3;
-  transition-property: background-color, border-radius;
+  background-image: linear-gradient(to bottom, $dark3, $dark3);
+  transition-property: background-image, border-radius;
   transition-duration: 0.4s;
 }
 
 .notification-entry:hover {
-  background-color: $dark4;
+  background-image: linear-gradient(to bottom, $dark4, $accent1);
   border-radius: 4px;
 }
 
@@ -209,27 +204,13 @@ tooltip.background {
   font-weight: bold;
 }
 
-.metric, .clock {
-  padding: 4px 4px;
-  min-height: 16px;
-  border-radius: 12px;
-  background-color: $dark2;
-  transition-property: background-color, border-radius;
-  transition-duration: 0.4s
-}
-
-.metric:hover, .clock:hover {
-  border-radius: 4px;
-  background-color: $dark4;
-}
-
 .tangible-button {
   padding: 4px 4px;
   min-width: 16px;
   min-height: 16px;
   border-radius: 12px;
-  background-color: $dark2;
-  transition-property: background-color, border-radius, color;
+  background-image: linear-gradient(to bottom, $dark2);
+  transition-property: background-image, border-radius, color;
   transition-duration: 0.4s
 }
 
@@ -239,11 +220,11 @@ tooltip.background {
 
 .tangible-button:hover {
   border-radius: 4px;
-  background-color: $dark4;
+  background-image: linear-gradient(to bottom, $dark4, $accent1);
 }
 
 .tangible-button.disabled:hover {
-  background-color: $dark2;
+  background-image: linear-gradient(to bottom, $dark2);
 }
 
 .tangible-icon {
@@ -253,7 +234,7 @@ tooltip.background {
 }
 
 .indicator-circular-normal {
-  color: $accent2;
+  color: $accent3;
   background-color: $dark1;
   transition-property: background-color, color;
   transition-duration: 0.4s;
@@ -279,7 +260,7 @@ button:hover .indicator-temperature trough {
 
 .indicator-temperature trough progress {
   all: unset;
-  background-color: $accent2;
+  background-color: $accent3;
   border-radius: 4px;
   min-width: 8px;
   transition-property: background-color;
@@ -296,7 +277,7 @@ button:hover .indicator-temperature trough {
 
 .indicator-slider trough highlight {
   all: unset;
-  background-color: $accent2;
+  background-color: $accent3;
   border-radius: 4px;
   transition-property: background-color;
   transition-duration: 0.4s;
@@ -312,10 +293,8 @@ button:hover .indicator-temperature trough {
 }
 
 .bg-clock {
-  // border-left: 8px solid $accent1;
   border-left: 8px solid $light3;
   padding: 8px 32px;
-  // color: $accent1;
   color: $light3;
   font-family: TangibleIcons;
 }
@@ -327,7 +306,7 @@ button:hover .indicator-temperature trough {
 }
 
 .submap:hover {
-  background-color: $accent3;
+  background-color: $accent2;
 }
 
 .header {

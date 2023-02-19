@@ -143,7 +143,7 @@
 ; Clock
 (defwidget clock []
   (button 
-    :class "clock"
+    :class "tangible-button clock"
     :tooltip "${time-info.dowFull}, ${time-info.date} ${time-info.monthFull} ${time-info.yearFull}"
     (box 
       :orientation "h"

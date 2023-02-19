@@ -91,16 +91,23 @@ passmenu () {
     fi
 }
 
-if [ $1 = "drun" ]; then
+keybinds () {
+    ~/.config/hypr/bin/parse-keybinds.py | \
+        rofi -dmenu -i -p "Æ" -theme "$theme_dir/keybinds.rasi"
+}
+
+if [ "$1" = "drun" ]; then
     drun $2
-elif [ $1 = "run" ]; then
+elif [ "$1" = "run" ]; then
     run $2
-elif [ $1 = "power" ]; then
+elif [ "$1" = "power" ]; then
     powermenu
-elif [ $1 = "pass" ]; then
+elif [ "$1" = "pass" ]; then
     passmenu
-elif [ $1 = "window" ]; then
+elif [ "$1" = "window" ]; then
     window
+elif [ "$1" = "keybinds" ]; then
+    keybinds
 else
     echo "a"
 fi

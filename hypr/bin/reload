@@ -1,0 +1,18 @@
+#!/bin/sh
+
+HYPR=~/.config/hypr/
+
+wallpaper_path=$(ls -1 $HYPR/wallpaper.* | head -n1)
+wallpaper_ext=$(echo $wallpaper_path | \
+    sed 's/.*wallpaper\.//')
+
+pkill -9 hyprpaper
+
+sed "s/wallpaper\\..*/wallpaper.${wallpaper_ext}/" \
+    -i $HYPR/{swaylock.conf,hyprpaper.conf}
+
+hyprctl reload
+hyprpaper &!
+sleep 0.5
+eww -c $HYPR/eww reload
+

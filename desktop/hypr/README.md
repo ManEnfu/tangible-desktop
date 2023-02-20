@@ -3,7 +3,7 @@
 A tiling Wayland compositor with eye candy stuffs. This is where I experiment stuffs.
 Extremely bleeding edge, use at your own risk.
 
-![Hyprland](../docs/screenshot-hyprland.png)
+![Hyprland](../../docs/screenshot-hyprland.png)
 
 ## Details
 | Software | Functionality | Link |
@@ -13,7 +13,6 @@ Extremely bleeding edge, use at your own risk.
 | `dunst` | Notification daemon | [Link](https://github.com/dunst-project/dunst) |
 | `eww` | Panel & widgets | [Link](https://github.com/elkowar/eww) |
 | `grim` | Screenshot, color picker | [Link](https://github.com/emersion/grim) |
-| `hyprpaper` | Wallpaper setter | [Link](https://github.com/hyprwm/hyprpaper) |
 | `hyprpicker` | Color picker | [Link](https://github.com/hyprwm/hyprpicker) |
 | `kitty` | Terminal emulator | [Link](https://github.com/kovidgoyal/kitty) |
 | `lxpolkit` | Policykit provider | [Link](https://wiki.lxde.org/en/LXSession) |
@@ -23,6 +22,7 @@ Extremely bleeding edge, use at your own risk.
 | `python3-watchdog` | Python library for event handling | [Link](https://github.com/gorakhargosh/watchdog) |
 | `rofi-wayland` | Menu & app launcher with Wayland support | [Link](https://github.com/lbonn/rofi) |
 | `slurp` | Screenshot, color picker | [Link](https://github.com/emersion/slurp) |
+| `swaybg` | Wallpaper setter | [Link](https://github.com/swaywm/swaybg) |
 | `swayidle` | Idle manager | [Link](https://github.com/swaywm/swayidle) |
 | `swaylock` | Screen locker | [Link](https://github.com/swaywm/swaylock) |
 | `waybar` | Panel & system tray | [Link](https://github.com/alexays/waybar) |

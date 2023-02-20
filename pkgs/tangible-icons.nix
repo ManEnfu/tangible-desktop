@@ -10,7 +10,6 @@ stdenvNoCC.mkDerivation {
 
   installPhase = ''
     local out_ttf=$out/share/fonts/truetype/tangible-icons
-    ls env-vars
     mkdir -p $out_ttf
     install -Dm444 $src $out_ttf/TangibleIcons.ttf 
   '';

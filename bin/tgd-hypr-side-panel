@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# Toggles right panel visibility 
+
+EWW="eww -c $HOME/.config/hypr/eww"
+ISOPEN=$($EWW windows | grep -e "\*right-panel")
+
+if [ -z "$ISOPEN" ]; then
+    $EWW open right-panel
+    # waybar -c ~/.config/hypr/waybar/config.jsonc -s ~/.config/hypr/waybar/style.css &!
+else
+    $EWW close right-panel
+    # pkill -9 waybar
+fi
+
+pkill -10 waybar || waybar -c ~/.config/hypr/waybar/config.jsonc -s ~/.config/hypr/waybar/style.css &!

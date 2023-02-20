@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# Runs a single script and ensure exactly one instance of the script
+# is run.
+
+# Clean previous instance of the process
+pkill -9 -f "$1"
+
+$1

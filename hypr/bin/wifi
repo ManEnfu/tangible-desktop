@@ -1,9 +1,0 @@
-#!/bin/sh
-
-# Show wifi status
-
-nmcli device | awk '/ wifi / { print "\
-{                                       \n\
-    \"status\": \"" $3 "\",             \n\
-    \"essid\": \"" $4 "\"               \n\
-}"}'

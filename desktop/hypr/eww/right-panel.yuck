@@ -108,6 +108,7 @@
     (scroll :hscroll true
       (box 
         :orientation "v"
+        :spacing 4
         :space-evenly false
         (box
           :class "subheader"

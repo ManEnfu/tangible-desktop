@@ -88,7 +88,7 @@
       (tangible-icon-button 
         :icon icon-more
         :tooltip "Dashboard"
-        :onclick "~/.config/hypr/bin/toggle-right-panel")
+        :onclick "tgd-hypr-side-panel")
     )))
 
 ; Workspace

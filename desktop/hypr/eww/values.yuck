@@ -1,11 +1,11 @@
 ; Shared values
 
 ; Listen to pulse events
-(deflisten vol-info "~/.config/hypr/bin/run-single ~/.config/hypr/bin/listen-audio.py")
+(deflisten vol-info "tgd-run-single tgd-listen-audio")
 ; Listen to brightness events
-(deflisten bri-info "~/.config/hypr/bin/run-single ~/.config/hypr/bin/listen-brightness.py")
+(deflisten bri-info "tgd-run-single tgd-listen-brightness")
 ; Listen to hyprland events
-(deflisten hyprland "~/.config/hypr/bin/run-single ~/.config/hypr/bin/listen-hyprland.py")
+(deflisten hyprland "tgd-run-single tgd-listen-hyprland")
 ; Poll time information
 (defpoll time-info :interval "1s" `date '+{
     "hour": "%H",
@@ -23,7 +23,7 @@
 ; Poll notification history
 (defpoll notifications :interval "10s" "dunstctl history")
 ; Poll wifi information
-(defpoll wifi-info :interval "2s" "~/.config/hypr/bin/wifi")
+(defpoll wifi-info :interval "2s" "tgd-wifi")
 
 (defvar percentage-color '{"color": [
     "#0DA9C8",

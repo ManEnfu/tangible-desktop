@@ -92,19 +92,19 @@ tooltip.background {
 .workspaces button.occupied .ws-main {
   color: $light3;
   background-image: linear-gradient(to bottom, $dark3, $dark3);
-  border-radius: 4px;
+  border-radius: 6px;
 }
 
 .workspaces button.active .ws-main {
   color: $light3;
   background-image: linear-gradient(to bottom, $accent2, $accent1);
-  border-radius: 0px 0px 4px 4px;
+  border-radius: 0px 0px 6px 6px;
 }
 
 .workspaces button:hover .ws-main {
   color: $light3;
   background-image: linear-gradient(to bottom, $dark3, $dark2);
-  border-radius: 0px 0px 4px 4px;
+  border-radius: 0px 0px 6px 6px;
 }
 
 .workspaces button.occupied:hover .ws-main {
@@ -130,8 +130,8 @@ tooltip.background {
 .workspaces button .ws-ribbon {
   min-height: 4px;
   margin: 0 0px;
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
   border-top: 0px solid transparent;
   box-shadow: 0 0px $light3 inset;
   transition-property: background-color, box-shadow, margin, border-radius;
@@ -141,8 +141,8 @@ tooltip.background {
 .workspaces button.occupied .ws-ribbon {
   margin: 0 8px;
   background-color: $dark2;
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
   box-shadow: 0 4px $accent3 inset;
 }
 
@@ -177,14 +177,15 @@ tooltip.background {
 }
 
 .large-clock:hover {
-  border-radius: 4px;
+  border-radius: 6px;
   background-image: linear-gradient(to bottom, $dark4, $accent1);
 }
 
 .notification-list {
-  border-radius: 4px;
+  border-radius: 6px;
   background-color: $dark3;
   min-height: 40px;
+  padding: 8px;
 }
 
 .notification-entry {
@@ -197,7 +198,7 @@ tooltip.background {
 
 .notification-entry:hover {
   background-image: linear-gradient(to bottom, $dark4, $accent1);
-  border-radius: 4px;
+  border-radius: 6px;
 }
 
 .clock {
@@ -219,7 +220,7 @@ tooltip.background {
 }
 
 .tangible-button:hover {
-  border-radius: 4px;
+  border-radius: 6px;
   background-image: linear-gradient(to bottom, $dark4, $accent1);
 }
 
@@ -247,7 +248,7 @@ button:hover .indicator-circular-normal {
 .indicator-temperature trough {
   all: unset;
   background-color: $dark1;
-  border-radius: 4px;
+  border-radius: 6px;
   min-width: 8px;
   min-height: 40px;
   transition-property: background-color;
@@ -261,7 +262,7 @@ button:hover .indicator-temperature trough {
 .indicator-temperature trough progress {
   all: unset;
   background-color: $accent3;
-  border-radius: 4px;
+  border-radius: 6px;
   min-width: 8px;
   transition-property: background-color;
   transition-duration: 0.4s;
@@ -270,7 +271,7 @@ button:hover .indicator-temperature trough {
 .indicator-slider trough {
   all: unset;
   background-color: $dark1;
-  border-radius: 4px;
+  border-radius: 6px;
   min-height: 8px;
   min-width: 40px;
 }
@@ -278,7 +279,7 @@ button:hover .indicator-temperature trough {
 .indicator-slider trough highlight {
   all: unset;
   background-color: $accent3;
-  border-radius: 4px;
+  border-radius: 6px;
   transition-property: background-color;
   transition-duration: 0.4s;
 }
@@ -301,12 +302,12 @@ button:hover .indicator-temperature trough {
 
 
 .submap {
-  background-color: $accent1;
-  border-radius: 4px;
+  background-image: linear-gradient(to bottom, $dark4, $accent1);
+  border-radius: 6px;
 }
 
 .submap:hover {
-  background-color: $accent2;
+  background-image: linear-gradient(to bottom, $accent1, $accent2);
 }
 
 .header {

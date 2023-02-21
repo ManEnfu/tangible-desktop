@@ -118,6 +118,6 @@ An extremely extensible X11 dynamic window manager, configured in Lua.
 
 | Keybind | Action |
 | :---    | :---   |
-| <kbd>Super + Shift + [</kbd>  | Play previous |
-| <kbd>Super + Shift + ]</kbd>  | Play next |
+| <kbd>Super + Ctrl + [</kbd>   | Lower brightness |
+| <kbd>Super + Ctrl + ]</kbd>   | Raise brightness |
 | <kbd>Super + '</kbd>          | Toggle blue light filter |

@@ -8,6 +8,7 @@ with lib;
 with builtins;
 let 
   cfg = config.desktop.tangible;
+  mkSymlink = config.lib.file.mkOutOfStoreSymlink;
 in {
   options.desktop.tangible.hyprland = {
     enable = mkEnableOption "Hyprland";
@@ -17,7 +18,7 @@ in {
     home.file = {
       ".config/hypr" = {
         source = if cfg.mutableConfig 
-          then config.lib.file.mkOutOfStoreSymlink "${cfg.mutableConfigDir}/desktop/hypr"
+          then mkSymlink "${cfg.mutableConfigDir}/desktop/hypr"
           else ../../desktop/hypr;
       };
     };

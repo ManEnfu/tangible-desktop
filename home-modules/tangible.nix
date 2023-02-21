@@ -29,7 +29,7 @@ in {
       type = types.str;
       description = "mutableConfigDir";
     };
-    awesome = mkEnableOption "awesome";
+    # awesome = mkEnableOption "awesome";
     qtile = mkEnableOption "qtile";
     qtile-wayland = mkEnableOption "qtile (wayland)";
   };
@@ -129,17 +129,18 @@ in {
     };
 
     home.file = {
-      ".config/awesome" = {
-        source = getConfigDir "./awesome";
-        # recursive = true;
-      };
+      # ".config/awesome" = {
+      #   source = getConfigDir "./awesome";
+      #   # recursive = true;
+      # };
       ".config/alacritty" = {
         source = getConfigDir "./alacritty";
         # recursive = true;
       };
       ".config/kitty" = {
-        source = getConfigDir "./kitty";
-        # recursive = true;
+        source = if cfg.mutableConfig 
+          then mkSymlink "${cfg.mutableConfigDir}/config/kitty"
+          else ../config/kitty;
       };
       ".config/picom" = {
         source = getConfigDir "./picom";
@@ -153,19 +154,19 @@ in {
         source = getConfigDir "./scripts";
         # recursive = true;
       };
-      ".config/qtile" = {
-        source = getConfigDir "./qtile";
-        # recursive = true;
-      };
+      # ".config/qtile" = {
+      #   source = getConfigDir "./qtile";
+      #   # recursive = true;
+      # };
       # ".config/hypr" = {
       #   source = ../desktop/hypr;
       # };
-      ".config/dunst" = {
-        source = getConfigDir "./dunst";
-      };
-      ".config/river" = {
-        source = getConfigDir "./river";
-      };
+      # ".config/dunst" = {
+      #   source = getConfigDir "./dunst";
+      # };
+      # ".config/river" = {
+      #   source = getConfigDir "./river";
+      # };
       ".config/libinput-gestures.conf" = {
         source = getConfigDir "./libinput-gestures.conf";
       };

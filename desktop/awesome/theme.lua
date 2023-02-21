@@ -12,7 +12,7 @@ local icon_dir = gears.filesystem.get_configuration_dir() .. "/icons/"
 
 local theme = {}
 
-theme.font          = "Ubuntu 8"
+theme.font          = "Ubuntu 9"
 
 theme.bg_normal     = "#101010"
 theme.bg_normal_bright     = "#202020"

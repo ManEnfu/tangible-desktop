@@ -5,7 +5,7 @@
 
 stdenv.mkDerivation rec {
   name = "tangible-desktop-scripts";
-  src = ../bin;
+  src = ../scripts;
 
   buildInputs = [
     (python310.withPackages (p: with p; [

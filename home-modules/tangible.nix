@@ -8,7 +8,6 @@ with lib;
 with builtins;
 let
   cfg = config.desktop.tangible;
-  configDir = "/etc/nixos/tangible-desktop";
   mkSymlink = config.lib.file.mkOutOfStoreSymlink;
   getConfigDir = if cfg.mutableConfig
     then path: config.lib.file.mkOutOfStoreSymlink "${cfg.mutableConfigDir}/${path}" 
@@ -18,20 +17,17 @@ in {
     enable = mkOption {
       type = types.bool;
       default = false;
-      description = "Enable";
+      description = "Enable Tangible desktop configurations";
     };
     mutableConfig = mkOption {
       type = types.bool;
       default = false;
-      description = "mutableConfig";
+      description = "Make installed config files mutable ";
     };
     mutableConfigDir = mkOption {
       type = types.str;
-      description = "mutableConfigDir";
+      description = "Location of a local copy of this repositor";
     };
-    # awesome = mkEnableOption "awesome";
-    qtile = mkEnableOption "qtile";
-    qtile-wayland = mkEnableOption "qtile (wayland)";
   };
 
   config = mkIf (cfg.enable) {
@@ -133,10 +129,10 @@ in {
       #   source = getConfigDir "./awesome";
       #   # recursive = true;
       # };
-      ".config/alacritty" = {
-        source = getConfigDir "./alacritty";
-        # recursive = true;
-      };
+      # ".config/alacritty" = {
+      #   source = getConfigDir "./alacritty";
+      #   # recursive = true;
+      # };
       ".config/kitty" = {
         source = if cfg.mutableConfig 
           then mkSymlink "${cfg.mutableConfigDir}/config/kitty"

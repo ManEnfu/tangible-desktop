@@ -1,0 +1,74 @@
+#!/bin/sh
+
+# River Configurations
+
+
+# Keybindings
+
+# General
+
+riverctl map normal Super+Shift Q exit
+
+# Launcher
+
+riverctl map normal Super       Return  spawn   "alacritty"
+riverctl map normal Super       P       spawn   "~/.config/scripts/run-menu drun"
+riverctl map normal Super       R       spawn   "~/.config/scripts/run-menu run"
+riverctl map normal Super+Shift P       spawn   "~/.config/scripts/run-menu power"
+riverctl map normal Super       A       spawn   "pcmanfm-qt"
+
+# Window
+
+riverctl map normal Super+Shift C close
+riverctl map normal Super       J focus-view next
+riverctl map normal Super       K focus-view previous
+riverctl map normal Super+Shift J focus-view next
+riverctl map normal Super+Shift K focus-view previous
+riverctl map normal Super+Shift Return  zoom
+riverctl map normal Super       H send-layout-cmd rivertile "main-ratio -0.05"
+riverctl map normal Super       L send-layout-cmd rivertile "main-ratio +0.05"
+riverctl map normal Super+Shift H send-layout-cmd rivertile "main-count +1"
+riverctl map normal Super+Shift L send-layout-cmd rivertile "main-count -1"
+
+for i in $(seq 1 9); do
+    tags=$((1 << ($i - 1)))
+    riverctl map normal Super $i set-focused-tags $tags
+    riverctl map normal Super+Shift $i set-view-tags $tags
+done
+
+riverctl map normal None        Print spawn "~/.config/scripts/screenshot-wl"
+riverctl map normal Shift       Print spawn "~/.config/scripts/screenshot-wl select"
+
+
+# Tag
+
+
+
+# Screenshot
+
+
+
+# Vols
+
+
+
+# Brightness
+
+# Touchpad
+
+touchpad="1739:0:Synaptics_TM2691-001"
+riverctl input $touchpad natural-scroll enabled
+riverctl input $touchpad middle-emulation enabled
+riverctl input $touchpad tap enabled
+riverctl input $touchpad tap-button-map left-right-middle
+riverctl input $touchpad scroll-method two-finger
+
+# riverctl input nam
+
+riverctl csd-filter-remove app-id ".*"
+
+
+dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+
+riverctl default-layout rivertile
+rivertile -view-padding 2 -outer-padding 4 &

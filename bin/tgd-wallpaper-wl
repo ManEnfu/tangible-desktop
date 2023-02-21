@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# Set wallpaper if ~/.config/wallpaper exists
+test -f ~/.config/wallpaper && swaybg -m fill -i ~/.config/wallpaper

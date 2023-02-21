@@ -4,17 +4,36 @@
 
 HYPR=~/.config/hypr/
 
-wallpaper_path=$(ls -1 $HYPR/wallpaper.* | head -n1)
-wallpaper_ext=$(echo $wallpaper_path | \
-    sed 's/.*wallpaper\.//')
+reload_init() {
+    tgd-wallpaper-wl &!
+    eww -c $HYPR/eww daemon
+    eww -c $HYPR/eww open top-panel
+    eww -c $HYPR/eww open bg-dashboard
+}
 
-pkill -9 hyprpaper
+reload_default() {
+    # pkill -f tgd-wallpaper-wl
+    pkill swaybg
+    
+    hyprctl reload
 
-sed "s/wallpaper\\..*/wallpaper.${wallpaper_ext}/" \
-    -i $HYPR/{swaylock.conf,hyprpaper.conf}
+    tgd-wallpaper-wl &!
+    sleep 0.5
+    eww -c $HYPR/eww reload
+}
 
-hyprctl reload
-hyprpaper &!
-sleep 0.5
-eww -c $HYPR/eww reload
+reload_all() {
+    pkill -9 waybar
+    pkill eww
+    # pkill -f tgd-wallpaper-wl
+    pkill swaybg
 
+    hyprctl reload
+
+    tgd-wallpaper-wl &!
+    eww -c $HYPR/eww daemon
+    eww -c $HYPR/eww open top-panel
+    eww -c $HYPR/eww open bg-dashboard
+}
+
+reload_default

@@ -4,6 +4,8 @@
 # is run.
 
 # Clean previous instance of the process
-pkill -9 -f "$1"
+pkill -9 -f "python3 .*$1"
+pkill -9 "$1"
 
+echo $1
 $1

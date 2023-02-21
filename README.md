@@ -11,7 +11,7 @@ Desktop configuration for various window managers.
 ## Requirements
 
 ### General 
-- `alacritty`: terminal emulator
+- `kitty`: terminal emulator
 - `rofi`: run launcher
 - `gcolor3`: color chooser & picker
 - `pactl`: volume control
@@ -137,4 +137,3 @@ Desktop configuration for various window managers.
 | :---    | :---   |
 | Three finger swipe left   | Next workspace/tag |
 | Three finger swipe right  | Previous workspace/tag |
-| Three finger swipe up     | Application launcher |

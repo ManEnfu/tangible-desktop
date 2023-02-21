@@ -16,6 +16,8 @@ Extremely bleeding edge, use at your own risk.
 | `hyprpicker` | Color picker | [Link](https://github.com/hyprwm/hyprpicker) |
 | `kitty` | Terminal emulator | [Link](https://github.com/kovidgoyal/kitty) |
 | `lxpolkit` | Policykit provider | [Link](https://wiki.lxde.org/en/LXSession) |
+| `libnotify` | Send notifications | [Link](https://gitlab.gnome.org/GNOME/libnotify) |
+| `networkmanagerapplet` | Applet for NetworkManager | [Link](https://gitlab.gnome.org/GNOME/network-manager-applet/) |
 | `pactl` | Audio Control (Part of PulseAudio) | [Link](http://www.pulseaudio.org/) | 
 | `python3` | Interpreter for several scripts | [Link](https://www.python.org/) |
 | `python3-pulsectl` | Python library for audio control | [Link](https://pypi.python.org/pypi/pulsectl/) |
@@ -27,3 +29,6 @@ Extremely bleeding edge, use at your own risk.
 | `swaylock` | Screen locker | [Link](https://github.com/swaywm/swaylock) |
 | `waybar` | Panel & system tray | [Link](https://github.com/alexays/waybar) |
 | `wl-clipboard` | Clipboard | [Link](https://github.com/bugaevc/wl-clipboard) |
+| `pipewire` | Multimedia pipeline | [Link](https://pipewire.org/) | 
+| `wireplumber` | Policy manager for Pipewire | [Link](https://pipewire.org/) | 
+| `xdg-desktop-portal-wlr` | xdg-desktop-portal backend | [Link](https://github.com/emersion/xdg-desktop-portal-wlr) |

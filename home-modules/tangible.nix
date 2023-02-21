@@ -1,4 +1,9 @@
-{ pkgs, config, lib, ... }:
+{ pkgs
+, config
+, lib
+, ... 
+}:
+
 with lib;
 with builtins;
 let
@@ -27,7 +32,6 @@ in {
     awesome = mkEnableOption "awesome";
     qtile = mkEnableOption "qtile";
     qtile-wayland = mkEnableOption "qtile (wayland)";
-    hyprland = mkEnableOption "hyprland";
   };
 
   config = mkIf (cfg.enable) {
@@ -78,6 +82,7 @@ in {
       jq
 
       tangible-icons
+      tangible-desktop-scripts
 
       (nerdfonts.override { fonts = [ "Ubuntu" "JetBrainsMono" "FiraCode" ]; })
     ];
@@ -152,9 +157,9 @@ in {
         source = getConfigDir "./qtile";
         # recursive = true;
       };
-      ".config/hypr" = {
-        source = getConfigDir "./hypr";
-      };
+      # ".config/hypr" = {
+      #   source = ../desktop/hypr;
+      # };
       ".config/dunst" = {
         source = getConfigDir "./dunst";
       };

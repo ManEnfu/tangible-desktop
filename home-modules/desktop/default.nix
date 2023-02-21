@@ -1,7 +1,5 @@
 { pkgs, config, lib, ... }: {
   imports = [
-    ./desktop
-    ./kvantum.nix
-    ./tangible.nix
+    ./hyprland.nix
   ];
 }

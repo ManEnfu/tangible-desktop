@@ -31,7 +31,7 @@
         (tangible-button 
           ; :icon icon-search
           :tooltip "Applications"
-          :onclick "pkill -x -9 rofi || rofi -show drun -theme ~/.config/hypr/rofi-themes/launcher.rasi &"
+          :onclick "pkill -x -9 rofi || (cd ~ && rofi -show drun -theme ~/.config/hypr/rofi-themes/launcher.rasi &)"
           (image
             :path "./icons/nix-snowflake.png"
             :image-width 16

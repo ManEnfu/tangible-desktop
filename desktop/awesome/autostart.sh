@@ -7,7 +7,6 @@ function run {
 }
 
 run ~/.fehbg
-run picom --experimental-backend
+run picom --experimental-backend --config ~/.config/awesome/picom.conf
 run nm-applet --indicator
 run lxpolkit
-run libinput-gestures

@@ -2,7 +2,7 @@
 
 An extremely extensible X11 dynamic window manager, configured in Lua.
 
-![Awesome](../docs/screenshot-awesome.png)
+![Awesome](../../docs/screenshot-awesome.png)
 
 ## Details
 | Software | Functionality | Link |

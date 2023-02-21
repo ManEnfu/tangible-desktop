@@ -141,7 +141,7 @@ else
     mymainmenu = awful.menu({ 
         items = { 
             { "Awesome", myawesomemenu, beautiful.awesome_icon },
-            { "Applications", "bash -c 'sleep 0.05 && ~/.config/rofi/rofi-drun.sh'" },
+            { "Applications", "bash -c 'sleep 0.05 && tgd-awesome-menu drun'" },
             { "Open Terminal", terminal },
             { "Suspend","i3lock -c 242424 && sleep 0.5 && suspend" },
             { "Reboot", "reboot" },
@@ -172,7 +172,7 @@ myvolume = widgets.volume {
     play = config_dir .. "/sound_click_tick.wav"
 }
 mybattery = widgets.battery { timeout = 3 }
-myschedule = widgets.schedule { timeout = 60 }
+-- myschedule = widgets.schedule { timeout = 60 }
 mydisk = widgets.disk { timeout = 120 }
 -- mynightmode = widgets.nightmode {}
 mylight = widgets.light {}

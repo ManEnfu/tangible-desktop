@@ -88,6 +88,7 @@ element-icon {
     text-color:       inherit;
 }
 window {
+    font: "Ubuntu 8";
     /* padding:          25% 35%; */
     width: 40%;
     background-color: var(window-background);

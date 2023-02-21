@@ -138,18 +138,18 @@ in {
           then mkSymlink "${cfg.mutableConfigDir}/config/kitty"
           else ../config/kitty;
       };
-      ".config/picom" = {
-        source = getConfigDir "./picom";
-        # recursive = true;
-      };
-      ".config/rofi" = {
-        source = getConfigDir "./rofi";
-        # recursive = true;
-      };
-      ".config/scripts" = {
-        source = getConfigDir "./scripts";
-        # recursive = true;
-      };
+      # ".config/picom" = {
+      #   source = getConfigDir "./picom";
+      #   # recursive = true;
+      # };
+      # ".config/rofi" = {
+      #   source = getConfigDir "./rofi";
+      #   # recursive = true;
+      # };
+      # ".config/scripts" = {
+      #   source = getConfigDir "./scripts";
+      #   # recursive = true;
+      # };
       # ".config/qtile" = {
       #   source = getConfigDir "./qtile";
       #   # recursive = true;
@@ -163,9 +163,9 @@ in {
       # ".config/river" = {
       #   source = getConfigDir "./river";
       # };
-      ".config/libinput-gestures.conf" = {
-        source = getConfigDir "./libinput-gestures.conf";
-      };
+      # ".config/libinput-gestures.conf" = {
+      #   source = getConfigDir "./libinput-gestures.conf";
+      # };
     };
   };
 }

@@ -37,7 +37,7 @@ listview {
 inputbar {
   margin: 8px 40px;
   background-color: #202020;
-  border-radius: 4px;
+  border-radius: 6px;
   border: 0 0 2px 0;
   border-color: @primary1;
   children: [ prompt,entry,num-filtered-rows,textbox-num-sep,num-rows,case-indicator ];
@@ -94,7 +94,7 @@ element {
   padding: 4px 4px;
   spacing: 8px;
   border: 0;
-  border-radius: 4px;
+  border-radius: 6px;
 }
 
 element normal.normal,

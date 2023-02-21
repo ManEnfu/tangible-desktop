@@ -39,7 +39,7 @@ listview {
 
 element {
   enabled: true;
-  border-radius: 4px;
+  border-radius: 6px;
   spacing: 0px;
   margin: 0px;
   padding: 30px;

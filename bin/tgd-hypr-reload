@@ -4,20 +4,27 @@
 
 HYPR=~/.config/hypr/
 
+wallpaper() {
+    if [ -f ~/.config/wallpaper-hyprland ]; then
+        swaybg -m fill -i ~/.config/wallpaper-hyprland &!
+    elif [ -f ~/.config/wallpaper ]; then
+        swaybg -m fill -i ~/.config/wallpaper &!
+    fi
+}
+
 reload_init() {
-    tgd-wallpaper-wl &!
+    wallpaper
     eww -c $HYPR/eww daemon
     eww -c $HYPR/eww open top-panel
     eww -c $HYPR/eww open bg-dashboard
 }
 
 reload_default() {
-    # pkill -f tgd-wallpaper-wl
     pkill swaybg
     
     hyprctl reload
 
-    tgd-wallpaper-wl &!
+    wallpaper
     sleep 0.5
     eww -c $HYPR/eww reload
 }
@@ -25,15 +32,20 @@ reload_default() {
 reload_all() {
     pkill -9 waybar
     pkill eww
-    # pkill -f tgd-wallpaper-wl
     pkill swaybg
 
     hyprctl reload
 
-    tgd-wallpaper-wl &!
+    wallpaper
     eww -c $HYPR/eww daemon
     eww -c $HYPR/eww open top-panel
     eww -c $HYPR/eww open bg-dashboard
 }
 
-reload_default
+if [ "$1" = "all" ]; then
+    reload_all
+elif [ "$1" = "init" ]; then
+    reload_init
+else
+    reload_default
+fi

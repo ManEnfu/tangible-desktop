@@ -75,7 +75,7 @@ local function worker(args)
         end
     end
 
-    awful.widget.watch("sh -c '~/.config/scripts/vol get'", timeout, 
+    awful.widget.watch("tgd-vol get", timeout, 
     function(widget, stdout)
         update_widget(widget, stdout)
     end, volume_widget)
@@ -86,7 +86,7 @@ local function worker(args)
     ---------------------------------------------------------------------------
     volume_widget:buttons(gears.table.join(
         awful.button({}, 1, function()
-            local f = io.popen("sh -c '~/.config/scripts/vol get'")
+            local f = io.popen("tgd-vol get")
             local str = ""
             for line in f:lines() do
                 str = str .. "\n" .. line
@@ -101,7 +101,7 @@ local function worker(args)
 
     volume_widget.force_update = function(self)
         awful.spawn.easy_async_with_shell(
-            "~/.config/scripts/vol get", 
+            "tgd-vol get", 
             function(stdout, stderr, exr, exc)
                 update_widget(volume_widget, stdout)
             end

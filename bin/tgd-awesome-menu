@@ -1,0 +1,65 @@
+#!/bin/sh
+
+shopt -s nullglob globstar
+set -e
+
+config_dir="$HOME/.config/awesome"
+theme_dir="$HOME/.config/awesome/rofi-themes"
+
+# Application menu
+drun () {
+    rofi -show drun -theme "$theme_dir/launcher.rasi"
+}
+
+# Run menu
+run () {
+    rofi -show run -theme "$theme_dir/run.rasi"
+}
+
+
+# Logout / Power menu
+powermenu () {
+    up_time=$(uptime)
+    username=$(id -un)
+
+    option_sleep=""
+    option_reboot=""
+    option_poweroff=""
+    option_lock=""
+    option_logout=""
+
+    declare -a options=(
+        $option_sleep
+        $option_reboot
+        $option_poweroff
+        $option_lock
+        $option_logout
+    )
+
+    choice=$(\
+        printf '%s\n' "${options[@]}" | \
+        rofi -dmenu -i -p "$up_time" -theme "$theme_dir/power.rasi")
+
+    if [[ $choice == $option_sleep ]]; then
+        i3lock -c 101010 && sleep 0.5 && suspend
+    elif [[ $choice == $option_reboot ]]; then
+        systemctl reboot
+    elif [[ $choice == $option_poweroff ]]; then
+        systemctl poweroff
+    elif [[ $choice == $option_lock ]]; then
+        i3lock -c 101010
+    elif [[ $choice == $option_logout ]]; then
+        loginctl kill-user $username
+    fi
+}
+
+if [ $1 = "drun" ]; then
+    drun $2
+elif [ $1 = "run" ]; then
+    run $2
+elif [ $1 = "power" ]; then
+    powermenu
+else
+    echo "a"
+fi
+

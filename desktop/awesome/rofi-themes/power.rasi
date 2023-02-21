@@ -1,0 +1,121 @@
+
+configuration {
+    drun-display-format: "{name}";
+    show-icons: false;
+}
+
+* {
+    selfg:                     #ffffff;
+    selbg:                     #303030;
+    selbg2:                     #cd823d;
+    bg:                  #101010;
+    window-bg:   #080808;
+    fg:                  #dfdfdf;
+    urgent: #ff0000;
+    active: #0000ff;
+}
+
+window {
+    border-radius: 4px;
+    background-color: @window-bg;
+    padding: 2px 2px;
+    width: 392px;
+}
+
+element {
+    padding: 12px 12px ;
+    spacing: 8px ;
+    border:  0;
+    border-radius: 4px;
+}
+
+element normal.normal, element alternate.normal {
+    background-color: @bg;
+    text-color: @fg;
+}
+
+element normal.urgent, element alternate.urgent {
+    background-color: @urgent;
+    text-color: @fg;
+}
+
+element normal.active, element alternate.active {
+    background-color: @active;
+    text-color: @fg;
+}
+
+element selected.normal {
+    background-color: @selbg;
+    text-color: @selfg;
+}
+
+element selected.urgent {
+    background-color: @selbg;
+    text-color: @selfg;
+}
+
+element selected.active {
+    background-color: @selbg;
+    text-color: @selfg;
+}
+
+element-text {
+    font: "Ubuntu Nerd Font 20";
+    background-color: rgba ( 0, 0, 0, 0 % );
+    highsel:        inherit;
+    text-color:       inherit;
+    padding:          8px 12px 8px 12px;
+}
+
+element-icon {
+    background-color: rgba ( 0, 0, 0, 0 % );
+    size:             1.6000em ;
+    text-color:       inherit;
+}
+
+mainbox {
+    border-radius: 4px;
+    background-color: @bg;
+    padding: 4px;
+    border:  0;
+    max-height: 10px;
+    spacing: 4px;
+    children: [inputbar, listview];
+}
+
+
+listview {
+    padding:      0px;
+    scrollbar:    false;
+    spacing:      2px ;
+    fixed-height: 0;
+    border:       0px 0px 0px 0px ;
+    background-color: @bg;
+    layout: horizontal;
+    expand: false;
+}
+
+
+inputbar {
+    padding:    12px;
+    background-color: #202020; 
+    text-color: @fg;
+    spacing:    0px;
+    border-radius: 4px;
+    children:   [textbox-prompt-colon, prompt];
+}
+
+prompt {
+    spacing:    0;
+    background-color: inherit;
+    text-color: inherit;
+}
+
+textbox-prompt-colon {
+    font: "Ubuntu Nerd Font 8";
+    margin:     0px 0.3000em 0.0000em 0.0000em ;
+    expand:     false;
+    str:        " ";
+    background-color: inherit;
+    text-color: inherit;
+}

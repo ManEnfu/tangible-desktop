@@ -70,14 +70,14 @@ local function worker(args)
         end
     end
 
-    awful.widget.watch("sh -c '~/.config/scripts/brightness get'", timeout,
+    awful.widget.watch("tgd-brightness get", timeout,
     function(widget, stdout)
         update_brightness(widget, stdout)
     end, light_widget)
 
     light_widget.force_update_brightness = function(self)
         awful.spawn.easy_async_with_shell(
-            "~/.config/scripts/brightness get",
+            "tgd-brightness get",
             function(stdout, stderr, exr, exc)
                 update_brightness(self, stdout)
             end

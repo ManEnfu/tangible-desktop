@@ -1,0 +1,142 @@
+configuration {
+    drun-display-format: "{name}";
+    show-icons: true;
+}
+
+* {
+    selfg:                     #ffffff;
+    selbg:                     #303030;
+    selbg2:                     #cd823d;
+    bg:                  #101010;
+    window-bg:   #080808;
+    fg:                  #dfdfdf;
+    urgent: #ff0000;
+    active: #0000ff;
+    background-color: rgba(0, 0, 0, 0%);
+}
+
+window {
+    border-radius: 4px;
+    background-color: @window-bg;
+    padding: 2px 2px;
+    border-radius: 4px;
+    width: 40%;
+}
+
+element {
+    padding: 12px 12px ;
+    spacing: 8px ;
+    border:  0;
+    orientation: vertical;
+    border-radius: 4px;
+}
+
+element normal.normal, element alternate.normal {
+    background-color: @bg;
+    text-color: @fg;
+}
+
+element normal.urgent, element alternate.urgent {
+    background-color: @urgent;
+    text-color: @fg;
+}
+
+element normal.active, element alternate.active {
+    background-color: @active;
+    text-color: @fg;
+}
+
+element selected.normal {
+    background-color: @selbg;
+    text-color: @selfg;
+}
+
+element selected.urgent {
+    background-color: @selbg;
+    text-color: @selfg;
+}
+
+element selected.active {
+    background-color: @selbg;
+}
+
+element-text {
+    background-color: rgba ( 0, 0, 0, 0 % );
+    highlight:        inherit;
+    text-color:       inherit;
+    padding:          8px;
+    horizontal-align: 0.5;
+}
+
+element-icon {
+    background-color: rgba ( 0, 0, 0, 0 % );
+    size:             4.8000em ;
+    text-color:       inherit;
+    horizontal-align: 0.5;
+}
+
+mainbox {
+    border-radius: 4px;
+    background-color: @bg;
+    padding: 4px;
+    border:  0;
+    max-height: 10px;
+    spacing: 4px;
+}
+
+
+listview {
+    padding:      0px;
+    scrollbar:    false;
+    spacing:      2px ;
+    fixed-height: 0;
+    border:       0px 0px 0px 0px ;
+    background-color: @bg;
+    fixed-columns: true;
+    columns: 4;
+    lines: 3; 
+}
+
+
+num-filtered-rows {
+    expand:     false;
+    text-color: rgba ( 128, 128, 128, 100 % );
+}
+num-rows {
+    expand:     false;
+    text-color: rgba ( 128, 128, 128, 100 % );
+}
+textbox-num-sep {
+    expand:     false;
+    str:        "/";
+    text-color: rgba ( 128, 128, 128, 100 % );
+}
+inputbar {
+    padding:    12px ;
+    background-color: #202020; 
+    border-radius: 4px;
+    spacing:    0px ;
+    text-color: @fg;
+    children:   [ prompt,textbox-prompt-colon,entry,num-filtered-rows,textbox-num-sep,num-rows,case-indicator ];
+}
+case-indicator {
+    spacing:    0;
+    text-color: @fg;
+}
+entry {
+    text-color:        @fg;
+    spacing:           10;
+    placeholder-color: rgba ( 128, 128, 128, 100 % );
+    placeholder:       "";
+}
+prompt {
+    font: "Ubuntu Nerd Font 8";
+    spacing:    0;
+    text-color: @fg;
+}
+textbox-prompt-colon {
+    margin:     0px 0.3000em 0.0000em 0.0000em ;
+    expand:     false;
+    str:        " ";
+    text-color: inherit;
+}

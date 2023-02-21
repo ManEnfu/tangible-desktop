@@ -36,8 +36,6 @@ local vol_mute = "XF86AudioMute"
 local br_up = "XF86MonBrightnessUp"
 local br_down = "XF86MonBrightnessDown"
 
-local scripts = "~/.config/scripts/"
-
 -------------------------------------------------------------------------------
 -- GENERAL
 -------------------------------------------------------------------------------
@@ -60,15 +58,15 @@ globalkeys = key_group ("general", {
 
 globalkeys = gears.table.join(globalkeys, key_group ("launcher", {
     { M,  "Return", terminal, "open terminal" },
-    { M,  "p",      "~/.config/scripts/run-menu drun", "show app launcher" },
-    { MS, "p",      "~/.config/scripts/run-menu power", "show logout menu" },
-    { MC, "p",      "~/.config/scripts/run-menu pass", "show password manager menu" },
-    { M,  "r",      "~/.config/scripts/run-menu run", "show run prompt" },
-    { M,  "o",      "~/.config/scripts/run-menu drun", "show window selector" },
-    { MS, "o",      "~/.config/scripts/run-menu drun", "show file explorer" },
-    { MS, "i",      "~/.config/scripts/run-menu ambient", "show ambient sound selector" },
+    { M,  "p",      "tgd-awesome-menu drun", "show app launcher" },
+    { MS, "p",      "tgd-awesome-menu power", "show logout menu" },
+    -- { MC, "p",      "tgd-awesome-menu pass", "show password manager menu" },
+    { M,  "r",      "tgd-awesome-menu run", "show run prompt" },
+    { M,  "o",      "tgd-awesome-menu drun", "show window selector" },
+    { MS, "o",      "tgd-awesome-menu drun", "show file explorer" },
+    -- { MS, "i",      "tgd-awesome-menu ambient", "show ambient sound selector" },
     { M,  "a",      "pcmanfm-qt", "open file manager" },
-    { M,  "c",      scripts .. "pick-color.sh", "show color picker" },
+    { M,  "c",      "tgd-pick-color-x", "show color picker" },
 }))
 
 -------------------------------------------------------------------------------
@@ -234,24 +232,35 @@ end
 -------------------------------------------------------------------------------
 
 globalkeys = gears.table.join(globalkeys, key_group ("screenshot", {
-    { {}, "Print", scripts .. "screenshot.sh", "take screenshot"},
-    { S,  "Print", scripts .. "screenshot-select.sh", "take screenshot"},
+    { {}, "Print", "tgd-screenshot-x", "take screenshot"},
+    { S,  "Print", "tgd-screenshot-x select", "take screenshot"},
 }))
 
 -------------------------------------------------------------------------------
 -- VOLUME AND MEDIA
 -------------------------------------------------------------------------------
 
+local function vol(command) 
+    return function()
+        awful.spawn.easy_async_with_shell(
+            "tgd-vol " .. command,
+            function (stdout, stderr, exr, exc)
+                awesome.emit_signal("signal::volume")
+            end
+        )
+    end
+end
+
 globalkeys = gears.table.join(globalkeys, key_group ("volume and media", {
-    { {}, vol_down, scripts .. "vol lower",  "lower volume"},
-    { {}, vol_up,   scripts .. "vol raise",  "raise volume"},
-    { {}, vol_mute, scripts .. "vol toggle", "toggle volume"},
-    { M,  "[",      scripts .. "vol lower",  "lower volume"},
-    { M,  "]",      scripts .. "vol raise",  "raise volume"},
-    { M,  "\\",     scripts .. "vol toggle", "toggle volume"},
-    { MS, "[",      scripts .. "player prev",  "play previous"},
-    { MS, "]",      scripts .. "player next",  "play next"},
-    { MS, "\\",     scripts .. "player toggle", "(un)pause"},
+    { {}, vol_down, vol("lower"),  "lower volume"},
+    { {}, vol_up,   vol("raise"),  "raise volume"},
+    { {}, vol_mute, vol("toggle"), "toggle volume"},
+    { M,  "[",      vol("lower"),  "lower volume"},
+    { M,  "]",      vol("raise"),  "raise volume"},
+    { M,  "\\",     vol("toggle"), "toggle volume"},
+    { MS, "[",      "tgd-player prev",  "play previous"},
+    { MS, "]",      "tgd-player next",  "play next"},
+    { MS, "\\",     "tgd-player toggle", "(un)pause"},
 }))
 
 -------------------------------------------------------------------------------
@@ -262,11 +271,22 @@ local function toggle_nightmode()
     awesome.emit_signal("signal::nightmode")
 end
 
+local function brightness(command) 
+    return function()
+        awful.spawn.easy_async_with_shell(
+            "tgd-brightness " .. command,
+            function (stdout, stderr, exr, exc)
+                awesome.emit_signal("signal::brightness")
+            end
+        )
+    end
+end
+
 globalkeys = gears.table.join(globalkeys, key_group ("brightness", {
-    { {}, br_down, scripts .. "brightness lower", "lower brightness"},
-    { {}, br_up,   scripts .. "brightness raise", "raise brightness"},
-    { MC, "[",     scripts .. "brightness lower", "lower brightness"},
-    { MC, "]",     scripts .. "brightness raise", "raise brightness"},
+    { {}, br_down, brightness("lower"), "lower brightness"},
+    { {}, br_up,   brightness("raise"), "raise brightness"},
+    { MC, "[",     brightness("lower"), "lower brightness"},
+    { MC, "]",     brightness("raise"), "raise brightness"},
     { M,  "'",     toggle_nightmode,              "toggle nightmode"},
 }))
 

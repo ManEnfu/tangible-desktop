@@ -32,8 +32,8 @@ Then, enable the following options:
     tangible = {
       url = "github:ManEnfu/tangible-desktop";
       inputs.nixpkgs.follows = "nixpkgs";
-    }
-  } 
+    };
+  }; 
 }
 
 # home.nix
@@ -41,6 +41,7 @@ Then, enable the following options:
   desktop.tangible = {
     enable = true; # Enable Tangible Desktop configurations
     awesome.enable = true; # Export configuration for `awesome`
+    dwm.enable = true; # Export configuration for `dwm`
     hyprland.enable = true; # Export configuration for `hyprland`
   }
 }

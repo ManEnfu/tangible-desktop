@@ -17,6 +17,7 @@ Extremely bleeding edge, use at your own risk.
 | `eww` | Panel & widgets | [Link](https://github.com/elkowar/eww) |
 | `grim` | Screenshot, color picker | [Link](https://github.com/emersion/grim) |
 | `hyprpicker` | Color picker | [Link](https://github.com/hyprwm/hyprpicker) |
+| `jq` | JSON parser | [Link](https://stedolan.github.io/jq/) |
 | `kitty` | Terminal emulator | [Link](https://github.com/kovidgoyal/kitty) |
 | `lxpolkit` | Policykit provider | [Link](https://wiki.lxde.org/en/LXSession) |
 | `libnotify` | Send notifications | [Link](https://gitlab.gnome.org/GNOME/libnotify) |

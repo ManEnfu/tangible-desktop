@@ -1,0 +1,22 @@
+#!/bin/sh
+
+wallpaper() {
+    if [ -f ~/.config/wallpaper-dwm ]; then
+        feh --no-fehbg --bg-fill ~/.config/wallpaper-dwm &!
+    elif [ -f ~/.config/wallpaper ]; then
+        feh --no-fehbg --bg-fill ~/.config/wallpaper &!
+    fi
+}
+
+function run {
+    if ! pgrep -f $1 ; then
+        $@&
+    fi
+}
+
+wallpaper
+run picom --experimental-backend --config ~/.config/dwm/picom.conf
+run nm-applet --indicator
+run lxpolkit
+run dwmblocks
+run dunst

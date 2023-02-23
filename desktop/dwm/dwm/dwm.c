@@ -1530,68 +1530,70 @@ runautostart(void)
 		/* this is almost impossible */
 		return;
 
-	/* if $XDG_DATA_HOME is set and not empty, use $XDG_DATA_HOME/dwm,
-	 * otherwise use ~/.local/share/dwm as autostart script directory
-	 */
-	xdgdatahome = getenv("XDG_DATA_HOME");
-	if (xdgdatahome != NULL && *xdgdatahome != '\0') {
-		/* space for path segments, separators and nul */
-		pathpfx = ecalloc(1, strlen(xdgdatahome) + strlen(dwmdir) + 2);
+	system("tgd-dwm-autostart &");
 
-		if (sprintf(pathpfx, "%s/%s", xdgdatahome, dwmdir) <= 0) {
-			free(pathpfx);
-			return;
-		}
-	} else {
-		/* space for path segments, separators and nul */
-		pathpfx = ecalloc(1, strlen(home) + strlen(localshare)
-		                     + strlen(dwmdir) + 3);
+	/* /1* if $XDG_DATA_HOME is set and not empty, use $XDG_DATA_HOME/dwm, */
+	/*  * otherwise use ~/.local/share/dwm as autostart script directory */
+	/*  *1/ */
+	/* xdgdatahome = getenv("XDG_DATA_HOME"); */
+	/* if (xdgdatahome != NULL && *xdgdatahome != '\0') { */
+	/* 	/1* space for path segments, separators and nul *1/ */
+	/* 	pathpfx = ecalloc(1, strlen(xdgdatahome) + strlen(dwmdir) + 2); */
 
-		if (sprintf(pathpfx, "%s/%s/%s", home, localshare, dwmdir) < 0) {
-			free(pathpfx);
-			return;
-		}
-	}
+	/* 	if (sprintf(pathpfx, "%s/%s", xdgdatahome, dwmdir) <= 0) { */
+	/* 		free(pathpfx); */
+	/* 		return; */
+	/* 	} */
+	/* } else { */
+	/* 	/1* space for path segments, separators and nul *1/ */
+	/* 	pathpfx = ecalloc(1, strlen(home) + strlen(localshare) */
+	/* 	                     + strlen(dwmdir) + 3); */
 
-	/* check if the autostart script directory exists */
-	if (! (stat(pathpfx, &sb) == 0 && S_ISDIR(sb.st_mode))) {
-		/* the XDG conformant path does not exist or is no directory
-		 * so we try ~/.dwm instead
-		 */
-		char *pathpfx_new = realloc(pathpfx, strlen(home) + strlen(dwmdir) + 3);
-		if(pathpfx_new == NULL) {
-			free(pathpfx);
-			return;
-		}
-		pathpfx = pathpfx_new;
+	/* 	if (sprintf(pathpfx, "%s/%s/%s", home, localshare, dwmdir) < 0) { */
+	/* 		free(pathpfx); */
+	/* 		return; */
+	/* 	} */
+	/* } */
 
-		if (sprintf(pathpfx, "%s/.%s", home, dwmdir) <= 0) {
-			free(pathpfx);
-			return;
-		}
-	}
+	/* /1* check if the autostart script directory exists *1/ */
+	/* if (! (stat(pathpfx, &sb) == 0 && S_ISDIR(sb.st_mode))) { */
+	/* 	/1* the XDG conformant path does not exist or is no directory */
+	/* 	 * so we try ~/.dwm instead */
+	/* 	 *1/ */
+	/* 	char *pathpfx_new = realloc(pathpfx, strlen(home) + strlen(dwmdir) + 3); */
+	/* 	if(pathpfx_new == NULL) { */
+	/* 		free(pathpfx); */
+	/* 		return; */
+	/* 	} */
+	/* 	pathpfx = pathpfx_new; */
 
-	/* try the blocking script first */
-	path = ecalloc(1, strlen(pathpfx) + strlen(autostartblocksh) + 2);
-	if (sprintf(path, "%s/%s", pathpfx, autostartblocksh) <= 0) {
-		free(path);
-		free(pathpfx);
-	}
+	/* 	if (sprintf(pathpfx, "%s/.%s", home, dwmdir) <= 0) { */
+	/* 		free(pathpfx); */
+	/* 		return; */
+	/* 	} */
+	/* } */
 
-	if (access(path, X_OK) == 0)
-		system(path);
+	/* /1* try the blocking script first *1/ */
+	/* path = ecalloc(1, strlen(pathpfx) + strlen(autostartblocksh) + 2); */
+	/* if (sprintf(path, "%s/%s", pathpfx, autostartblocksh) <= 0) { */
+	/* 	free(path); */
+	/* 	free(pathpfx); */
+	/* } */
 
-	/* now the non-blocking script */
-	if (sprintf(path, "%s/%s", pathpfx, autostartsh) <= 0) {
-		free(path);
-		free(pathpfx);
-	}
+	/* if (access(path, X_OK) == 0) */
+	/* 	system(path); */
 
-	if (access(path, X_OK) == 0)
-		system(strcat(path, " &"));
+	/* /1* now the non-blocking script *1/ */
+	/* if (sprintf(path, "%s/%s", pathpfx, autostartsh) <= 0) { */
+	/* 	free(path); */
+	/* 	free(pathpfx); */
+	/* } */
 
-	free(pathpfx);
-	free(path);
+	/* if (access(path, X_OK) == 0) */
+	/* 	system(strcat(path, " &")); */
+
+	/* free(pathpfx); */
+	/* free(path); */
 }
 
 void

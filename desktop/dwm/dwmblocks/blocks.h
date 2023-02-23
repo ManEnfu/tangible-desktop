@@ -10,7 +10,7 @@ void mem_callback(char* dest) {
     char l[50];
     FILE* meminfo_file = fopen("/proc/meminfo", "r");
     if (!meminfo_file) {
-        sprintf(dest, " Err");
+        sprintf(dest, "RAM: Err");
         return;
     }
     while (!feof(meminfo_file)) {
@@ -24,26 +24,26 @@ void mem_callback(char* dest) {
     fclose(meminfo_file);
     used = total - free - buffer - cache - srec;
     used /= 1024;
-    sprintf(dest, " %dMiB", used);
+    sprintf(dest, "RAM: %dMiB", used);
 
 }
 
 void bat_callback(char* dest) {
 
     int bat_capacity, bat_icon_sel;
-    static const char bat_icon[][5] = {" "," "," "," "," "};
-    static const char bat_status_icon[][3] = {"", ""};
+    static const char bat_icon[][7] = {"[    ]","[|   ]","[||  ]","[||| ]","[||||]"};
+    static const char bat_status_icon[][3] = {"", "="};
     char bat_status[20];
     FILE* bat_capacity_file = fopen("/sys/class/power_supply/BAT0/capacity", "r");
     if (!bat_capacity_file) {
-        sprintf(dest, "   Err");
+        sprintf(dest, "[!] Err");
         return;
     }
     fscanf(bat_capacity_file, "%d", &bat_capacity);
     fclose(bat_capacity_file);
     FILE* bat_status_file = fopen("/sys/class/power_supply/BAT0/status", "r");
     if (!bat_status_file) {
-        sprintf(dest, "   Err");
+        sprintf(dest, "[!] Err");
         return;
     }
     fscanf(bat_status_file, "%s", bat_status);
@@ -51,7 +51,7 @@ void bat_callback(char* dest) {
     bat_icon_sel = (bat_capacity + 13) / 25;
     bat_icon_sel = bat_icon_sel <= 4 ? bat_icon_sel : 4;
     bat_icon_sel = bat_icon_sel >= 0 ? bat_icon_sel : 0;
-    sprintf(dest, "%s  %s %d%%     ", 
+    sprintf(dest, "BAT: %s  %s %d%%     ", 
         bat_icon[bat_icon_sel], 
         /* bat_status, */
         bat_status_icon[!strcmp(bat_status, "Charging")], 
@@ -65,13 +65,13 @@ void cputemp_callback(char* dest) {
     int cputemp;
     FILE* cputemp_file = fopen("/sys/class/thermal/thermal_zone0/temp", "r");
     if (!cputemp_file) {
-        sprintf(dest, " Err");
+        sprintf(dest, "TEMP: Err");
         return;
     }
     fscanf(cputemp_file, "%d", &cputemp);
     fclose(cputemp_file);
     cputemp /= 1000;
-    sprintf(dest, " %d°C", cputemp);
+    sprintf(dest, "TEMP: %d°C", cputemp);
 
 }
 
@@ -82,7 +82,7 @@ void cpuload_callback(char* dest) {
     long int r1, r2, r3, r4, r5, r6, r7, r8, r9, r10;
     FILE* stat_file = fopen("/proc/stat", "r");
     if (!stat_file) {
-        sprintf(dest, " Err");
+        sprintf(dest, "CPU: Err");
         return;
     }
     fscanf(
@@ -98,45 +98,45 @@ void cpuload_callback(char* dest) {
     cpuload = (diff_active * 100) / diff_total;
     cache_total = new_total;
     cache_active = new_active;
-    sprintf(dest, " %ld%%", cpuload);
+    sprintf(dest, "CPU: %ld%%", cpuload);
 
 }
 
 void volume_callback(char* dest) {
     
     int vol;
-    char vol_status;
-    static const char *vol_status_icon[] = {"ﱝ", "墳"};
-    FILE* pulse_output = popen("amixer -D pulse sget Master | awk '/Front Left:/ {print $5\" \"$6}'", "r");
+    char vol_mute[48];
+    static const char *vol_status_icon[] = {"<x", "<)"};
+    FILE* pulse_output = popen("tgd-vol get", "r");
     if (!pulse_output) {
-        sprintf(dest, "ﱝ Err");
+        sprintf(dest, "VOL: <x Err");
         return;
     }
     fscanf(
         pulse_output,
-        "[%d%%] [o%c",
-        &vol, &vol_status        
+        "{\"volume\": %d, \"mute\": %s}",
+        &vol, vol_mute     
     );
     pclose(pulse_output);
-    sprintf(dest, "%s %d%%", vol_status_icon[vol_status == 'n'], vol);
-
+    sprintf(dest, "VOL: %s %d%%", vol_status_icon[vol_mute[0] == 'f'], vol);
 }
 
 void wifi_callback(char* dest) {
 
     char iw_output[48];
-    static const char *wifi_status_icon[] = {"睊", "直"};
-    FILE* iw_output_file = popen("iwconfig wlp5s0 | awk '/wlp5s0/ { print $4 }' | sed 's/\"//g'", "r");
-    if (!iw_output) {
-        sprintf(dest, "ﱝ Err");
+    static const char *wifi_status_icon[] = {"WIFI: ", "WIFI: "};
+    /* FILE* iw_output_file = popen("iwconfig wlp5s0 | awk '/wlp5s0/ { print $4 }' | sed 's/\"//g'", "r"); */
+    FILE* iw_output_file = popen("tgd-wifi | jq -r .essid", "r");
+    if (!iw_output_file) {
+        sprintf(dest, "WIFI: Err");
         return;
     }
     fscanf(iw_output_file, "%s", iw_output);
     pclose(iw_output_file);
-    if (strcmp(iw_output + 6, "off/any")) {
-        sprintf(dest, "%s %s", wifi_status_icon[1], iw_output + 6);
+    if (strncmp(iw_output, "--", 2)) {
+        sprintf(dest, "%s %s", wifi_status_icon[1], iw_output);
     } else {
-        sprintf(dest, "%s N/A", wifi_status_icon[0]);
+        sprintf(dest, "%s --", wifi_status_icon[0]);
     }
     
 }
@@ -154,7 +154,6 @@ static const Block blocks[] = {
 	CALLBACK("      ",          wifi_callback,      4, 0),
 	CALLBACK("      ",          volume_callback,    3, 10),
 	CALLBACK("      ",          bat_callback,       3, 0),
-	COMMAND ("      ", "bash -c ~/.config/scripts/myschedule.sh", 10, 0),
 };
 
 //sets delimeter between status commands. NULL character ('\0') means no delimeter.

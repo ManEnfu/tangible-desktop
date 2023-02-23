@@ -2,5 +2,6 @@
   imports = [
     ./awesome.nix
     ./hyprland.nix
+    ./dwm.nix
   ];
 }

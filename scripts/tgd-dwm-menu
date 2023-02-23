@@ -3,17 +3,9 @@
 shopt -s nullglob globstar
 set -e
 
-config_dir="$HOME/.config/awesome"
-theme_dir="$HOME/.config/awesome/rofi-themes"
-
-# Application menu
-drun () {
-    rofi -show drun -theme "$theme_dir/launcher.rasi"
-}
-
 # Run menu
 run () {
-    rofi -show run -theme "$theme_dir/run.rasi"
+    dmenu_run
 }
 
 
@@ -22,11 +14,11 @@ powermenu () {
     up_time=$(uptime)
     username=$(id -un)
 
-    option_sleep=""
-    option_reboot=""
-    option_poweroff=""
-    option_lock=""
-    option_logout=""
+    option_sleep="sleep"
+    option_reboot="reboot"
+    option_poweroff="poweroff"
+    option_lock="lock"
+    option_logout="logout"
 
     declare -a options=(
         $option_sleep
@@ -38,7 +30,7 @@ powermenu () {
 
     choice=$(\
         printf '%s\n' "${options[@]}" | \
-        rofi -dmenu -i -p "$up_time" -theme "$theme_dir/power.rasi")
+        dmenu -i -p "$up_time")
 
     if [[ $choice == $option_sleep ]]; then
         i3lock -c 101010 && sleep 0.5 && suspend

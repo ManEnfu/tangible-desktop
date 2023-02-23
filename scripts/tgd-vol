@@ -10,8 +10,14 @@ update_widget () {
 }
 
 if [ $1 = "get" ]; then
-    pactl get-sink-volume $sink
-    pactl get-sink-mute $sink
+    vol=$(pactl get-sink-volume $sink | awk '/Volume/ {print $5}' | sed 's/%//')
+    mute=$(pactl get-sink-mute $sink | awk '/Mute/ {print $2}')
+    if [ "$mute" = "yes" ]; then
+        mute="true"
+    else
+        mute="false"
+    fi
+    echo "{\"volume\": $vol, \"mute\": $mute}"
 elif [ $1 = "raise" ]; then
     pactl set-sink-volume $sink +5%
     # limit to 100%

@@ -1,0 +1,20 @@
+#!/bin/sh
+
+wallpaper() {
+    if [ -f ~/.config/wallpaper-awesome ]; then
+        feh --no-fehbg --bg-fill ~/.config/wallpaper-awesome &!
+    elif [ -f ~/.config/wallpaper ]; then
+        feh --no-fehbg --bg-fill ~/.config/wallpaper &!
+    fi
+}
+
+function run {
+    if ! pgrep -f $1 ; then
+        $@&
+    fi
+}
+
+wallpaper
+run picom --experimental-backend --config ~/.config/awesome/picom.conf
+run nm-applet --indicator
+run lxpolkit

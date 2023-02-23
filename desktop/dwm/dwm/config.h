@@ -7,8 +7,8 @@ static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int user_bh            = 32;        /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
-static const char *fonts[]          = { "Ubuntu:size=8" };
-static const char dmenufont[]       = "Ubuntu:size=8";
+static const char *fonts[]          = { "Ubuntu:size=9" };
+static const char dmenufont[]       = "Ubuntu:size=9";
 static const char col_gray1[]       = "#161616";
 static const char col_gray2[]       = "#161616";
 static const char col_gray3[]       = "#dfdfdf";
@@ -85,9 +85,7 @@ static Key keys[] = {
     /* Launcher */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY|ShiftMask,             XK_p,      spawn,          SHCMD("~/.config/dmenu/dmenu_power.sh") },
-	{ MODKEY|ControlMask,           XK_p,      spawn,          SHCMD("~/.config/dmenu/dmenu_pass.sh") },
-	{ MODKEY|ShiftMask,             XK_i,      spawn,          SHCMD("~/.config/dmenu/dmenu_ambient.sh") },
+	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = (const char*[]){"tgd-dwm-menu", "power", NULL}} },
     /* Window */
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -131,11 +129,11 @@ static Key keys[] = {
     /* Misc */
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
-	{ 0,                            XK_Print,  spawn,          SHCMD("~/.config/scripts/screenshot.sh") },
-	{ ShiftMask,                    XK_Print,  spawn,          SHCMD("~/.config/scripts/screenshot-select.sh") },
-    { MODKEY,                 XK_bracketright, spawn,          SHCMD("~/.config/scripts/vol-raise.sh") },
-    { MODKEY,                  XK_bracketleft, spawn,          SHCMD("~/.config/scripts/vol-lower.sh") },
-    { MODKEY,                    XK_backslash, spawn,          SHCMD("~/.config/scripts/vol-toggle.sh") },
+	{ 0,                            XK_Print,  spawn,          {.v = (const char*[]){"tgd-screenshot-x", NULL}} },
+	{ ShiftMask,                    XK_Print,  spawn,          {.v = (const char*[]){"tgd-screenshot-x", "select", NULL}} },
+    { MODKEY,                 XK_bracketright, spawn,          {.v = (const char*[]){"tgd-vol", "raise", NULL}} },
+    { MODKEY,                  XK_bracketleft, spawn,          {.v = (const char*[]){"tgd-vol", "lower", NULL}} },
+    { MODKEY,                    XK_backslash, spawn,          {.v = (const char*[]){"tgd-vol", "toggle", NULL}} },
 };
 
 /* button definitions */

@@ -252,7 +252,7 @@ require("rules")
 require("signals")
 
 -- Autostart
-awful.spawn.with_shell("~/.config/awesome/autostart.sh")
+awful.spawn.with_shell("tgd-awesome-autostart")
 
 gears.timer {
     timeout = 20,

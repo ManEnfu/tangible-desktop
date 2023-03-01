@@ -3,7 +3,7 @@ modi: "drun,run,ssh";
 /* width: 40; */
 /* lines: 10; */
 /* columns: 1; */
-font: "Ubuntu 8";
+font: "Ubuntu 9";
 /*	bw: 1;*/
 location: 0;
 /* padding: 10; */

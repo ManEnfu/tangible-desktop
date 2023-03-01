@@ -16,7 +16,7 @@ configuration {
 }
 
 window {
-    font: "Ubuntu 8";
+    font: "Ubuntu 9";
     border-radius: 4px;
     background-color: @window-bg;
     padding: 2px 2px;

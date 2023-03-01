@@ -3,5 +3,6 @@
     ./desktop
     ./kvantum.nix
     ./tangible.nix
+    ./libadwaita.nix
   ];
 }

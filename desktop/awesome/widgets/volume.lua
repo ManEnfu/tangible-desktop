@@ -58,11 +58,11 @@ local function worker(args)
     -- UPDATE WIDGET PERIODICALLY
     ---------------------------------------------------------------------------
     local function update_widget(widget, stdout)
-        local volume_level = string.match(stdout, '(%-?%d+)%%')
-        local mute = string.match(stdout, 'Mute: ([yn])')
+        local volume_level = string.match(stdout, '"volume": (%-?%d+)')
+        local mute = string.match(stdout, '"mute": ([tf])')
         local children = widget:get_children()
         if volume_level ~= nil then 
-            if mute == "y" then
+            if mute == "t" then
                 children[1]:set_widget(icons[3])
             elseif tonumber(volume_level) > 0 then
                 children[1]:set_widget(icons[1])

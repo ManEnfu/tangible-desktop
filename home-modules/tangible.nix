@@ -33,6 +33,7 @@ in {
   config = mkIf (cfg.enable) {
     home.packages = with pkgs; [
       # Desktop Apps
+      gnome.nautilus
       lxde.lxsession
       libnotify
       pulseaudio
@@ -97,14 +98,20 @@ in {
         name = "Tela-dark";
       };
       theme = {
-        package = pkgs.materia-theme;
-        name = "Materia-dark-compact";
+        # package = pkgs.materia-theme;
+        # name = "Materia-dark-compact";
+        package = pkgs.orchis-theme.override {
+          border-radius = 6;
+          tweaks = [ "solid" "compact" "black" ];
+        };
+        name = "Orchis-Dark-Compact";
       };
       font = {
         package = pkgs.ubuntu_font_family;
         name = "Ubuntu";
         size = 9;
       };
+      libadwaita = true;
     };
 
     qt = {

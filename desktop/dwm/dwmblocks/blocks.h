@@ -51,7 +51,7 @@ void bat_callback(char* dest) {
     bat_icon_sel = (bat_capacity + 13) / 25;
     bat_icon_sel = bat_icon_sel <= 4 ? bat_icon_sel : 4;
     bat_icon_sel = bat_icon_sel >= 0 ? bat_icon_sel : 0;
-    sprintf(dest, "BAT: %s  %s %d%%     ", 
+    sprintf(dest, "BAT: %s  %s %d%%", 
         bat_icon[bat_icon_sel], 
         /* bat_status, */
         bat_status_icon[!strcmp(bat_status, "Charging")], 
@@ -141,19 +141,18 @@ void wifi_callback(char* dest) {
     
 }
 
-
-
 static const Block blocks[] = {
 	/*Icon*/	/*Command*/		/*Update Interval*/	/*Update Signal*/
 	/* {"Mem:", "free -h | awk '/^Mem/ { print $3\"/\"$2 }' | sed s/i//g",	30,		0}, */
 
 	/* {"", "date '+%b %d (%a) %I:%M%p'",					5,		0}, */
 	CALLBACK("",                cpuload_callback,   5, 0),
-	CALLBACK("      ",          mem_callback,       5, 0),
-	CALLBACK("      ",          cputemp_callback,   7, 0),
-	CALLBACK("      ",          wifi_callback,      4, 0),
-	CALLBACK("      ",          volume_callback,    3, 10),
-	CALLBACK("      ",          bat_callback,       3, 0),
+	CALLBACK("    ",          mem_callback,       5, 0),
+	CALLBACK("    ",          cputemp_callback,   7, 0),
+	CALLBACK("    ",          wifi_callback,      4, 0),
+	CALLBACK("    ",          volume_callback,    3, 10),
+	CALLBACK("    ",          bat_callback,       3, 0),
+    COMMAND ("    ", "date '+%d %b %y | %H:%M     '", 2, 0),
 };
 
 //sets delimeter between status commands. NULL character ('\0') means no delimeter.

@@ -100,7 +100,19 @@ in {
       theme = {
         # package = pkgs.materia-theme;
         # name = "Materia-dark-compact";
-        package = pkgs.orchis-theme.override {
+        package = (pkgs.orchis-theme.overrideAttrs (f: p: rec {
+          version = "2023-02-26";
+          src = pkgs.fetchFromGitHub {
+            repo = "Orchis-theme";
+            owner = "vinceliuice";
+            rev = version;
+            sha256 = "sha256-Qk5MK8S8rIcwO7Kmze6eAl5qcwnrGsiWbn0WNIPjRnA=";
+          };
+
+          preInstall = ''
+            sed -i 's/make_gtkrc "''${dest:-$DEST_DIR}" "''${name:-$THEME_NAME}" "$theme" "$color" "$size" "$ctype"/make_gtkrc "''${dest:-$DEST_DIR}" "''${_name:-$THEME_NAME}" "$theme" "$color" "$size" "$ctype"/' core.sh
+          '' + p.preInstall;
+        })).override {
           border-radius = 6;
           tweaks = [ "solid" "compact" "black" ];
         };
@@ -111,7 +123,7 @@ in {
         name = "Ubuntu";
         size = 9;
       };
-      libadwaita = true;
+      libadwaita.enable = true;
     };
 
     qt = {
@@ -121,6 +133,8 @@ in {
         theme = {
           package = pkgs.materia-kde-theme;
           name = "MateriaDark";
+          # package = pkgs.orchis-kde-theme;
+          # name = "Orchis-dark";
         };
       };
     };
